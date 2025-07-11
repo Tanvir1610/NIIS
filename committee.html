@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Committee - Coming Soon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        animation: slideUp 0.8s ease-in;
+        font-family: "Ubuntu", sans-serif;
+        font-weight: 400;
+        background: linear-gradient(135deg, #3b82f6, #cffafe, #dbeafe);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Header Styles - Matching index.html */
+      .logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        gap: 7rem;
+        background-color: #f8f9fa;
+      }
+
+      .logo {
+        height: 80px;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+      }
+
+      .logo:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+      }
+
+      .navbar {
+        justify-content: center;
+        align-items: center;
+        background-color: #0b274c;
+        padding: 1rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-links li {
+        display: inline;
+        position: relative;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 400;
+        padding: 0.5rem 1rem;
+        display: block;
+        transition: all 0.3s ease;
+        border: 1px solid;
+        border-radius: 5px;
+      }
+
+      .nav-links a:hover {
+        color: black !important;
+        background: linear-gradient(to right, #cffafe 0%, #dbeafe 100%);
+        border-radius: 5px;
+      }
+
+      .dropdown {
+        position: relative;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        min-width: 220px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        z-index: 1;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 0.5rem 0;
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
+
+      .dropdown-content a {
+        display: block;
+        color: #333;
+        transition: all 0.3s ease;
+        border: none;
+      }
+
+      .dropdown-content a:hover {
+        color: #000 !important;
+        background: linear-gradient(to right, #cffafe 0%, #dbeafe 100%);
+        transform: translateX(1px);
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+        opacity: 1;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .submit-paper {
+        color: white !important;
+        margin-right: 15px;
+        animation: fadeIn 1s ease;
+        box-shadow: none;
+        border-radius: 5px;
+      }
+
+      .submit-paper:hover {
+        color: black !important;
+        background: linear-gradient(
+          to right,
+          #cffafe 0%,
+          #dbeafe 100%
+        ) !important;
+        border-radius: 5px;
+      }
+
+      /* Menu Button (Visible only on mobile) */
+      .menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        text-align: left;
+      }
+
+      /* Mobile Navbar (Sidebar) */
+      .mobile-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 250px;
+        height: 100%;
+        background: #0b274c;
+        padding-top: 50px;
+        transition: transform 0.3s ease-in-out;
+        transform: translateX(-100%);
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        z-index: 1000;
+      }
+
+      .mobile-nav.active {
+        transform: translateX(0);
+      }
+
+      .close-btn {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 24px;
+        align-self: flex-end;
+        cursor: pointer;
+        margin-right: 15px;
+        text-align: left;
+      }
+
+      .mobile-nav a {
+        color: white;
+        text-decoration: none;
+        padding: 15px;
+        font-size: 18px;
+        display: block;
+        list-style: none;
+      }
+
+      .mobile-nav a:hover {
+        background: rgba(6, 182, 212, 0.1);
+      }
+
+      /* Main Content */
+      main.main-content {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 2rem 1rem;
+      
+      }
+
+      .coming-soon-container {
+        background: white;
+        padding: 3rem 4rem;
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        max-width: 600px;
+        width: 100%;
+        margin: 5rem;
+      }
+
+      .coming-soon-title {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #3b82f6;
+        margin-bottom: 1rem;
+      }
+
+      .coming-soon-text {
+        font-size: 1.2rem;
+        color: #374151;
+        line-height: 1.5;
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .menu-btn {
+          display: block;
+          color: white;
+        }
+
+        .logo-container {
+          gap: 2rem;
+        }
+
+        .logo {
+          height: 25px;
+        }
+
+        .coming-soon-title {
+          font-size: 2.5rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .coming-soon-title {
+          font-size: 2rem;
+        }
+
+        .coming-soon-text {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="logo-container">
+        <!-- <img src="SDSTD2025.png" alt="SDSTD" class="logo" /> -->
+        <img src="cvm.png" alt="CVM" class="logo" />
+        <img src="adit.png" alt="ADIT" class="logo" />
+        <img src="gcet.png" alt="GCET" class="logo" />
+        <img src="mbit.png" alt="MBIT" class="logo" />
+        <img src="CVM-Logo (2).png" alt="MBIT" class="logo" />
+      </div>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 21h18"/>
+                            <path d="M5 21V7l8-4v18"/>
+                            <path d="M19 21V11l-6-4"/>
+                        </svg>
+                    </div>
+                    <div class="logo-text">
+                        <h1>NIIS 2026</h1>
+                        <p>International Conference</p>
+                    </div>
+                </div>
+                
+                <nav class="navigation">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <!-- <a href="niis.html" class="nav-link">NIIS 2026</a> -->
+                    <a href="committee.html" class="nav-link">Committee</a>
+                    <a href="keynote.html" class="nav-link">Keynote Speaker</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                    <a href="https://forms.gle/poL6xmD6jXPGCveL6" target="_blank" class="cta-button">Register Now</a>
+                </nav>
+                
+                <button class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <br>
+    <br>
+    <br>
+    <br>
+    <main class="main-content">
+      <div class="coming-soon-container">
+        <h1 class="coming-soon-title">Coming Soon</h1>
+        <p class="coming-soon-text">
+          The Committee page is under construction. Please check back
+          later for updates.
+        </p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <p>© 2026 NIIS Conference. All rights reserved.</p>
+        <p>
+          Design And Develop By
+          <span>Student Team of CP & IT GCET College</span>
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      function toggleMenu() {
+        const mobileNav = document.getElementById("mobileNav");
+        mobileNav.classList.add("active");
+      }
+
+      function toggleClose() {
+        const mobileNav = document.getElementById("mobileNav");
+        mobileNav.classList.remove("active");
+      }
+
+      function openInNewTab(url) {
+        window.open(url, "_blank").focus();
+      }
+
+      // Close mobile menu when clicking outside
+      document.addEventListener("click", function (event) {
+        const mobileNav = document.getElementById("mobileNav");
+        const menuBtn = document.querySelector(".menu-btn");
+
+        if (
+          !mobileNav.contains(event.target) &&
+          !menuBtn.contains(event.target)
+        ) {
+          mobileNav.classList.remove("active");
+        }
+      });
+    </script>
+  </body>
+</html>
