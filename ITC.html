@@ -3,31 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Submission Guidelines - SDSTD2025</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>International Committee - Conference</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
-    rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
     <style>
-      .guidelines h1 {
-        text-align: center;
-        font-weight: bold;
-        margin-bottom: 1rem;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
+
       body {
-        animation: slideUp 0.5s ease;
-        background: linear-gradient(135deg, #3b82f6, #cffafe, #dbeafe);
+        animation: slideUp 0.8s ease-in;
         font-family: "Ubuntu", sans-serif;
         font-weight: 400;
+        background: linear-gradient(135deg, #3b82f6, #cffafe, #dbeafe);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
       }
+
+      /* Header Styles - Matching index.html */
       .logo-container {
         display: flex;
         justify-content: center;
         align-items: center;
         padding: 1rem;
-        gap: 10rem;
+        gap: 7rem;
         background-color: #f8f9fa;
       }
 
@@ -42,48 +49,101 @@
         cursor: pointer;
       }
 
-      button {
-        padding: 10px 20px;
-        background-color: white;
-        color: #0b274c;
-        border: 1px solid white;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-        transition: 0.3s;
-      }
-
-      button:hover {
-        background-color: #007bff;
-        color: white;
-      }
-
       .navbar {
-        /* padding: 15px; */
-        /* display: flex; */
         justify-content: center;
         align-items: center;
-      }
-      nav {
         background-color: #0b274c;
         padding: 1rem;
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
       }
+
       .nav-links {
         list-style: none;
         display: flex;
         gap: 20px;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
       }
 
       .nav-links li {
         display: inline;
+        position: relative;
       }
 
       .nav-links a {
-        /* color: white; */
+        color: white;
         text-decoration: none;
         font-size: 18px;
+        font-weight: 400;
+        padding: 0.5rem 1rem;
+        display: block;
+        transition: all 0.3s ease;
         border: 1px solid;
+        border-radius: 5px;
+      }
+
+      .nav-links a:hover {
+        color: black !important;
+        background: linear-gradient(to right, #cffafe 0%, #dbeafe 100%);
+        border-radius: 5px;
+      }
+
+      .dropdown {
+        position: relative;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        min-width: 220px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        z-index: 1;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 0.5rem 0;
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
+
+      .dropdown-content a {
+        display: block;
+        color: #333;
+        transition: all 0.3s ease;
+        border: none;
+      }
+
+      .dropdown-content a:hover {
+        color: #000 !important;
+        background: linear-gradient(to right, #cffafe 0%, #dbeafe 100%);
+        transform: translateX(1px);
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+        opacity: 1;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .submit-paper {
+        color: white !important;
+        margin-right: 15px;
+        animation: fadeIn 1s ease;
+        box-shadow: none;
+        border-radius: 5px;
+      }
+
+      .submit-paper:hover {
+        color: black !important;
+        background: linear-gradient(
+          to right,
+          #cffafe 0%,
+          #dbeafe 100%
+        ) !important;
+        border-radius: 5px;
       }
 
       /* Menu Button (Visible only on mobile) */
@@ -91,7 +151,7 @@
         display: none;
         background: none;
         border: none;
-        color: linear-gradient(to right, #cffafe 0%, #dbeafe 100%);
+        color: white;
         font-size: 20px;
         cursor: pointer;
         text-align: left;
@@ -111,6 +171,7 @@
         display: flex;
         flex-direction: column;
         list-style: none;
+        z-index: 1000;
       }
 
       .mobile-nav.active {
@@ -124,14 +185,12 @@
         font-size: 24px;
         align-self: flex-end;
         cursor: pointer;
-        margin-right: auto;
+        margin-right: 15px;
+        text-align: left;
       }
 
       .mobile-nav a {
         color: white;
-        background: linear-gradient(to right, #2563eb 0%, #06b6d4 100%);
-        -webkit-background-clip: text;
-        /* -webkit-text-fill-color: transparent; */
         text-decoration: none;
         padding: 15px;
         font-size: 18px;
@@ -139,44 +198,63 @@
         list-style: none;
       }
 
-      /* Show Mobile Menu */
-      .mobile-nav .dropdown {
-        position: relative;
-        display: block;
+      .mobile-nav a:hover {
+        background: rgba(6, 182, 212, 0.1);
       }
 
-      .mobile-nav .dropdown-content {
-        display: none; /* Initially hidden */
-        flex-direction: column;
-        background: #1a1a1a;
-        padding-left: 10px;
-      }
-
-      .mobile-nav .dropdown-content a {
-        padding: 10px;
-        display: block;
-        color: white;
-        text-decoration: none;
-      }
-
-      /* Show dropdown when active */
-      .mobile-nav .dropdown.active .dropdown-content {
+      /* Main Content */
+      main.main-content {
+        flex-grow: 1;
         display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 2rem 1rem;
+      
       }
 
-      .dropdown-content a {
-        display: block;
-        /* padding: 0.75rem 1.5rem; */
-        color: #333;
-        transition: all 0.3s ease;
-        border: none;
+      .coming-soon-container {
+        background: white;
+        padding: 3rem 4rem;
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        max-width: 600px;
+        width: 100%;
+        margin: 5rem;
       }
 
-      .dropdown-content a:hover .dropdown-content {
-        display: block;
-        opacity: 1;
-        color: #000 !important;
-        animation: fadeIn 0.3s ease;
+      .coming-soon-title {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #3b82f6;
+        margin-bottom: 1rem;
+      }
+
+      .coming-soon-text {
+        font-size: 1.2rem;
+        color: #374151;
+        line-height: 1.5;
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       /* Responsive Design */
@@ -189,201 +267,151 @@
           display: block;
           color: white;
         }
+
         .logo-container {
           gap: 2rem;
         }
-      }
-      .call-papers h1 {
-        text-align: center;
-      }
-      .submit-paper {
-        color: #000;
-        /* background: #027bff; */
-        background-color: linear-gradient(to right, #cffafe 0%, #dbeafe 100%);
-        /* -webkit-text-fill-color: transparent; */
-        animation: fadeIn 1s ease;
-        /* box-shadow: 1px -4px 5px; */
-        box-shadow: none;
-      }
-      .guidelines-list li {
-        font-weight: bold;
-        font-size: 0.8rem;
-      }
-      @keyframes fadeInUp {
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      @keyframes slideUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
 
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      @media (max-width: 768px) {
-        body {
-          text-align: justify;
-        }
         .logo {
           height: 25px;
-          align-items: justify;
         }
-        .submit-paper{
-          box-shadow: none;
+
+        .coming-soon-title {
+          font-size: 2.5rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .coming-soon-title {
+          font-size: 2rem;
+        }
+
+        .coming-soon-text {
+          font-size: 1rem;
         }
       }
     </style>
   </head>
+
   <body>
-    <header>
+    <header class="header">
       <div class="logo-container">
-        <img src="SDSTD2025.png" alt="SDSTD" class="logo" />
+        <!-- <img src="SDSTD2025.png" alt="SDSTD" class="logo" /> -->
         <img src="cvm.png" alt="CVM" class="logo" />
-        <img src="adit.png" alt="ADIT" class="logo" />
+        <!-- <img src="adit.png" alt="ADIT" class="logo" /> -->
         <img src="gcet.png" alt="GCET" class="logo" />
-        <img src="mbit.png" alt="MBIT" class="logo" />
-        <img src="CVM-Logo.png" alt="MBIT" class="logo" />
+        <!-- <img src="mbit.png" alt="MBIT" class="logo" /> -->
+        <img src="CVM-Logo (2).png" alt="MBIT" class="logo" />
       </div>
-      <nav class="navbar">
-        <ul class="nav-links">
-          <li><a href="index.html" class="active">Home</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropbtn">About</a>
-            <div class="dropdown-content">
-              <a href="cvm.html">Charutar Vidya Mandal</a>
-              <a href="cvm-university.html">CVM University</a>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 21h18"/>
+                            <path d="M5 21V7l8-4v18"/>
+                            <path d="M19 21V11l-6-4"/>
+                        </svg>
+                    </div>
+                    <div class="logo-text">
+                        <h1>NIIS 2026</h1>
+                        <p>International Conference</p>
+                    </div>
+                </div>
+                
+                <nav class="navigation">
+                    <a href="index.html" class="nav-link active">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <!-- <a href="niis.html" class="nav-link">NIIS 2026</a> -->
+                  <div class="nav-dropdown">
+                    <a href="#" class="nav-link active">Committee</a>
+                    <div class="dropdown-menu">
+                      <a href="committee.html" class="dropdown-item">Organizing Committee</a>
+                      <a href="#track-coordinators" class="dropdown-item">Track Co-ordinators</a>
+                      <a href="ITC.html" class="dropdown-item">International Technical Committee</a>
+                      <a href="NC.html" class="dropdown-item">National Technical Committee</a>
+                      <a href="TC.html" class="dropdown-item">Technical Advisory Committee</a>
+                    </div>
+                  </div>
+                    <a href="keynote.html" class="nav-link">Keynote Speaker</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                    <a href="https://forms.gle/poL6xmD6jXPGCveL6" target="_blank" class="cta-button">Register Now</a>
+                </nav>
+                
+                <button class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropbtn">SDSTD-2025</a>
-            <div class="dropdown-content">
-              <a href="tracks.html">Tracks</a>
-              <a href="call-for-papers.html">Call for Papers</a>
-              <a href="important-dates.html">Important Dates</a>
-              <a href="submission-guidelines.html">Submission Guidelines</a>
-              <a href="#" onclick="openInNewTab('https://forms.gle/oZiaETYz1s2UpWhR8')">Registration</a>
-              <a href="Payment.html">Payment Details</a>
-            </div>
-          </li>
-          <li><a href="keynote.html">Keynote Speaker</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropbtn">Committee</a>
-            <div class="dropdown-content">
-              <a href="organizing.html">Organizing Committee</a>
-              <a href="track-coordinators.html">Track Co-ordinators</a>
-              <a href="ITC.html">International Technical Committee</a>
-              <a href="NC.html">National Technical Committee</a>
-              <!-- <a href="WC.html">Website Coordinator</a> -->
-            </div>
-          </li>
-          <li><a href="index.html#contact">Contact Us</a></li>
-          <li>
-            <a href="#" class="submit-paper" onclick="openInNewTab('https://cmt3.research.microsoft.com/User/Login?ReturnUrl=%2FSDSTD2025%2FSubmission%2FIndex')">Submit Paper</a
-            >
-          </li>
-        </ul>
-        <button class="menu-btn" onclick="toggleMenu()">☰</button>
-      </nav>
-      <div class="mobile-nav" id="mobileNav">
-        <button class="close-btn" onclick="toggleClose()">✖</button>
-        <li><a href="index.html" class="active">Home</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropbtn">About</a>
-          <div class="dropdown-content">
-            <a href="cvm.html">Charutar Vidya Mandal</a>
-            <a href="cvm-university.html">CVM University</a>
-          </div>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropbtn">SDSTD-2025</a>
-          <div class="dropdown-content">
-            <a href="tracks.html">Tracks</a>
-            <a href="call-for-papers.html">Call for Papers</a>
-            <a href="important-dates.html">Important Dates</a>
-            <a href="submission-guidelines.html">Submission Guidelines</a>
-            <a href="#" onclick="openInNewTab('https://forms.gle/oZiaETYz1s2UpWhR8')">Registration</a>
-            <a href="Payment.html">Payment Details</a>
-          </div>
-        </li>
-        <li><a href="keynote.html">Keynote Speaker</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropbtn">Committee</a>
-          <div class="dropdown-content">
-            <a href="organizing.html">Organizing Committee</a>
-            <a href="track-coordinators.html">Track Co-ordinators</a>
-            <a href="ITC.html">International Technical Committee</a>
-            <a href="NC.html">National Technical Committee</a>
-            <!-- <a href="WC.html">Website Coordinator</a> -->
-          </div>
-        </li>
-        <li><a href="index.html#contact">Contact Us</a></li>
-        <li><a href="#" class="submit-paper" onclick="openInNewTab('https://cmt3.research.microsoft.com/User/Login?ReturnUrl=%2FSDSTD2025%2FSubmission%2FIndex')">Submit Paper</a></li>
-      </div>
+        </div>
     </header>
-
-    <main>
-      <section class="guidelines">
-        <h1>International Technical Committee</h1>
-        <div class="guidelines-list">
-          <ul>
-            <li>
-              Mr. Vrushen Pathak, Technical Program Manager, Product
-              Quality,Google, USA
-            </li>
-            <li>
-              Meenesh R. Singh, Associate Professor, Chemical Engineering,
-              University of Illinois at Chicago
-            </li>
-            <li>
-              Sudeep Popat,Associate Professor, University of California,
-              Riverside, USA
-            </li>
-            <li>
-              Er.Snehal Patel, Director, Satt Engineering Ltd., Alberta, Canada
-            </li>
-            <!-- <li>Dr.Sanjib Kumar Panda, Associate Professor, Electronics and Computer Engineering, National University of Singapore</li>  -->
-            <li>
-              Dr. Milind Siddhpura, Coordinator & Senior Lecturer, Engineering
-              College of Science and Technology (ECST), Australia
-            </li>
-            <li>
-              Dr. Prakash Murgeppa Bhuyar, Assistant Dean/ Director,
-              International College, Maejo University, Chiang Mai Thailand
-            </li>
-            <li>
-              Dr. Chintan Modi, Professor,Industrial Automation, Fanshawer
-              College, Canada
-            </li>
-            <li>
-              Dr. Bindu Kansara, Professor, Humber College, Toranto, Canada
-            </li>
-            <li>
-              Dr. Anu A.Gokhale, Professor and Dept. Chair, Computer Information
-              Systems,Saint Augustine's University, Raleigh, NC
-            </li>
-            <li>
-              Dr. Kalpdrum Passi,Professor, Bharti School of Engineering &
-              Computation, Laurentian University Canada
-            </li>
-          </ul>
+    <br>
+    <br>
+    <br>
+    <br>
+    <section id="committee" class="committee">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">International Conference Committee</h2>
+          <div class="section-divider"></div>
         </div>
-      </section>
-    </main>
 
-    <footer>
+        <!-- Patrons -->
+        <div class="committee-section">
+          <!-- <h3 class="committee-section-title">Patrons</h3> -->
+          <div class="patrons-grid">
+            <div class="committee-card">
+              <div class="committee-image">
+                <img src="dummy-image.jpg" alt="Prof. Valentina Balas" />
+              </div>
+              <div class="committee-info">
+                <h4>Prof. Valentina Balas</h4>
+                <p class="position">Professor, Aurel Vlaicu University of Arad / Academy of Romanian Scientists, ROMANIA</p>
+              </div>
+            </div>
+            <div class="committee-card">
+              <div class="committee-image">
+                <img src="dummy-image.jpg" alt="Dr. Kalpdrum Passi" />
+              </div>
+              <div class="committee-info">
+                <h4>Dr. Kalpdrum Passi</h4>
+                <p class="position">Laurentian University, Ontario, Canada</p>
+              </div>
+            </div>
+            <div class="committee-card">
+              <div class="committee-image">
+                <img src="dummy-image.jpg" alt="Dr Sharnil Pandya	" />
+              </div>
+              <div class="committee-info">
+                <h4>Dr Sharnil Pandya</h4>
+                <p class="position">Computer and Information Sciences at Northumbria University</p>
+              </div>
+            </div>
+            <div class="committee-card">
+              <div class="committee-image">
+                <img src="dummy-image.jpg" alt="Dr. Chintan Modi" />
+              </div>
+              <div class="committee-info">
+                <h4>Dr. Chintan Modi</h4>
+                <p class="position">Fanshawer College, Canada</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
       <div class="footer-content">
-        <p>© 2025 SDSTD Conference. All rights reserved.</p>
-        <div class="footer-links">
-          <p>Design And Develop By <span style="font-weight: bold">Student Team of CP & IT GCET College</span></p>
-        </div>
+        <p>© 2026 NIIS Conference. All rights reserved.</p>
+        <p>
+          Design And Develop By
+          <span>Student Team of CP & IT GCET College</span>
+        </p>
       </div>
     </footer>
+
     <script>
       function toggleMenu() {
         const mobileNav = document.getElementById("mobileNav");
@@ -394,10 +422,23 @@
         const mobileNav = document.getElementById("mobileNav");
         mobileNav.classList.remove("active");
       }
-      function openInNewTab(url){
-      window.open(url, '_blank').focus();
+
+      function openInNewTab(url) {
+        window.open(url, "_blank").focus();
       }
+
+      // Close mobile menu when clicking outside
+      document.addEventListener("click", function (event) {
+        const mobileNav = document.getElementById("mobileNav");
+        const menuBtn = document.querySelector(".menu-btn");
+
+        if (
+          !mobileNav.contains(event.target) &&
+          !menuBtn.contains(event.target)
+        ) {
+          mobileNav.classList.remove("active");
+        }
+      });
     </script>
-    <script src="script.js"></script>
   </body>
 </html>
