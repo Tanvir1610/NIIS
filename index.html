@@ -1,0 +1,3129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      NIIS 2026 - International Conference on Next-Gen Integrated and
+      Intelligent Systems
+    </title>
+
+    <!-- Preconnect for performance optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Google Fonts - Ubuntu for consistent typography -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <style>
+      /* ===== CSS RESET AND BASE STYLES ===== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        font-size: 16px;
+      }
+
+      body {
+        font-family: "Ubuntu", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
+        line-height: 1.6;
+        color: #1f2937;
+        background-color: #ffffff;
+        overflow-x: hidden;
+      }
+
+      /* ===== UTILITY CLASSES ===== */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+      .flex {
+        display: flex;
+      }
+      .items-center {
+        align-items: center;
+      }
+      .justify-center {
+        justify-content: center;
+      }
+      .justify-between {
+        justify-content: space-between;
+      }
+
+      /* ===== HEADER AND NAVIGATION STYLES ===== */
+      /* Main header with navigation */
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+        z-index: 1000;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .header.scrolled {
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        border-bottom-color: rgba(229, 231, 235, 1);
+      }
+
+      /* Header logos - above navigation */
+      .header-logos {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.75rem 0;
+        gap: 3rem;
+        border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+      }
+
+      .header-logo {
+        height: 45px;
+        width: auto;
+        object-fit: contain;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+      }
+
+      .header-logo:hover {
+        transform: scale(1.05);
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        position: relative;
+      }
+
+      /* Logo section in header */
+      .logo-section {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      /* Navigation styles */
+      .navigation {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .nav-link {
+        color: #4b5563;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 15px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        padding: 8px 0;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: #3b82f6;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #3b82f6, #1e40af);
+        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 1px;
+      }
+
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        width: 100%;
+      }
+
+      /* Dropdown navigation */
+      .nav-dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: white;
+        min-width: 250px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        border-radius: 12px;
+        padding: 8px 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(-50%) translateY(-10px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
+        border: 1px solid #e5e7eb;
+        backdrop-filter: blur(10px);
+      }
+
+      .nav-dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      .dropdown-item {
+        display: block;
+        padding: 12px 20px;
+        color: #4b5563;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 14px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-left: 3px solid transparent;
+      }
+
+      .dropdown-item:hover {
+        background: linear-gradient(90deg, #f8fafc, #e0e7ff);
+        color: #3b82f6;
+        border-left-color: #3b82f6;
+        transform: translateX(4px);
+      }
+
+      /* CTA Button */
+      .cta-button {
+        background: linear-gradient(135deg, #3b82f6, #1e40af);
+        color: white;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+      }
+
+      .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      }
+
+      /* Mobile menu toggle */
+      .mobile-menu-toggle {
+        display: none;
+        flex-direction: column;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+      }
+
+      .mobile-menu-toggle:hover {
+        background: rgba(59, 130, 246, 0.1);
+      }
+
+      .mobile-menu-toggle span {
+        width: 24px;
+        height: 3px;
+        background: #4b5563;
+        margin: 3px 0;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 2px;
+      }
+
+      .mobile-menu-toggle.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+        background: #3b82f6;
+      }
+
+      .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .mobile-menu-toggle.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+        background: #3b82f6;
+      }
+
+      /* ===== HERO SECTION STYLES ===== */
+      .hero {
+        background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+        padding: 180px 0 80px; /* Increased top padding to account for fixed header with logos */
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23000" opacity="0.02"/><circle cx="75" cy="75" r="1" fill="%23000" opacity="0.02"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        pointer-events: none;
+      }
+
+      .hero-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Left column - Content - Centered */
+      .hero-content {
+        animation: slideInLeft 1s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 100%;
+      }
+
+      .conference-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+        color: #1e40af;
+        padding: 8px 16px;
+        border-radius: 50px;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(59, 130, 246, 0.2);
+        backdrop-filter: blur(10px);
+        animation: pulse 2s infinite;
+      }
+
+      .hero-title {
+        font-size: clamp(3rem, 8vw, 5rem);
+        font-weight: 900;
+        color: #1f2937;
+        margin-bottom: 1.5rem;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+      }
+
+      .hero-title .highlight {
+        background: linear-gradient(135deg, #f63b3b, #af1e1e);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero-subtitle {
+        font-size: clamp(1.25rem, 3vw, 1.75rem);
+        color: #4b5563;
+        margin-bottom: 1rem;
+        font-weight: 600;
+        line-height: 1.3;
+      }
+
+      .hero-description {
+        font-size: 1.125rem;
+        color: #6b7280;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+        max-width: 500px;
+      }
+
+      .event-info {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .event-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #4b5563;
+        font-weight: 500;
+      }
+
+      .event-item i {
+        color: #3b82f6;
+        font-size: 1.1rem;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 3rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #3b82f6, #1e40af);
+        color: white;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 16px 32px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        border: none;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+      }
+
+      /* Right column - Photo section - Clickable */
+      .hero-photo-section {
+        animation: slideInRight 1s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .hero-photo-section:hover {
+        transform: translateY(-4px);
+      }
+
+      /* Slideshow container */
+      .slideshow-container {
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        height: 350px;
+        overflow: hidden;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        background: white;
+        border: 4px solid white;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .hero-photo-section:hover .slideshow-container {
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        transform: scale(1.02);
+      }
+
+      .slideshow-container .slide {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 16px;
+      }
+
+      .slideshow-container .slide.active {
+        opacity: 1;
+      }
+
+      .slideshow-container .hover-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(59, 130, 246, 0.9),
+          rgba(30, 64, 175, 0.9)
+        );
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 1.25rem;
+        font-weight: 600;
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
+      }
+
+      .hero-photo-section:hover .hover-overlay {
+        opacity: 1;
+      }
+
+      .previous-conference-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #1f2937;
+        text-align: center;
+        margin-top: 0.5rem;
+      }
+
+      .previous-conference-title strong {
+        color: #3b82f6;
+      }
+
+      /* Stats section */
+      .stats-inline {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        margin-top: 1rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .stat-item {
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: #1f2937;
+        margin-bottom: 0.25rem;
+      }
+
+      .stat-label {
+        font-size: 0.75rem;
+        color: #6b7280;
+        font-weight: 500;
+      }
+
+      /* ===== COUNTDOWN TIMER STYLES ===== */
+      .countdown-container {
+        background: linear-gradient(135deg, #dc2626, #b91c1c);
+        color: white;
+        padding: 1.5rem;
+        border-radius: 16px;
+        text-align: center;
+        margin: 1.5rem 0;
+        box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3);
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .countdown-title {
+        font-size: 1.125rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .countdown-timer {
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+
+      .countdown-item {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 0.75rem;
+        border-radius: 12px;
+        min-width: 60px;
+        backdrop-filter: blur(10px);
+      }
+
+      .countdown-number {
+        font-size: 1.5rem;
+        font-weight: 900;
+        display: block;
+      }
+
+      .countdown-label {
+        font-size: 0.75rem;
+        opacity: 0.9;
+      }
+
+      /* ===== SECTION STYLES ===== */
+      section {
+        padding: 5rem 0;
+        position: relative;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+        animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .section-title {
+        font-size: clamp(2rem, 5vw, 3rem);
+        font-weight: 800;
+        color: #1f2937;
+        margin-bottom: 1rem;
+        letter-spacing: -0.025em;
+      }
+
+      .section-divider {
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, #3b82f6, #1e40af);
+        margin: 0 auto 2rem;
+        border-radius: 2px;
+      }
+
+      .section-subtitle {
+        font-size: 1.125rem;
+        color: #6b7280;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      /* ===== ABOUT SECTION ===== */
+      .about {
+        background: #ffffff;
+      }
+
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: start;
+        margin-bottom: 4rem;
+      }
+
+      .about-text h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 1.5rem;
+      }
+
+      .about-text p {
+        color: #4b5563;
+        margin-bottom: 1.5rem;
+        line-height: 1.7;
+        font-size: 1rem;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+
+      .feature-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 16px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        border: 1px solid #f3f4f6;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        text-align: left;
+      }
+
+      .feature-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, #3b82f6, #1e40af);
+        transform: scaleX(0);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .feature-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .feature-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .feature-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+        color: white;
+        font-size: 1.25rem;
+      }
+
+      .feature-card.blue .feature-icon {
+        background: linear-gradient(135deg, #3b82f6, #1e40af);
+      }
+      .feature-card.green .feature-icon {
+        background: linear-gradient(135deg, #10b981, #059669);
+      }
+      .feature-card.purple .feature-icon {
+        background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+      }
+      .feature-card.orange .feature-icon {
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+      }
+
+      .feature-card h4 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin-bottom: 0.5rem;
+      }
+
+      .feature-card p {
+        color: #6b7280;
+        font-size: 0.875rem;
+        line-height: 1.5;
+      }
+
+      /* ===== TOPICS SECTION ===== */
+      .topics {
+        background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+      }
+
+      .topics-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .topic-card {
+        background: white;
+        padding: 2.5rem;
+        border-radius: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        border: 1px solid #f3f4f6;
+        text-align: center;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .topic-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(59, 130, 246, 0.05),
+          rgba(30, 64, 175, 0.05)
+        );
+        opacity: 0;
+        transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .topic-card:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+      }
+
+      .topic-card:hover::before {
+        opacity: 1;
+      }
+
+      .topic-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        color: white;
+        font-size: 2rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .topic-icon.blue {
+        background: linear-gradient(135deg, #3b82f6, #1e40af);
+      }
+      .topic-icon.green {
+        background: linear-gradient(135deg, #10b981, #059669);
+      }
+      .topic-icon.purple {
+        background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+      }
+      .topic-icon.orange {
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+      }
+
+      .topic-card h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .topic-card p {
+        color: #6b7280;
+        line-height: 1.6;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ===== MODAL OVERLAY ===== */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        inset: 0;
+        background-color: rgba(240, 240, 255, 0.4); /* soft light overlay */
+        backdrop-filter: blur(10px);
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        animation: fadeIn 0.3s ease-in-out;
+      }
+
+      /* ===== MODAL CONTENT ===== */
+      .modal-content {
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 20px;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 600px;
+        padding: 2rem 2.5rem;
+        animation: scaleIn 0.35s ease;
+        position: relative;
+        overflow: hidden;
+        max-height: 90vh;
+        overflow-y: auto;
+        color: #1f2937;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      /* ===== MODAL HEADER ===== */
+      .modal-content h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+        color: #111827;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+        padding-bottom: 0.5rem;
+      }
+
+      /* ===== MODAL LIST ===== */
+      .modal-content ul {
+        list-style: disc;
+        padding-left: 1.5rem;
+        margin-top: 1rem;
+      }
+
+      .modal-content ul li {
+        margin-bottom: 0.75rem;
+        font-size: 1.05rem;
+        line-height: 1.6;
+        color: #374151;
+        transition: color 0.3s ease;
+      }
+
+      .modal-content ul li:hover {
+        color: #005de0;
+        font-weight: 500;
+      }
+
+      /* ===== CLOSE BUTTON ===== */
+      .modal-close {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 1.8rem;
+        color: #6b7280;
+        cursor: pointer;
+        transition: color 0.3s ease;
+        z-index: 10;
+      }
+
+      .modal-close:hover {
+        color: #ef4444;
+      }
+
+      /* ===== SCROLLBAR ===== */
+      .modal-content::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .modal-content::-webkit-scrollbar-thumb {
+        background-color: rgba(180, 180, 180, 0.4);
+        border-radius: 10px;
+      }
+
+      .modal-content::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(160, 160, 160, 0.6);
+      }
+
+      /* ===== ANIMATIONS ===== */
+      @keyframes scaleIn {
+        from {
+          opacity: 0;
+          transform: scale(0.92);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          background-color: rgba(17, 17, 252, 0);
+        }
+        to {
+          background-color: rgba(240, 240, 255, 0.4);
+        }
+      }
+
+      /* ===== RESPONSIVE ===== */
+      /* ===== MEDIA QUERY: max-width: 600px ===== */
+      @media (max-width: 600px) {
+        .modal-content {
+          padding: 1.5rem;
+          border-radius: 15px;
+        }
+
+        .modal-content h2 {
+          font-size: 1.5rem;
+        }
+
+        .modal-close {
+          top: 10px;
+          right: 15px;
+          font-size: 1.5rem;
+        }
+      }
+
+      /* ===== DATES SECTION ===== */
+      .dates {
+        background: #ffffff;
+      }
+
+      .dates-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .date-card {
+        background: white;
+        padding: 3rem 2rem;
+        border-radius: 20px;
+        text-align: center;
+        border: 2px solid;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .date-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .date-card.deadline {
+        border-color: #fca5a5;
+        background: #fef2f2;
+      }
+
+      .date-card.deadline::before {
+        background: linear-gradient(
+          135deg,
+          rgba(220, 38, 38, 0.05),
+          rgba(248, 113, 113, 0.05)
+        );
+      }
+
+      .date-card.conference {
+        border-color: #86efac;
+        background: #f0fdf4;
+      }
+
+      .date-card.conference::before {
+        background: linear-gradient(
+          135deg,
+          rgba(22, 163, 74, 0.05),
+          rgba(134, 239, 172, 0.05)
+        );
+      }
+
+      .date-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .date-card:hover::before {
+        opacity: 1;
+      }
+
+      .date-icon {
+        margin: 0 auto 1.5rem;
+        font-size: 2.5rem;
+      }
+
+      .date-card.deadline .date-icon {
+        color: #dc2626;
+      }
+      .date-card.conference .date-icon {
+        color: #16a34a;
+      }
+
+      .date-card h3 {
+        font-size: 1.75rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+      }
+
+      .date-card.deadline h3 {
+        color: #dc2626;
+      }
+      .date-card.conference h3 {
+        color: #16a34a;
+      }
+
+      .date-card p {
+        color: #4b5563;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        font-size: 1.125rem;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 8px 16px;
+        border-radius: 50px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .deadline-badge {
+        background: linear-gradient(135deg, #fecaca, #fca5a5);
+        color: #dc2626;
+      }
+
+      .conference-badge {
+        background: linear-gradient(135deg, #bbf7d0, #86efac);
+        color: #16a34a;
+      }
+
+      /* ===== Countdown Timer (SMALLEST + WHITE TEXT) ===== */
+      .countdown-container {
+        margin-top: 0.3rem;
+      }
+
+      .countdown-title {
+        font-size: 0.55rem;
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+        color: #ffffff;
+      }
+
+      .countdown-timer {
+        display: flex;
+        justify-content: center;
+        gap: 0.25rem;
+      }
+
+      .countdown-item {
+        text-align: center;
+      }
+
+      .countdown-number {
+        font-size: 0.7rem;
+        font-weight: bold;
+        display: block;
+        color: #ffffff;
+      }
+
+      .countdown-label {
+        font-size: 0.45rem;
+        text-transform: uppercase;
+        color: #ffffff;
+      }
+
+      .conference-badge {
+        background: linear-gradient(135deg, #bbf7d0, #86efac);
+        color: #16a34a;
+      }
+
+      /* ===== CONTACT SECTION ===== */
+      .contact {
+        background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+      }
+
+      .contact-grid {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+        margin-bottom: 3rem;
+      }
+
+      .contact-card {
+        background: white;
+        padding: 2.5rem;
+        border-radius: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        border: 1px solid #f3f4f6;
+        text-align: center;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        max-width: 350px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .contact-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, #3b82f6, #1e40af);
+        transform: scaleX(0);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .contact-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .contact-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .contact-avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        color: white;
+        font-size: 2rem;
+        background: linear-gradient(135deg, #3b82f6, #1e40af);
+      }
+
+      .contact-card h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 0.5rem;
+      }
+
+      .role {
+        color: #6b7280;
+        font-size: 0.875rem;
+        margin-bottom: 1rem;
+        font-weight: 500;
+      }
+
+      .email {
+        color: #3b82f6;
+        text-decoration: none;
+        font-weight: 600;
+        display: block;
+        margin-bottom: 0.75rem;
+        transition: color 0.3s ease;
+      }
+
+      .email:hover {
+        color: #2563eb;
+      }
+
+      .phone {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        color: #6b7280;
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+
+      .phone i {
+        color: #3b82f6;
+      }
+
+      .venue-card {
+        background: white;
+        padding: 3rem;
+        border-radius: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        border: 1px solid #f3f4f6;
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .venue-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(245, 158, 11, 0.05),
+          rgba(217, 119, 6, 0.05)
+        );
+        opacity: 0;
+        transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .venue-card:hover::before {
+        opacity: 1;
+      }
+
+      .venue-icon {
+        color: #f59e0b;
+        margin: 0 auto 1.5rem;
+        font-size: 3rem;
+      }
+
+      .venue-card h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 1rem;
+      }
+
+      .venue-card h4 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #f59e0b;
+        margin-bottom: 0.5rem;
+      }
+
+      .venue-card p {
+        color: #6b7280;
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      /* Registration section */
+      .registration-section {
+        margin-top: 3rem;
+      }
+
+      .registration-card {
+        background: linear-gradient(135deg, #3b82f6, #1e40af);
+        color: white;
+        padding: 3rem;
+        border-radius: 20px;
+        text-align: center;
+        max-width: 500px;
+        margin: 0 auto;
+        box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .registration-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.1),
+          rgba(255, 255, 255, 0.05)
+        );
+        opacity: 0;
+        transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .registration-card:hover::before {
+        opacity: 1;
+      }
+
+      .registration-card h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+        color: white;
+      }
+
+      .registration-card p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        opacity: 0.9;
+      }
+
+      .registration-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: white;
+        color: #3b82f6;
+        text-decoration: none;
+        padding: 16px 32px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .registration-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        background: #f8fafc;
+      }
+
+      /* ===== FOOTER STYLES ===== */
+      .footer {
+        background: linear-gradient(135deg, #1f2937, #111827);
+        color: white;
+        padding: 4rem 0 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="footerPattern" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23ffffff" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23footerPattern)"/></svg>');
+        pointer-events: none;
+      }
+
+      .footer-content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 2rem;
+      }
+
+      .footer .logo-icon {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #3b82f6, #1e40af);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+      }
+
+      .footer .logo-text h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: white;
+        line-height: 1.2;
+      }
+
+      .footer .logo-text p {
+        font-size: 0.875rem;
+        color: #9ca3af;
+        line-height: 1.2;
+      }
+
+      /* Contact Information Grid */
+      .footer-contact-grid {
+        display: grid;
+        grid-template-columns: repeat(
+          3,
+          1fr
+        ); /* Three columns for desktop/laptop */
+        gap: 2rem;
+        margin-bottom: 3rem;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 1rem;
+      }
+
+      .location-item {
+        grid-column: 1 / -1; /* Full width for location */
+      }
+
+      .footer-contact-item {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1.5rem;
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .footer-contact-item:hover {
+        background: rgba(255, 255, 255, 0.08);
+        transform: translateY(-2px);
+      }
+
+      .footer-contact-item h4 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: white;
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .footer-contact-item i {
+        color: #3b82f6;
+        font-size: 1.1rem;
+      }
+
+      .footer-contact-item p {
+        color: #9ca3af;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-contact-item a {
+        color: #3b82f6;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-contact-item a:hover {
+        color: #60a5fa;
+      }
+
+      .footer-divider {
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #374151, transparent);
+        margin-bottom: 2rem;
+      }
+
+      .footer-bottom p {
+        color: #9ca3af;
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-credit {
+        color: #6b7280;
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+
+      /* ===== FLYER POPUP STYLES ===== */
+      .flyer-popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
+      }
+
+      .flyer-popup-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .flyer-popup {
+        position: relative;
+        max-width: 90vw;
+        max-height: 90vh;
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        transform: scale(0.8) translateY(20px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .flyer-popup-overlay.active .flyer-popup {
+        transform: scale(1) translateY(0);
+      }
+
+      .flyer-content {
+        position: relative;
+        overflow: auto;
+        max-height: 85vh;
+      }
+
+      .flyer-img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .flyer-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.95);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
+        z-index: 10001;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .flyer-close:hover {
+        background: rgba(255, 255, 255, 1);
+        transform: scale(1.1);
+        color: #dc2626;
+      }
+
+      .flyer-controls {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        display: flex;
+        gap: 8px;
+        z-index: 10001;
+      }
+
+      .size-btn {
+        width: 45px;
+        height: 45px;
+        background: rgba(255, 255, 255, 0.95);
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #4b5563;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .size-btn:hover {
+        background: rgba(255, 255, 255, 1);
+        transform: translateY(-2px);
+        color: #3b82f6;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .flyer-trigger {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(135deg, #3b82f6, #1e40af);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 24px;
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
+        animation: pulse 2s infinite;
+      }
+
+      .flyer-trigger:hover {
+        transform: scale(1.1);
+        box-shadow: 0 12px 35px rgba(59, 130, 246, 0.6);
+      }
+
+      /* ===== ANIMATIONS ===== */
+      @keyframes slideInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4),
+            0 0 0 0 rgba(59, 130, 246, 0.7);
+        }
+        70% {
+          box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4),
+            0 0 0 10px rgba(59, 130, 246, 0);
+        }
+        100% {
+          box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4),
+            0 0 0 0 rgba(59, 130, 246, 0);
+        }
+      }
+
+      /* ===== RESPONSIVE DESIGN ===== */
+
+      /* ===== TABLET VIEW (max-width: 1024px) ===== */
+      @media (max-width: 1024px) {
+        /* Hero Section Adjustments */
+        .hero-container {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+          text-align: center;
+        }
+
+        /* About Section Adjustments */
+        .about-content {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+
+        /* Topics Grid Adjustments */
+        .topics-grid {
+          grid-template-columns: 1fr;
+        }
+
+        /* Footer Contact Grid - Tablet Layout */
+        .footer-contact-grid {
+          grid-template-columns: repeat(2, 1fr); /* Two columns for tablet */
+          gap: 1.5rem;
+        }
+
+        .footer-contact-item {
+          padding: 1.5rem;
+        }
+      }
+
+      /* ===== MOBILE VIEW (max-width: 768px) ===== */
+      @media (max-width: 768px) {
+        /* Mobile Navigation */
+        .header-logos {
+          gap: 2rem;
+          padding: 0.5rem 0;
+        }
+
+        .header-logo {
+          height: 35px;
+        }
+
+        .navigation {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: rgba(255, 255, 255, 0.98);
+          backdrop-filter: blur(20px);
+          flex-direction: column;
+          padding: 2rem;
+          border-top: 1px solid #e5e7eb;
+          gap: 1rem;
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .navigation.active {
+          display: flex;
+        }
+
+        .mobile-menu-toggle {
+          display: flex;
+        }
+
+        /* Hero Section Mobile */
+        .hero {
+          padding: 160px 0 60px;
+        }
+
+        .hero-container {
+          gap: 2rem;
+        }
+
+        /* Hide right hero section on mobile */
+        .hero-photo-section {
+          display: none;
+        }
+
+        .hero-content {
+          grid-column: 1 / -1;
+        }
+
+        /* Mobile Footer - Vertical Layout */
+        .footer-contact-grid {
+          grid-template-columns: 1fr; /* Single column for mobile */
+          gap: 0.75rem;
+        }
+
+        .footer-contact-item {
+          padding: 1rem;
+          text-align: center;
+        }
+
+        .footer-logo {
+          flex-direction: column;
+          align-items: center;
+          gap: 8px;
+          margin-bottom: 1rem;
+        }
+      }
+
+      /* ===== SMALL MOBILE VIEW (max-width: 480px) ===== */
+      @media (max-width: 480px) {
+        .container {
+          padding: 0 16px;
+        }
+
+        /* Mobile Footer Optimizations */
+        .footer {
+          padding: 2rem 0 1rem;
+        }
+
+        .footer-content {
+          padding: 0 1rem;
+        }
+
+        .footer-contact-grid {
+          grid-template-columns: 1fr; /* Single column for mobile */
+          gap: 0.5rem;
+        }
+
+        .footer-contact-item {
+          padding: 1rem;
+          text-align: center;
+          border-radius: 12px;
+        }
+
+        .footer-contact-item h4 {
+          font-size: 0.9rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .footer-contact-item p {
+          font-size: 0.8rem;
+          line-height: 1.4;
+        }
+
+        .footer-logo {
+          flex-direction: column;
+          align-items: center;
+          gap: 6px;
+          margin-bottom: 0.5rem;
+        }
+      }
+
+      /* ===== ACCESSIBILITY AND FOCUS STYLES ===== */
+      button:focus,
+      a:focus {
+        outline: 2px solid #3b82f6;
+        outline-offset: 2px;
+      }
+
+      ::selection {
+        background: #dbeafe;
+        color: #1e40af;
+      }
+
+      /* ===== SCROLL ANIMATIONS ===== */
+      .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .animate-on-scroll.animated {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ===== DECORATIVE BACKGROUND ELEMENTS (LAPTOP ONLY) ===== */
+      @media (min-width: 1024px) {
+        .hero::after {
+          content: '';
+          position: absolute;
+          top: 20%;
+          right: -5%;
+          width: 200px;
+          height: 200px;
+          background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+          border-radius: 50%;
+          z-index: 0;
+        }
+
+        .about::before {
+          content: '';
+          position: absolute;
+          top: 10%;
+          left: -3%;
+          width: 150px;
+          height: 150px;
+          background: linear-gradient(45deg, rgba(16, 185, 129, 0.1), transparent);
+          border-radius: 50%;
+          z-index: 0;
+        }
+
+        .topics::after {
+          content: '';
+          position: absolute;
+          bottom: 10%;
+          right: -2%;
+          width: 180px;
+          height: 180px;
+          background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+          border-radius: 50%;
+          z-index: 0;
+        }
+      }
+
+      /* ===== CONFERENCE COUNTDOWN STYLES ===== */
+      .conference-countdown {
+        background: linear-gradient(135deg, #10b981, #059669);
+        margin-top: 1rem;
+      }
+
+      .conference-countdown .countdown-title {
+        color: #ffffff;
+        font-size: 0.55rem;
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+      }
+
+      .conference-countdown .countdown-number {
+        color: #ffffff;
+        font-size: 0.7rem;
+        font-weight: bold;
+      }
+
+      .conference-countdown .countdown-label {
+        color: #ffffff;
+        font-size: 0.45rem;
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ===== HEADER WITH NAVIGATION ===== -->
+    <header class="header" id="header">
+      <div class="container">
+        <!-- Header logos above navigation -->
+        <div class="header-logos">
+          <img src="logos/cvm.png" alt="CVM Logo" class="header-logo" />
+          <img src="logos/gcetlogo.png" alt="GCET Logo" class="header-logo" />
+          <img
+            src="logos/CVM-Logo (2).png"
+            alt="CVM Extended Logo"
+            class="header-logo"
+          />
+        </div>
+
+        <div class="header-content">
+          <!-- Logo section in header -->
+          <div class="logo-section">
+            <img src="logos/Niis2026.png" alt="NIIS 2026 Logo" class="header-logo" style="max-width: 80px; height: auto;" />
+          </div>
+
+
+          <!-- Main navigation -->
+          <nav class="navigation" id="navigation">
+            <a href="#home" class="nav-link active">Home</a>
+
+            <!-- About dropdown -->
+            <div class="nav-dropdown">
+              <a href="#about" class="nav-link">About</a>
+              <div class="dropdown-menu">
+                <a href="niis2026.html" class="dropdown-item">NIIS 2026</a>
+                <a href="gcet.html" class="dropdown-item">GCET</a>
+              </div>
+            </div>
+
+            <!-- Committee dropdown -->
+            <div class="nav-dropdown">
+              <a href="#" class="nav-link">Committee</a>
+              <div class="dropdown-menu">
+                <a href="Organizing-committee.html" class="dropdown-item"
+                  >Organizing Committee</a
+                >
+                <a href="Technical-Committee.html" class="dropdown-item"
+                  >Technical Advisory Committee</a
+                >
+                <a href="#track-coordinators" class="dropdown-item"
+                  >Track Co-ordinators</a
+                >
+              </div>
+            </div>
+
+            <a href="keynote.html" class="nav-link">Keynote Speaker</a>
+
+            <!-- Submission dropdown -->
+            <div class="nav-dropdown">
+              <a href="#" class="nav-link">Submission</a>
+              <div class="dropdown-menu">
+                <a href="call-for-papers.html" class="dropdown-item">Call For Papers</a>
+                <a href="#" class="dropdown-item">Author Guidelines</a>
+                <a href="submission-guidelines.html" class="dropdown-item">Submission Guidelines</a>
+              </div>
+            </div>
+
+            <!-- Registration dropdown -->
+            <div class="nav-dropdown">
+              <a href="#" class="nav-link">Registration</a>
+              <div class="dropdown-menu">
+                <a href="#" class="dropdown-item">Conference Registration</a>
+                <a href="#" class="dropdown-item">Payment Methods</a>
+                <a href="#" class="dropdown-item">Registration FAQ</a>
+              </div>
+            </div>
+
+            <a href="#contact" class="nav-link">Contact</a>
+
+            <!-- CTA Button -->
+            <a
+              href="https://forms.gle/poL6xmD6jXPGCveL6"
+              target="_blank"
+              class="cta-button"
+            >
+              <i class="fas fa-user-plus"></i>
+              Register Now
+            </a>
+          </nav>
+
+          <!-- Mobile menu toggle -->
+          <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section id="home" class="hero">
+      <div class="hero-container">
+        <!-- Left column - Content - Centered -->
+        <div class="hero-content">
+          <div class="conference-badge">
+            <i class="fas fa-calendar-alt"></i>
+            March 20-21, 2026
+          </div>
+
+          <h1 class="hero-title"><span class="highlight">NIIS</span>2026</h1>
+
+          <p class="hero-subtitle">
+            International Conference on<br />
+            <strong>Next-Gen Integrated and Intelligent Systems</strong>
+          </p>
+
+          <p class="hero-description">
+            Bringing together researchers, academicians, and industry
+            professionals to share innovative ideas in Electronics, VLSI, AI/ML,
+            IoT, and Cyber-Physical Systems.
+          </p>
+
+          <!-- Event information -->
+          <div class="event-info">
+            <div class="event-item">
+              <i class="fas fa-calendar"></i>
+              <span>20<sup>th</sup>-21<sup>st</sup> March, 2026</span>
+            </div>
+            <div class="event-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>GCET, Anand</span>
+            </div>
+          </div>
+
+          <!-- Action buttons -->
+          <div class="hero-buttons">
+            <a href="#" class="btn-primary">
+              <i class="fas fa-paper-plane"></i>
+              Submit Paper
+            </a>
+          </div>
+        </div>
+
+        <!-- Right column - Photo slideshow - Clickable -->
+        <div
+          class="hero-photo-section"
+          onclick="window.open('https://cvmuconference.org', '_blank')"
+        >
+          <div class="slideshow-container">
+            <img src="SDSTDImgs/sdstd1.JPG" class="slide active" alt="Conference Photo 1"/>
+            <img src="SDSTDImgs/sdstd2.JPG" class="slide" alt="Conference Photo 2" />
+            <img src="SDSTDImgs/sdstd3.JPG" class="slide" alt="Conference Photo 3" />
+            <img src="SDSTDImgs/sdstd4.JPG" class="slide" alt="Conference Photo 3" />
+            <img src="SDSTDImgs/sdstd5.JPG" class="slide" alt="Conference Photo 3" />
+
+            <!-- Hover overlay -->
+            <div class="hover-overlay"><strong> SDSTD 2025</strong><br /></div>
+          </div>
+
+          <!-- Conference title -->
+          <div class="previous-conference-title">
+            Previous Conference <strong>SDSTD 2025</strong>
+          </div>
+
+          <!-- Statistics -->
+          <div class="stats-inline">
+            <div class="stat-item">
+              <div class="stat-number">11</div>
+              <div class="stat-label">Speakers</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">100+</div>
+              <div class="stat-label">Attendees</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">180+</div>
+              <div class="stat-label">Presenters</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">200</div>
+              <div class="stat-label">Team</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT SECTION ===== -->
+    <section id="about" class="about">
+      <div class="container">
+        <div class="section-header animate-on-scroll">
+          <h2 class="section-title">About NIIS 2026</h2>
+          <div class="section-divider"></div>
+          <p class="section-subtitle">
+            Advancing the future of integrated and intelligent systems through
+            collaboration and innovation
+          </p>
+        </div>
+
+        <div class="about-content">
+          <div class="about-text animate-on-scroll">
+            <h3>Conference Overview</h3>
+            <p style="text-align: justify">
+              The International Conference on Next-Gen Integrated and
+              Intelligent Systems (NIIS 2026) aims to bring together
+              researchers, academicians, industry professionals, and
+              policymakers to share their innovative ideas and research in the
+              domains of Electronics, VLSI, Embedded Systems, AI/ML, IoT,
+              Cyber-Physical Systems, and Smart Networks.
+            </p>
+            <p style="text-align: justify">
+              Aligned with national missions like Semicon India, Digital India,
+              and Atmanirbhar Bharat, this conference promotes indigenous
+              innovation and future-ready technology development in intelligent
+              systems and integrated electronic solutions.
+            </p>
+            <a href="Niis2026.html" target="_blank" class="cta-button">
+              <i class="fas fa-arrow-right"></i>
+              Know More
+            </a>
+          </div>
+
+          <div class="features-grid animate-on-scroll">
+            <div class="feature-card blue">
+              <div class="feature-icon">
+                <i class="fas fa-award"></i>
+              </div>
+              <h4>Excellence</h4>
+              <p>Recognized for outstanding research contributions</p>
+            </div>
+            <div class="feature-card green">
+              <div class="feature-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <h4>Networking</h4>
+              <p>Connect with global experts and peers</p>
+            </div>
+            <div class="feature-card purple">
+              <div class="feature-icon">
+                <i class="fas fa-globe"></i>
+              </div>
+              <h4>Global Reach</h4>
+              <p>International participation and collaboration</p>
+            </div>
+            <div class="feature-card orange">
+              <div class="feature-icon">
+                <i class="fas fa-lightbulb"></i>
+              </div>
+              <h4>Innovation</h4>
+              <p>Cutting-edge research and development</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TOPICS SECTION ===== -->
+    <section id="topics" class="topics">
+      <div class="container">
+        <div class="section-header animate-on-scroll">
+          <h2 class="section-title">Key Topics</h2>
+          <div class="section-divider"></div>
+          <p class="section-subtitle">
+            Explore cutting-edge research areas and emerging technologies
+          </p>
+        </div>
+
+        <div class="topics-grid">
+          <div class="topic-card animate-on-scroll" data-topic="electronics">
+            <div class="topic-icon blue">
+              <i class="fas fa-microchip"></i>
+            </div>
+            <h3>Electronics & VLSI</h3>
+            <p>
+              Advanced semiconductor technologies and electronic system design
+              for next-generation applications.
+            </p>
+          </div>
+
+          <div class="topic-card animate-on-scroll" data-topic="ai">
+            <div class="topic-icon green">
+              <i class="fas fa-brain"></i>
+            </div>
+            <h3>AI/ML Integration</h3>
+            <p>
+              Artificial intelligence and machine learning solutions for
+              intelligent automation systems.
+            </p>
+          </div>
+
+          <div class="topic-card animate-on-scroll" data-topic="iot">
+            <div class="topic-icon purple">
+              <i class="fas fa-network-wired"></i>
+            </div>
+            <h3>Embedded Systems & IoT</h3>
+            <p>
+              Internet of Things and smart network architectures for connected
+              intelligent systems.
+            </p>
+          </div>
+
+          <div class="topic-card animate-on-scroll" data-topic="cps">
+            <div class="topic-icon orange">
+              <i class="fas fa-cogs"></i>
+            </div>
+            <h3>Cyber-Physical Systems</h3>
+            <p>
+              Integration of computational algorithms and physical components in
+              modern systems.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== POPUP MODAL ===== -->
+    <div class="modal-overlay" id="modal">
+      <div class="modal-content">
+        <span class="modal-close" id="closeModal">&times;</span>
+        <h2 id="modalTitle">Title</h2>
+        <ul id="modalList">
+          <!-- Detailed topics go here -->
+        </ul>
+      </div>
+    </div>
+
+    <!-- ===== IMPORTANT DATES SECTION ===== -->
+    <section id="dates" class="dates">
+      <div class="container">
+        <div class="section-header animate-on-scroll">
+          <h2 class="section-title">Important Dates</h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="dates-grid">
+          <div class="date-card deadline animate-on-scroll">
+            <div class="date-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <h3>31st October 2025</h3>
+            <p>Paper Submission Deadline</p>
+
+            <!-- Live Countdown Timer -->
+            <div class="countdown-container">
+              <div class="countdown-title">Time Remaining</div>
+              <div class="countdown-timer" id="countdown">
+                <div class="countdown-item">
+                  <span class="countdown-number" id="days">00</span>
+                  <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-item">
+                  <span class="countdown-number" id="hours">00</span>
+                  <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                  <span class="countdown-number" id="minutes">00</span>
+                  <span class="countdown-label">Minutes</span>
+                </div>
+                <div class="countdown-item">
+                  <span class="countdown-number" id="seconds">00</span>
+                  <span class="countdown-label">Seconds</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="date-card conference animate-on-scroll">
+            <div class="date-icon">
+              <i class="fas fa-calendar-check"></i>
+            </div>
+            <h3>March 20-21, 2026</h3>
+            <p>Conference Dates</p>
+            
+            <!-- Green Countdown Timer for Conference -->
+            <div class="countdown-container conference-countdown">
+              <div class="countdown-title">Conference Starts In</div>
+              <div class="countdown-timer" id="conferenceCountdown">
+                <div class="countdown-item">
+                  <span class="countdown-number" id="confDays">00</span>
+                  <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-item">
+                  <span class="countdown-number" id="confHours">00</span>
+                  <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                  <span class="countdown-number" id="confMinutes">00</span>
+                  <span class="countdown-label">Minutes</span>
+                </div>
+                <div class="countdown-item">
+                  <span class="countdown-number" id="confSeconds">00</span>
+                  <span class="countdown-label">Seconds</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT SECTION ===== -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="section-header animate-on-scroll">
+          <h2 class="section-title">Contact Us</h2>
+          <div class="section-divider"></div>
+          <p class="section-subtitle">
+            Get in touch with our conference organizers for any queries or
+            assistance
+          </p>
+        </div>
+
+        <!-- Contact cards -->
+        <div class="contact-grid">
+          <div class="contact-card animate-on-scroll">
+            <div class="contact-avatar">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <h3>Dr. Bhaskar Thakker</h3>
+            <p class="role">Convener</p>
+            <a href="mailto:niis2026@gcet.ac.in" class="email"
+              >niis2026@gcet.ac.in</a
+            >
+            <div class="phone">
+              <i class="fas fa-phone"></i>
+              +91 9574383265
+            </div>
+          </div>
+
+          <div class="contact-card animate-on-scroll">
+            <div class="contact-avatar">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <h3>Dr. Priyang Bhatt</h3>
+            <p class="role">Co-Convener</p>
+            <a href="mailto:niis2026@gcet.ac.in" class="email"
+              >niis2026@gcet.ac.in</a
+            >
+            <div class="phone">
+              <i class="fas fa-phone"></i>
+              +91 9879849707
+            </div>
+          </div>
+        </div>
+
+        <!-- Venue card -->
+        <div class="venue-card animate-on-scroll">
+          <div class="venue-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <h3>Conference Venue</h3>
+          <h4>G H Patel College of Engineering & Technology</h4>
+          <p>Vallabh Vidyanagar, Gujarat, India</p>
+        </div>
+
+        <!-- Registration section -->
+        <div class="registration-section">
+          <div class="registration-card animate-on-scroll">
+            <h3>Conference Registration</h3>
+            <p>Register now to secure your spot at NIIS 2026</p>
+            <a
+              href="https://forms.gle/poL6xmD6jXPGCveL6"
+              target="_blank"
+              class="registration-button"
+            >
+              <i class="fas fa-check-circle"></i>
+              Register Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <div class="logo-section">
+              <img src="logos/Niis2026.jpg" alt="NIIS 2026 Logo" class="header-logo" style="max-width: 140px; height: auto; border-radius: 10px;" />
+            </div>
+
+          </div>
+
+          <!-- Contact Information Grid -->
+          <div class="footer-contact-grid">
+            <div class="footer-contact-item">
+              <h4><i class="fas fa-envelope"></i> Email</h4>
+              <p style="font-size: medium">
+                <a href="mailto:niis2026@gcet.ac.in">niis2026@gcet.ac.in</a
+                >
+              </p>
+            </div>
+
+            <div class="footer-contact-item">
+              <h4><i class="fas fa-phone"></i> Dr. Bhaskar Thakker</h4>
+              <p>
+                <a href="tel:+919574383265" style="font-size: medium"
+                  >+91 9574383265</a
+                >
+              </p>
+              <!-- <p>
+                <a
+                  href="mailto:bhaskarthakkar@gcet.ac.in"
+                  style="font-size: medium"
+                  >bhaskarthakkar@gcet.ac.in</a
+                >
+              </p> -->
+            </div>
+
+            <div class="footer-contact-item">
+              <h4><i class="fas fa-phone"></i> Dr. Priyang Bhatt</h4>
+              <p>
+                <a href="tel:+919879849707" style="font-size: medium"
+                  >+91 9879849707</a
+                >
+              </p>
+              <!-- <p>
+                <a
+                  href="mailto:priyangbhatt@gcet.ac.in"
+                  style="font-size: medium"
+                  >priyangbhatt@gcet.ac.in</a
+                >
+              </p> -->
+            </div>
+
+            <div class="footer-contact-item location-item">
+              <h4><i class="fas fa-map-marker-alt"></i> Location</h4>
+              <a
+                href="https://maps.app.goo.gl/TVv7ZMzeciHrsMsM7"
+                target="_blank"
+                style="text-decoration: none"
+              >
+                <p style="font-size: medium; color: #3b82f6">
+                  G H Patel College of Engineering & Technology<br />
+                  Vallabh Vidyanagar, Gujarat, India
+                </p>
+              </a>
+            </div>
+          </div>
+
+          <div class="footer-divider"></div>
+
+          <div class="footer-bottom">
+            <p>&copy; 2026 NIIS Conference. All rights reserved.</p>
+            <p class="footer-credit">
+              Designed & Developed by Student Team of CP & IT GCET College
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ===== FLYER TRIGGER BUTTON ===== -->
+    <button
+      class="flyer-trigger"
+      onclick="openFlyerPopup()"
+      title="View Conference Flyer"
+    >
+      <i class="fas fa-file-alt"></i>
+    </button>
+
+    <!-- ===== FLYER POPUP ===== -->
+    <div id="flyerPopup" class="flyer-popup-overlay">
+      <div class="flyer-popup">
+        <button class="flyer-close" onclick="closeFlyerPopup()" title="Close">
+          <i class="fas fa-times"></i>
+        </button>
+
+        <!-- Size controls -->
+        <div class="flyer-controls">
+          <button
+            class="size-btn"
+            onclick="adjustFlyerSize('small')"
+            title="Small Size"
+          >
+            <i class="fas fa-compress-alt"></i>
+          </button>
+          <button
+            class="size-btn"
+            onclick="adjustFlyerSize('medium')"
+            title="Medium Size"
+          >
+            <i class="fas fa-expand-arrows-alt"></i>
+          </button>
+          <button
+            class="size-btn"
+            onclick="adjustFlyerSize('large')"
+            title="Large Size"
+          >
+            <i class="fas fa-expand"></i>
+          </button>
+          <button
+            class="size-btn"
+            onclick="downloadFlyer()"
+            title="Download Flyer"
+          >
+            <i class="fas fa-download"></i>
+          </button>
+        </div>
+
+        <div class="flyer-content">
+          <img
+            id="flyerImage"
+            src="ICNIIS2026_Flyer.jpg"
+            alt="NIIS 2026 Conference Flyer"
+            class="flyer-img"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+      /**
+       * ===== CONFERENCE WEBSITE JAVASCRIPT =====
+       * Main application class for handling all website functionality
+       * including navigation, animations, slideshow, countdown timer, and flyer popup
+       */
+
+      class ConferenceApp {
+        constructor() {
+          this.currentSlide = 0;
+          this.slides = [];
+          this.currentFlyerSize = "medium";
+          this.countdownInterval = null;
+          this.init();
+        }
+
+        /**
+         * Initialize the application
+         * Sets up all event listeners and starts animations
+         */
+        init() {
+          this.setupEventListeners();
+          this.initializeSlideshow();
+          this.initializeScrollAnimations();
+          this.initializeNavigation();
+          this.initializeFlyerSystem();
+          this.initializeCountdown();
+          this.initializeConferenceCountdown(); // Add this line
+          console.log("🚀 NIIS 2026 Conference Website Initialized!");
+        }
+
+        /**
+         * Set up all event listeners for the website
+         */
+        setupEventListeners() {
+          // Mobile menu toggle
+          const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+          const navigation = document.getElementById("navigation");
+
+          if (mobileMenuToggle && navigation) {
+            mobileMenuToggle.addEventListener("click", () => {
+              navigation.classList.toggle("active");
+              mobileMenuToggle.classList.toggle("active");
+            });
+          }
+
+          // Smooth scrolling for navigation links
+          document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+            anchor.addEventListener("click", (e) => {
+              e.preventDefault();
+              const target = document.querySelector(
+                anchor.getAttribute("href")
+              );
+              if (target) {
+                const headerHeight =
+                  document.getElementById("header").offsetHeight;
+                const targetPosition = target.offsetTop - headerHeight - 20;
+
+                window.scrollTo({
+                  top: targetPosition,
+                  behavior: "smooth",
+                });
+
+                // Close mobile menu if open
+                navigation.classList.remove("active");
+                mobileMenuToggle.classList.remove("active");
+              }
+            });
+          });
+
+          // Header scroll effect
+          window.addEventListener("scroll", () => {
+            this.handleScroll();
+          });
+
+          // Close mobile menu when clicking outside
+          document.addEventListener("click", (e) => {
+            if (
+              !document.getElementById("header").contains(e.target) &&
+              navigation.classList.contains("active")
+            ) {
+              navigation.classList.remove("active");
+              mobileMenuToggle.classList.remove("active");
+            }
+          });
+
+          // Flyer popup event listeners
+          document.addEventListener("click", (e) => {
+            const flyerPopup = document.getElementById("flyerPopup");
+            if (e.target === flyerPopup) {
+              this.closeFlyerPopup();
+            }
+          });
+
+          // Close popup with Escape key
+          document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+              this.closeFlyerPopup();
+            }
+          });
+        }
+
+        /**
+         * Handle scroll events for header styling and navigation updates
+         */
+        handleScroll() {
+          const header = document.getElementById("header");
+          const scrolled = window.scrollY > 50;
+
+          header.classList.toggle("scrolled", scrolled);
+          this.updateActiveNavLink();
+        }
+
+        /**
+         * Update active navigation link based on scroll position
+         */
+        updateActiveNavLink() {
+          const sections = document.querySelectorAll("section[id]");
+          const navLinks = document.querySelectorAll(".nav-link");
+          const scrollPos = window.scrollY + 150;
+
+          sections.forEach((section) => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute("id");
+
+            if (
+              scrollPos >= sectionTop &&
+              scrollPos < sectionTop + sectionHeight
+            ) {
+              navLinks.forEach((link) => {
+                link.classList.remove("active");
+                if (link.getAttribute("href") === `#${sectionId}`) {
+                  link.classList.add("active");
+                }
+              });
+            }
+          });
+        }
+
+        /**
+         * Initialize the hero section slideshow
+         */
+        initializeSlideshow() {
+          this.slides = document.querySelectorAll(
+            ".slideshow-container .slide"
+          );
+          if (this.slides.length > 0) {
+            this.startSlideshow();
+          }
+        }
+
+        /**
+         * Start the automatic slideshow
+         */
+        startSlideshow() {
+          setInterval(() => {
+            this.nextSlide();
+          }, 4000); // Change slide every 4 seconds
+        }
+
+        /**
+         * Move to the next slide in the slideshow
+         */
+        nextSlide() {
+          this.slides[this.currentSlide].classList.remove("active");
+          this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+          this.slides[this.currentSlide].classList.add("active");
+        }
+
+        /**
+         * Initialize countdown timer for paper submission deadline
+         */
+        initializeCountdown() {
+          const targetDate = new Date("2025-10-31T23:59:59").getTime();
+
+          this.countdownInterval = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+              clearInterval(this.countdownInterval);
+              document.getElementById("countdown").innerHTML =
+                '<div class="countdown-item"><span class="countdown-number">EXPIRED</span></div>';
+              return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor(
+              (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+            );
+            const minutes = Math.floor(
+              (distance % (1000 * 60 * 60)) / (1000 * 60)
+            );
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").textContent = days
+              .toString()
+              .padStart(2, "0");
+            document.getElementById("hours").textContent = hours
+              .toString()
+              .padStart(2, "0");
+            document.getElementById("minutes").textContent = minutes
+              .toString()
+              .padStart(2, "0");
+            document.getElementById("seconds").textContent = seconds
+              .toString()
+              .padStart(2, "0");
+          }, 1000);
+        }
+
+        // Initialize conference countdown in the existing initializeCountdown method
+        initializeConferenceCountdown() {
+          const conferenceDate = new Date('2026-03-20T09:00:00').getTime();
+          
+          const confCountdownInterval = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = conferenceDate - now;
+
+            if (distance < 0) {
+              clearInterval(confCountdownInterval);
+              document.getElementById('conferenceCountdown').innerHTML = '<div class="countdown-item"><span class="countdown-number">STARTED</span></div>';
+              return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('confDays').textContent = days.toString().padStart(2, '0');
+            document.getElementById('confHours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('confMinutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('confSeconds').textContent = seconds.toString().padStart(2, '0');
+          }, 1000);
+        }
+
+        /**
+         * Initialize scroll-based animations
+         */
+        initializeScrollAnimations() {
+          const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px",
+          };
+
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("animated");
+              }
+            });
+          }, observerOptions);
+
+          // Observe all elements with animate-on-scroll class
+          document.querySelectorAll(".animate-on-scroll").forEach((el) => {
+            observer.observe(el);
+          });
+        }
+
+        /**
+         * Initialize navigation functionality
+         */
+        initializeNavigation() {
+          // Set initial active link
+          this.updateActiveNavLink();
+        }
+
+        /**
+         * Initialize flyer popup system
+         */
+        initializeFlyerSystem() {
+          // Make flyer functions globally available
+          window.openFlyerPopup = () => this.openFlyerPopup();
+          window.closeFlyerPopup = () => this.closeFlyerPopup();
+          window.adjustFlyerSize = (size) => this.adjustFlyerSize(size);
+          window.downloadFlyer = () => this.downloadFlyer();
+        }
+
+        /**
+         * Open the flyer popup
+         */
+        openFlyerPopup() {
+          const popup = document.getElementById("flyerPopup");
+          popup.classList.add("active");
+          document.body.style.overflow = "hidden";
+          this.showNotification("Flyer opened", "info");
+        }
+
+        /**
+         * Close the flyer popup
+         */
+        closeFlyerPopup() {
+          const popup = document.getElementById("flyerPopup");
+          popup.classList.remove("active");
+          document.body.style.overflow = "auto";
+        }
+
+        /**
+         * Adjust flyer popup size
+         * @param {string} size - Size option: 'small', 'medium', or 'large'
+         */
+        adjustFlyerSize(size) {
+          const flyerPopup = document.querySelector(".flyer-popup");
+          const sizeButtons = document.querySelectorAll(".size-btn");
+
+          // Remove existing size classes
+          flyerPopup.classList.remove(
+            "size-small",
+            "size-medium",
+            "size-large"
+          );
+          flyerPopup.classList.add(`size-${size}`);
+
+          this.currentFlyerSize = size;
+          this.showNotification(`Flyer size changed to ${size}`, "success");
+        }
+
+        /**
+         * Download the flyer image
+         */
+        downloadFlyer() {
+          const flyerImage = document.getElementById("flyerImage");
+          const link = document.createElement("a");
+          link.href = flyerImage.src;
+          link.download = "NIIS_2026_Conference_Flyer.jpg";
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          this.showNotification("Flyer download started!", "success");
+        }
+
+        /**
+         * Show notification to user
+         * @param {string} message - Notification message
+         * @param {string} type - Notification type: 'info', 'success', 'error'
+         */
+        showNotification(message, type = "info") {
+          // Remove existing notifications
+          document.querySelectorAll(".notification").forEach((notification) => {
+            notification.remove();
+          });
+
+          const notification = document.createElement("div");
+          notification.className = `notification notification-${type}`;
+          notification.textContent = message;
+
+          // Styling
+          notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    padding: 12px 20px;
+                    background: ${
+                      type === "success"
+                        ? "#10b981"
+                        : type === "error"
+                        ? "#ef4444"
+                        : "#3b82f6"
+                    };
+                    color: white;
+                    border-radius: 12px;
+                    z-index: 10002;
+                    font-weight: 500;
+                    font-size: 14px;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                    transform: translateX(100%);
+                    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                `;
+
+          document.body.appendChild(notification);
+
+          // Animate in
+          setTimeout(() => {
+            notification.style.transform = "translateX(0)";
+          }, 10);
+
+          // Auto remove after 3 seconds
+          setTimeout(() => {
+            notification.style.transform = "translateX(100%)";
+            setTimeout(() => {
+              if (notification.parentNode) {
+                notification.remove();
+              }
+            }, 300);
+          }, 3000);
+        }
+      }
+
+      /**
+       * ===== PERFORMANCE OPTIMIZER =====
+       * Handles performance optimizations and lazy loading
+       */
+      class PerformanceOptimizer {
+        constructor() {
+          this.init();
+        }
+
+        init() {
+          this.optimizeImages();
+          this.addIntersectionObserver();
+        }
+
+        /**
+         * Optimize images with lazy loading
+         */
+        optimizeImages() {
+          const images = document.querySelectorAll("img");
+
+          if ("IntersectionObserver" in window) {
+            const imageObserver = new IntersectionObserver((entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  const img = entry.target;
+                  if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.classList.remove("lazy");
+                    imageObserver.unobserve(img);
+                  }
+                }
+              });
+            });
+
+            images.forEach((img) => {
+              if (img.dataset.src) {
+                imageObserver.observe(img);
+              }
+            });
+          }
+        }
+
+        /**
+         * Add intersection observer for animations
+         */
+        addIntersectionObserver() {
+          const animateElements = document.querySelectorAll(
+            ".feature-card, .topic-card, .date-card, .contact-card"
+          );
+
+          if ("IntersectionObserver" in window) {
+            const observer = new IntersectionObserver(
+              (entries) => {
+                entries.forEach((entry) => {
+                  if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                  }
+                });
+              },
+              {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px",
+              }
+            );
+
+            animateElements.forEach((el) => {
+              el.style.opacity = "0";
+              el.style.transform = "translateY(20px)";
+              el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+              observer.observe(el);
+            });
+          }
+        }
+      }
+
+      /**
+       * ===== APPLICATION INITIALIZATION =====
+       * Initialize the application when DOM is loaded
+       */
+      document.addEventListener("DOMContentLoaded", () => {
+        // Initialize main application
+        window.conferenceApp = new ConferenceApp();
+
+        // Initialize performance optimizer
+        new PerformanceOptimizer();
+
+        // Handle window resize for responsive adjustments
+        window.addEventListener("resize", () => {
+          if (window.conferenceApp) {
+            // Add any resize-specific logic here
+          }
+        });
+      });
+
+      /**
+       * ===== ERROR HANDLING =====
+       * Global error handlers for better user experience
+       */
+      window.addEventListener("error", (e) => {
+        console.error("Application Error:", e.error);
+      });
+
+      window.addEventListener("unhandledrejection", (e) => {
+        console.error("Unhandled Promise Rejection:", e.reason);
+        e.preventDefault();
+      });
+
+      /**
+       * ===== Pop up Track =====
+       */
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const cards = document.querySelectorAll(".topic-card");
+        const modal = document.getElementById("modal");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalList = document.getElementById("modalList");
+        const closeModal = document.getElementById("closeModal");
+
+        const topicDetails = {
+          electronics: {
+            title: "Electronics & VLSI",
+            topics: [
+              "Optical & Microwave Communication",
+              "VLSI and Semiconductor Technologies",
+              "Solar Systems & Electric Vehicles",
+              "Smart Grid Systems",
+              "Satellite Communication",
+              "Power Systems, Power Electronics, Drives",
+              "MEMS and Sensor Design",
+              "Biomedical Instrumentation",
+              "Antenna Design & RF Propagation",
+            ],
+          },
+          ai: {
+            title: "AI/ML Integration",
+            topics: [
+              "Artificial Intelligence (ML & DL)",
+              "Data Analytics",
+              "Image & Video Processing",
+              "Fuzzy Systems",
+              "Signal Processing",
+              "Cognitive Radio Networks",
+              "Cognitive Science",
+              "Computational Intelligence & Optimization",
+              "Bio-Mechanics",
+              "Bio-Informatics",
+            ],
+          },
+          iot: {
+            title: "Embedded Systems & IoT",
+            topics: [
+              "Energy Systems",
+              "Embedded Systems",
+              "Wireless Sensor Networks",
+              "Robotics & Automation",
+              "Mobile Ad-hoc Networks (MANETs)",
+              "Vehicular Ad-hoc Networks (VANETs)",
+              "Control Systems",
+              "IoT Architectures & Protocols",
+              "Health Monitoring Devices",
+              "Industry 5.0",
+              "Automation",
+              "Intelligent Networking",
+              "Communication Systems",
+              "Underwater Communication Networks",
+            ],
+          },
+          cps: {
+            title: "Cyber-Physical Systems",
+            topics: [
+              "Cyber Security",
+              "Software Defined Networks",
+              "Augmented / Virtual Reality (AR/VR)",
+              "Nano Technology in Intelligent Systems",
+              "Blockchain & Distributed Ledger Tech",
+              "Cloud / Edge / Fog Computing",
+              "Cyber-Physical Systems",
+              "Future Internet & 5G/6G Networks",
+              "Green Computing",
+            ],
+          },
+        };
+
+        cards.forEach((card) => {
+          card.addEventListener("click", () => {
+            const topicKey = card.getAttribute("data-topic");
+            const data = topicDetails[topicKey];
+            if (data) {
+              modalTitle.textContent = data.title;
+              modalList.innerHTML = data.topics
+                .map((item) => `<li>${item}</li>`)
+                .join("");
+              modal.style.display = "flex";
+            }
+          });
+        });
+
+        closeModal.addEventListener("click", () => {
+          modal.style.display = "none";
+        });
+
+        window.addEventListener("click", (e) => {
+          if (e.target == modal) {
+            modal.style.display = "none";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

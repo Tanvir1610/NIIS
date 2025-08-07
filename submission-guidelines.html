@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Submission Guidelines - NIIS 2026</title>
+    <!-- Preconnect for performance optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Google Fonts - Ubuntu for consistent typography -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <style>
+      /* Reset and Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Ubuntu", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
+        line-height: 1.6;
+        color: #1f2937;
+        background-color: #ffffff;
+      }
+
+      /* Container */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* ===== HEADER AND NAVIGATION STYLES ===== */
+      /* Main header with navigation */
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+        z-index: 1000;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .header.scrolled {
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        border-bottom-color: rgba(229, 231, 235, 1);
+      }
+
+      /* Header logos - above navigation */
+      .header-logos {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.75rem 0;
+        gap: 3rem;
+        border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+      }
+
+      .header-logo {
+        height: 45px;
+        width: auto;
+        object-fit: contain;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+      }
+
+      .header-logo:hover {
+        transform: scale(1.05);
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        position: relative;
+      }
+
+      /* Logo section in header */
+      .logo-section {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .logo-text h1 {
+        font-size: 18px;
+        font-weight: 700;
+        color: #1f2937;
+        line-height: 1.2;
+        letter-spacing: -0.025em;
+      }
+
+      .logo-text p {
+        font-size: 12px;
+        color: #6b7280;
+        line-height: 1.2;
+        font-weight: 500;
+      }
+
+      /* Navigation styles */
+      .navigation {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .nav-link {
+        color: #4b5563;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 15px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        padding: 8px 0;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: #3b82f6;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #3b82f6, #1e40af);
+        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 1px;
+      }
+
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        width: 100%;
+      }
+
+      /* Dropdown navigation */
+      .nav-dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: white;
+        min-width: 250px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        border-radius: 12px;
+        padding: 8px 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(-50%) translateY(-10px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
+        border: 1px solid #e5e7eb;
+        backdrop-filter: blur(10px);
+      }
+
+      .nav-dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      .dropdown-item {
+        display: block;
+        padding: 12px 20px;
+        color: #4b5563;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 14px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-left: 3px solid transparent;
+      }
+
+      .dropdown-item:hover {
+        background: linear-gradient(90deg, #f8fafc, #e0e7ff);
+        color: #3b82f6;
+        border-left-color: #3b82f6;
+        transform: translateX(4px);
+      }
+
+      /* CTA Button */
+      .cta-button {
+        background: linear-gradient(135deg, #3b82f6, #1e40af);
+        color: white;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+      }
+
+      .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      }
+
+      /* Mobile menu toggle */
+      .mobile-menu-toggle {
+        display: none;
+        flex-direction: column;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+      }
+
+      .mobile-menu-toggle:hover {
+        background: rgba(59, 130, 246, 0.1);
+      }
+
+      .mobile-menu-toggle span {
+        width: 24px;
+        height: 3px;
+        background: #4b5563;
+        margin: 3px 0;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 2px;
+      }
+
+      .mobile-menu-toggle.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+        background: #3b82f6;
+      }
+
+      .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .mobile-menu-toggle.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+        background: #3b82f6;
+      }
+
+      /* Main Content */
+
+      .main-content {
+        margin-top: 80px;
+        padding: 80px 0;
+      }
+
+      .page-header {
+        text-align: center;
+        margin-bottom: 80px;
+        background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+        padding: 80px 0;
+        margin-top: -80px;
+        margin-bottom: 80px;
+      }
+
+      .page-title {
+        font-size: clamp(36px, 6vw, 64px);
+        font-weight: 900;
+        color: #1f2937;
+        margin-bottom: 24px;
+        line-height: 1.1;
+      }
+
+      .page-title .highlight {
+        color: #3b82f6;
+      }
+
+      .page-subtitle {
+        font-size: clamp(18px, 3vw, 24px);
+        color: #4b5563;
+        margin-bottom: 16px;
+        font-weight: 600;
+        line-height: 1.3;
+      }
+
+      .page-description {
+        font-size: 18px;
+        color: #6b7280;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      /* Content Sections */
+      .content-section {
+        margin-bottom: 80px;
+      }
+
+      .section-title {
+        font-size: 32px;
+        font-weight: 800;
+        color: #1f2937;
+        margin-bottom: 32px;
+        text-align: center;
+        position: relative;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: #3b82f6;
+        border-radius: 2px;
+      }
+
+      .intro-text {
+        font-size: 18px;
+        color: #4b5563;
+        line-height: 1.7;
+        margin-bottom: 48px;
+        text-align: center;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Guidelines Grid */
+      .guidelines-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 32px;
+        margin-bottom: 48px;
+      }
+
+      .guideline-card {
+        background: white;
+        padding: 32px;
+        border-radius: 16px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        border: 1px solid #f3f4f6;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .guideline-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #3b82f6, #1e40af);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+
+      .guideline-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .guideline-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .guideline-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 24px;
+        font-size: 28px;
+      }
+
+      .guideline-icon.blue {
+        background: #dbeafe;
+        color: #3b82f6;
+      }
+
+      .guideline-icon.green {
+        background: #d1fae5;
+        color: #10b981;
+      }
+
+      .guideline-icon.purple {
+        background: #e9d5ff;
+        color: #8b5cf6;
+      }
+
+      .guideline-icon.orange {
+        background: #fed7aa;
+        color: #f59e0b;
+      }
+
+      .guideline-icon.red {
+        background: #fecaca;
+        color: #ef4444;
+      }
+
+      .guideline-card h3 {
+        font-size: 24px;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 16px;
+      }
+
+      .guideline-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .guideline-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 16px;
+        font-size: 16px;
+        color: #4b5563;
+        line-height: 1.6;
+      }
+
+      .guideline-list li:last-child {
+        margin-bottom: 0;
+      }
+
+      .guideline-list li::before {
+        content: "✓";
+        color: #10b981;
+        font-weight: bold;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+
+      /* Important Notices */
+      .important-notice {
+        background: linear-gradient(135deg, #fef3c7, #fde68a);
+        border: 2px solid #f59e0b;
+        border-radius: 16px;
+        padding: 32px;
+        margin: 48px 0;
+        text-align: center;
+      }
+
+      .notice-title {
+        font-size: 24px;
+        font-weight: 700;
+        color: #92400e;
+        margin-bottom: 16px;
+      }
+
+      .notice-text {
+        font-size: 16px;
+        color: #92400e;
+        line-height: 1.6;
+        font-weight: 500;
+      }
+
+      .warning-notice {
+        background: linear-gradient(135deg, #fecaca, #fca5a5);
+        border: 2px solid #ef4444;
+        border-radius: 16px;
+        padding: 32px;
+        margin: 48px 0;
+        text-align: center;
+      }
+
+      .warning-notice .notice-title {
+        color: #dc2626;
+      }
+
+      .warning-notice .notice-text {
+        color: #dc2626;
+      }
+
+      .success-notice {
+        background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+        border: 2px solid #10b981;
+        border-radius: 16px;
+        padding: 32px;
+        margin: 48px 0;
+        text-align: center;
+      }
+
+      .success-notice .notice-title {
+        color: #047857;
+      }
+
+      .success-notice .notice-text {
+        color: #047857;
+      }
+
+      /* ===== FOOTER STYLES ===== */
+      .footer {
+        background: linear-gradient(135deg, #1f2937, #111827);
+        color: white;
+        padding: 4rem 0 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="footerPattern" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23ffffff" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23footerPattern)"/></svg>');
+        pointer-events: none;
+      }
+
+      .footer-content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 2rem;
+      }
+
+      .footer .logo-icon {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #3b82f6, #1e40af);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+      }
+
+      .footer .logo-text h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: white;
+        line-height: 1.2;
+      }
+
+      .footer .logo-text p {
+        font-size: 0.875rem;
+        color: #9ca3af;
+        line-height: 1.2;
+      }
+
+      /* Contact Information Grid */
+      .footer-contact-grid {
+        display: grid;
+        grid-template-columns: repeat(
+          3,
+          1fr
+        ); /* Three columns for desktop/laptop */
+        gap: 2rem;
+        margin-bottom: 3rem;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 1rem;
+      }
+
+      .location-item {
+        grid-column: 1 / -1; /* Full width for location */
+      }
+
+      .footer-contact-item {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1.5rem;
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .footer-contact-item:hover {
+        background: rgba(255, 255, 255, 0.08);
+        transform: translateY(-2px);
+      }
+
+      .footer-contact-item h4 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: white;
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .footer-contact-item i {
+        color: #3b82f6;
+        font-size: 1.1rem;
+      }
+
+      .footer-contact-item p {
+        color: #9ca3af;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-contact-item a {
+        color: #3b82f6;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-contact-item a:hover {
+        color: #60a5fa;
+      }
+
+      .footer-divider {
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #374151, transparent);
+        margin-bottom: 2rem;
+      }
+
+      .footer-bottom p {
+        color: #9ca3af;
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-credit {
+        color: #6b7280;
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+
+      /* ===== DECORATIVE BACKGROUND ELEMENTS (LAPTOP ONLY) ===== */
+      @media (min-width: 1024px) {
+        .main-content::after {
+          content: "";
+          position: absolute;
+          top: 25%;
+          right: -3%;
+          width: 160px;
+          height: 160px;
+          background: radial-gradient(
+            circle,
+            rgba(59, 130, 246, 0.1) 0%,
+            transparent 70%
+          );
+          border-radius: 50%;
+          z-index: 0;
+        }
+
+        .content-section:nth-child(4)::before {
+          content: "";
+          position: absolute;
+          top: -3%;
+          left: -2%;
+          width: 140px;
+          height: 140px;
+          background: linear-gradient(
+            45deg,
+            rgba(245, 158, 11, 0.1),
+            transparent
+          );
+          border-radius: 50%;
+          z-index: 0;
+        }
+      }
+
+      /* Enhanced Mobile Content Styles */
+      .enhanced-mobile-content {
+        padding: 1.5rem;
+        margin: 1rem 0;
+        background: #f8fafc;
+        border-radius: 12px;
+        border-left: 4px solid #3b82f6;
+      }
+
+      .enhanced-mobile-content h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin-bottom: 1rem;
+      }
+
+      .enhanced-mobile-content p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: #4b5563;
+        margin-bottom: 0.75rem;
+      }
+
+      /* ===== RESPONSIVE DESIGN ===== */
+
+      /* ===== TABLET VIEW (max-width: 1024px) ===== */
+      @media (max-width: 1024px) {
+        .navigation {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: white;
+          flex-direction: column;
+          padding: 24px;
+          border-top: 1px solid #e5e7eb;
+          gap: 16px;
+        }
+
+        .navigation.active {
+          display: flex;
+        }
+
+        .mobile-menu-toggle {
+          display: flex;
+        }
+
+        .dropdown-menu {
+          position: static;
+          opacity: 1;
+          visibility: visible;
+          transform: none;
+          box-shadow: none;
+          border: none;
+          padding: 0;
+          margin-top: 8px;
+        }
+
+        .dropdown-item {
+          padding: 8px 0;
+          border-left: none;
+        }
+
+        .guidelines-grid {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+        .footer-contact-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .location-item {
+          grid-column: auto;
+        }
+      }
+
+      /* ===== MOBILE VIEW (max-width: 768px) ===== */
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 16px;
+        }
+
+        /* Mobile Navigation */
+        .header-logos {
+          gap: 2rem;
+          padding: 0.5rem 0;
+        }
+
+        .header-logo {
+          height: 35px;
+        }
+
+        .navigation {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: rgba(255, 255, 255, 0.98);
+          backdrop-filter: blur(20px);
+          flex-direction: column;
+          padding: 2rem;
+          border-top: 1px solid #e5e7eb;
+          gap: 1rem;
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .navigation.active {
+          display: flex;
+        }
+
+        .mobile-menu-toggle {
+          display: flex;
+        }
+
+        /* Page Header Mobile Fix */
+        .page-header {
+          padding: 60px 0;
+          margin-top: -60px; /* Adjust for mobile header */
+        }
+
+        .main-content {
+          padding: 60px 0;
+          margin-top: 160px; /* Increased to prevent navbar overlap */
+        }
+
+        .content-section {
+          margin-bottom: 60px;
+        }
+
+        .guideline-card {
+          padding: 24px;
+          margin-bottom: 1.5rem;
+        }
+
+        /* Enhanced Mobile Readability */
+        .important-notice,
+        .warning-notice,
+        .success-notice {
+          padding: 2rem;
+          margin: 2rem 0;
+          border-radius: 16px;
+        }
+
+        .notice-title {
+          font-size: 1.25rem;
+          margin-bottom: 1rem;
+          line-height: 1.3;
+        }
+
+        .notice-text {
+          font-size: 1rem;
+          line-height: 1.7;
+          text-align: justify;
+        }
+
+        /* Plagiarism Policy Enhanced */
+        .warning-notice {
+          background: linear-gradient(135deg, #fef2f2, #fee2e2);
+          border: 2px solid #f87171;
+          box-shadow: 0 4px 12px rgba(248, 113, 113, 0.2);
+        }
+
+        .warning-notice .notice-title {
+          color: #dc2626;
+          font-weight: 700;
+        }
+
+        .warning-notice .notice-text {
+          color: #991b1b;
+          font-weight: 500;
+        }
+
+        /* Registration Requirements Enhanced */
+        .important-notice {
+          background: linear-gradient(135deg, #fffbeb, #fef3c7);
+          border: 2px solid #fbbf24;
+          box-shadow: 0 4px 12px rgba(251, 191, 36, 0.2);
+        }
+
+        .important-notice .notice-title {
+          color: #d97706;
+          font-weight: 700;
+        }
+
+        .important-notice .notice-text {
+          color: #92400e;
+          font-weight: 500;
+        }
+
+        /* Success Notice Enhanced */
+        .success-notice {
+          background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+          border: 2px solid #4ade80;
+          box-shadow: 0 4px 12px rgba(74, 222, 128, 0.2);
+        }
+
+        .success-notice .notice-title {
+          color: #16a34a;
+          font-weight: 700;
+        }
+
+        .success-notice .notice-text {
+          color: #15803d;
+          font-weight: 500;
+        }
+
+        /* Mobile Footer - Vertical Layout */
+        .footer {
+          padding: 3rem 0 1.5rem;
+        }
+
+        .footer-content {
+          padding: 0 1rem;
+        }
+
+        .footer-logo {
+          flex-direction: column;
+          align-items: center;
+          gap: 8px;
+          margin-bottom: 1.5rem;
+        }
+
+        .footer-contact-grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .footer-contact-item {
+          padding: 1rem;
+          text-align: center;
+        }
+
+        .footer-contact-item h4 {
+          font-size: 0.95rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .footer-contact-item p {
+          font-size: 0.85rem;
+          line-height: 1.4;
+        }
+
+        .location-item {
+          margin-bottom: 0.5rem;
+        }
+      }
+
+      /* ===== SMALL MOBILE VIEW (max-width: 480px) ===== */
+      @media (max-width: 480px) {
+        .container {
+          padding: 0 16px;
+        }
+
+        .main-content {
+          margin-top: 140px; /* Adjusted for smaller screens */
+        }
+
+        .header-logos {
+          gap: 1rem;
+        }
+
+        .header-logo {
+          height: 30px;
+        }
+
+        .section-title {
+          font-size: 28px;
+        }
+
+        .notice-title {
+          font-size: 1.125rem;
+        }
+
+        .notice-text {
+          font-size: 0.9375rem;
+        }
+
+        .guideline-card h3 {
+          font-size: 20px;
+        }
+
+        .guideline-list li {
+          font-size: 14px;
+        }
+
+        .important-notice,
+        .warning-notice,
+        .success-notice {
+          padding: 1.5rem;
+          margin: 1.5rem 0;
+        }
+
+        /* Mobile Footer Optimizations */
+        .footer {
+          padding: 2rem 0 1rem;
+        }
+
+        .footer-content {
+          padding: 0 1rem;
+        }
+
+        .footer-contact-grid {
+          grid-template-columns: 1fr;
+          gap: 0.75rem;
+        }
+
+        .footer-contact-item {
+          padding: 0.75rem;
+          text-align: center;
+        }
+
+        .footer-logo {
+          gap: 6px;
+          margin-bottom: 1rem;
+        }
+
+        .footer-contact-item h4 {
+          font-size: 0.9rem;
+        }
+
+        .footer-contact-item p {
+          font-size: 0.8rem;
+        }
+      }
+
+      /* Animation */
+      @media (prefers-reduced-motion: no-preference) {
+        .guideline-card {
+          opacity: 0;
+          transform: translateY(20px);
+          animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .guideline-card:nth-child(1) {
+          animation-delay: 0.1s;
+        }
+        .guideline-card:nth-child(2) {
+          animation-delay: 0.2s;
+        }
+        .guideline-card:nth-child(3) {
+          animation-delay: 0.3s;
+        }
+        .guideline-card:nth-child(4) {
+          animation-delay: 0.4s;
+        }
+        .guideline-card:nth-child(5) {
+          animation-delay: 0.5s;
+        }
+      }
+
+      @keyframes fadeInUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ===== HEADER WITH NAVIGATION ===== -->
+    <header class="header" id="header">
+      <div class="container">
+        <!-- Header logos above navigation -->
+        <div class="header-logos">
+          <img src="logos/cvm.png" alt="CVM Logo" class="header-logo" />
+          <img src="logos/gcetlogo.png" alt="GCET Logo" class="header-logo" />
+          <img
+            src="logos/CVM-Logo (2).png"
+            alt="CVM Extended Logo"
+            class="header-logo"
+          />
+        </div>
+
+        <div class="header-content">
+          <!-- Logo section in header -->
+          <div class="logo-section">
+            <img
+              src="logos/Niis2026.png"
+              alt="NIIS 2026 Logo"
+              class="header-logo"
+              style="max-width: 80px; height: auto"
+            />
+          </div>
+
+          <!-- Main navigation -->
+          <nav class="navigation" id="navigation">
+            <a href="index.html" class="nav-link">Home</a>
+
+            <!-- About dropdown -->
+            <div class="nav-dropdown">
+              <a href="#about" class="nav-link">About</a>
+              <div class="dropdown-menu">
+                <a href="niis2026.html" class="dropdown-item">NIIS 2026</a>
+                <a href="gcet.html" class="dropdown-item">GCET</a>
+              </div>
+            </div>
+
+            <!-- Committee dropdown -->
+            <div class="nav-dropdown">
+              <a href="#" class="nav-link">Committee</a>
+              <div class="dropdown-menu">
+                <a href="committee.html" class="dropdown-item"
+                  >Organizing Committee</a
+                >
+                <a href="ITC.html" class="dropdown-item"
+                  >Technical Advisory Committee</a
+                >
+                <a href="#track-coordinators" class="dropdown-item"
+                  >Track Co-ordinators</a
+                >
+              </div>
+            </div>
+
+            <a href="keynote.html" class="nav-link">Keynote Speaker</a>
+
+            <!-- Submission dropdown -->
+            <div class="nav-dropdown">
+              <a href="#" class="nav-link active">Submission</a>
+              <div class="dropdown-menu">
+                <a href="call-for-papers.html" class="dropdown-item"
+                  >Call For Papers</a
+                >
+                <a href="#" class="dropdown-item">Author Guidelines</a>
+                <a href="submission-guidelines.html" class="dropdown-item"
+                  >Submission Guidelines</a
+                >
+              </div>
+            </div>
+
+            <!-- Registration dropdown -->
+            <div class="nav-dropdown">
+              <a href="#" class="nav-link">Registration</a>
+              <div class="dropdown-menu">
+                <a href="#" class="dropdown-item">Conference Registration</a>
+                <a href="#" class="dropdown-item">Payment Methods</a>
+                <a href="#" class="dropdown-item">Registration FAQ</a>
+              </div>
+            </div>
+
+            <a href="#contact" class="nav-link">Contact</a>
+
+            <!-- CTA Button -->
+            <a
+              href="https://forms.gle/poL6xmD6jXPGCveL6"
+              target="_blank"
+              class="cta-button"
+            >
+              <i class="fas fa-user-plus"></i>
+              Register Now
+            </a>
+          </nav>
+
+          <!-- Mobile menu toggle -->
+          <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <br/>
+    <br/>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Page Header -->
+      <section class="page-header">
+        <div class="container">
+          <h1 class="page-title">
+            Submission <span class="highlight">Guidelines</span>
+          </h1>
+          <p class="page-subtitle">NIIS 2026 International Conference</p>
+          <p class="page-description">
+            Complete guidelines for paper submission, review process, and
+            publication requirements
+          </p>
+        </div>
+      </section>
+
+      <!-- Submission Overview -->
+      <section class="content-section">
+        <div class="container">
+          <h2 class="section-title">Submission Overview</h2>
+          <p class="intro-text">
+            Authors are invited to submit the Full Length Research/Review
+            Papers. The papers will be peer-reviewed and only the accepted and
+            registered papers will be considered for presentation during the
+            conference and publication in the proceedings.
+          </p>
+        </div>
+      </section>
+
+      <!-- Guidelines Grid -->
+      <section class="content-section">
+        <div class="container">
+          <div class="guidelines-grid">
+            <!-- Important Guidelines -->
+            <div class="guideline-card">
+              <div class="guideline-icon red">⚠️</div>
+              <h3>Important Guidelines</h3>
+              <ul class="guideline-list">
+                <li>
+                  The organizers of NIIS2026 regard plagiarism as serious
+                  professional misconduct
+                </li>
+                <li>
+                  All submissions will be screened for plagiarism and when
+                  identified, the submissions will be rejected
+                </li>
+                <li>
+                  The NIIS 2026 doesn't encourage withdrawals after the paper is
+                  accepted
+                </li>
+                <li>
+                  At least one of the authors of an accepted paper needs to
+                  register for the conference and to present the paper(s),
+                  through an Online Mode presentation
+                </li>
+              </ul>
+            </div>
+
+            <!-- Paper Publication Guidelines -->
+            <div class="guideline-card">
+              <div class="guideline-icon blue">📚</div>
+              <h3>Paper Publication Guidelines</h3>
+              <ul class="guideline-list">
+                <li>
+                  Conference Organizers are discussing with possible publishers
+                  for SCOPUS index publication (with additional publication
+                  charge)
+                </li>
+                <li>
+                  All accepted papers will be published in conference
+                  proceedings with ISBN/ISSN number
+                </li>
+                <li>Papers must be original and not published elsewhere</li>
+                <li>High-quality research contributions are expected</li>
+              </ul>
+            </div>
+
+            <!-- Submission Requirements -->
+            <div class="guideline-card">
+              <div class="guideline-icon green">📝</div>
+              <h3>Submission Requirements</h3>
+              <ul class="guideline-list">
+                <li>Submit full-length original research papers only</li>
+                <li>
+                  Papers must NOT be submitted/published/under consideration
+                  elsewhere
+                </li>
+                <li>Electronic format: Doc or Docx only</li>
+                <li>Submit through CMT Conference Management System only</li>
+                <li>English is the official language of the conference</li>
+              </ul>
+            </div>
+
+            <!-- Review Process -->
+            <div class="guideline-card">
+              <div class="guideline-icon purple">🔍</div>
+              <h3>Review Process</h3>
+              <ul class="guideline-list">
+                <li>All papers undergo rigorous peer-review process</li>
+                <li>Acceptance is strictly based on reviewers' comments</li>
+                <li>Double-blind review process ensures fairness</li>
+                <li>Authors will receive detailed feedback</li>
+                <li>Review timeline: 4-6 weeks from submission</li>
+              </ul>
+            </div>
+
+            <!-- Presentation Guidelines -->
+            <div class="guideline-card">
+              <div class="guideline-icon orange">🎤</div>
+              <h3>Presentation Guidelines</h3>
+              <ul class="guideline-list">
+                <li>Online mode presentation required</li>
+                <li>At least one author must register and present</li>
+                <li>Presentation time: 15-20 minutes including Q&A</li>
+                <li>Technical requirements will be provided upon acceptance</li>
+                <li>Presentation slides must be submitted in advance</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Important Notices-->
+      <section class="content-section">
+        <div class="container">
+          <div class="warning-notice">
+            <h3 class="notice-title">🚨 Plagiarism Policy</h3>
+            <p class="notice-text">
+              The organizers of NIIS2026 regard plagiarism as serious
+              professional misconduct. All submissions will be screened for
+              plagiarism and when identified, the submissions will be rejected
+              immediately. Authors are expected to maintain the highest
+              standards of academic integrity.
+            </p>
+          </div>
+
+          <div class="important-notice">
+            <h3 class="notice-title">📋 Registration Requirement</h3>
+            <p class="notice-text">
+              At least one of the authors of an accepted paper needs to register
+              for the conference and to present the paper(s) through an Online
+              Mode presentation. Papers without registered authors will not be
+              included in the proceedings.
+            </p>
+          </div>
+
+          <div class="success-notice">
+            <h3 class="notice-title">🏆 Publication Opportunity</h3>
+            <p class="notice-text">
+              Conference Organizers are discussing with possible publishers for
+              SCOPUS index publication (with additional publication charge). All
+              accepted papers will be published in conference proceedings with
+              ISBN/ISSN number, ensuring wide visibility for your research.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final Notes -->
+      <section class="content-section">
+        <div class="container">
+          <h2 class="section-title">Important Notes</h2>
+          <div class="important-notice">
+            <h3 class="notice-title">📌 Final Reminder</h3>
+            <p class="notice-text">
+              Acceptance of a full-length submission is strictly based on the
+              reviewers' comments. Authors are encouraged to follow all
+              guidelines carefully and ensure their submissions meet the highest
+              academic standards. For any queries regarding the submission
+              process, please contact the conference organizers.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <div class="logo-icon">
+              <i class="fas fa-university"></i>
+            </div>
+            <div class="logo-text">
+              <h3>NIIS 2026</h3>
+              <p>International Conference</p>
+            </div>
+          </div>
+
+          <!-- Contact Information Grid -->
+          <div class="footer-contact-grid">
+            <div class="footer-contact-item">
+              <h4><i class="fas fa-envelope"></i> Email</h4>
+              <p style="font-size: medium">
+                <a href="mailto:niis2026@gcet.ac.in">niis2026@gcet.ac.in</a>
+              </p>
+            </div>
+
+            <div class="footer-contact-item">
+              <h4><i class="fas fa-phone"></i> Dr. Bhaskar Thakker</h4>
+              <p>
+                <a href="tel:+919574383265" style="font-size: medium"
+                  >+91 9574383265</a
+                >
+              </p>
+              <!-- <p>
+                <a
+                  href="mailto:bhaskarthakkar@gcet.ac.in"
+                  style="font-size: medium"
+                  >bhaskarthakkar@gcet.ac.in</a
+                >
+              </p> -->
+            </div>
+
+            <div class="footer-contact-item">
+              <h4><i class="fas fa-phone"></i> Dr. Priyang Bhatt</h4>
+              <p>
+                <a href="tel:+919879849707" style="font-size: medium"
+                  >+91 9879849707</a
+                >
+              </p>
+              <!-- <p>
+                <a
+                  href="mailto:priyangbhatt@gcet.ac.in"
+                  style="font-size: medium"
+                  >priyangbhatt@gcet.ac.in</a
+                >
+              </p> -->
+            </div>
+
+            <div class="footer-contact-item location-item">
+              <h4><i class="fas fa-map-marker-alt"></i> Location</h4>
+              <a
+                href="https://maps.app.goo.gl/TVv7ZMzeciHrsMsM7"
+                target="_blank"
+                style="text-decoration: none"
+              >
+                <p style="font-size: medium; color: #3b82f6">
+                  G H Patel College of Engineering & Technology<br />
+                  Vallabh Vidyanagar, Gujarat, India
+                </p>
+              </a>
+            </div>
+          </div>
+
+          <div class="footer-divider"></div>
+
+          <div class="footer-bottom">
+            <p>&copy; 2026 NIIS Conference. All rights reserved.</p>
+            <p class="footer-credit">
+              Designed & Developed by Student Team of CP & IT GCET College
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      /**
+       * Class representing the conference application functionality
+       */
+      class ConferenceApp {
+        constructor() {
+          this.initializeElements();
+          this.attachEventListeners();
+        }
+
+        /**
+         * Initialize DOM elements
+         */
+        initializeElements() {
+          this.header = document.getElementById("header");
+          this.mobileMenuToggle = document.getElementById("mobileMenuToggle");
+          this.navigation = document.getElementById("navigation");
+          this.anchors = document.querySelectorAll('a[href^="#"]');
+        }
+
+        /**
+         * Attach event listeners
+         */
+        attachEventListeners() {
+          if (this.mobileMenuToggle) {
+            this.mobileMenuToggle.addEventListener("click", () =>
+              this.toggleMobileMenu()
+            );
+          }
+
+          window.addEventListener("scroll", () => this.handleScroll());
+
+          this.anchors.forEach((anchor) => {
+            anchor.addEventListener("click", (e) => this.handleSmoothScroll(e));
+          });
+
+          document.addEventListener("click", (e) => this.handleOutsideClick(e));
+        }
+
+        /**
+         * Toggle mobile menu state
+         */
+        toggleMobileMenu() {
+          this.navigation.classList.toggle("active");
+          this.mobileMenuToggle.classList.toggle("active");
+          this.animateHamburgerMenu();
+        }
+
+        /**
+         * Animate hamburger menu icon
+         */
+        animateHamburgerMenu() {
+          const spans = this.mobileMenuToggle.querySelectorAll("span");
+          const isActive = this.navigation.classList.contains("active");
+
+          spans[0].style.transform = isActive
+            ? "rotate(-45deg) translate(-5px, 6px)"
+            : "none";
+          spans[1].style.opacity = isActive ? "0" : "1";
+          spans[2].style.transform = isActive
+            ? "rotate(45deg) translate(-5px, -6px)"
+            : "none";
+        }
+
+        /**
+         * Handle scroll events
+         */
+        handleScroll() {
+          if (window.scrollY > 100) {
+            this.header.classList.add("scrolled");
+          } else {
+            this.header.classList.remove("scrolled");
+          }
+        }
+
+        /**
+         * Handle smooth scrolling
+         * @param {Event} e - Click event
+         */
+        handleSmoothScroll(e) {
+          e.preventDefault();
+          const target = document.querySelector(e.target.getAttribute("href"));
+
+          if (target) {
+            const headerHeight = this.header.offsetHeight;
+            const targetPosition = target.offsetTop - headerHeight - 20;
+
+            window.scrollTo({
+              top: targetPosition,
+              behavior: "smooth",
+            });
+          }
+        }
+
+        /**
+         * Handle clicks outside mobile menu
+         * @param {Event} e - Click event
+         */
+        handleOutsideClick(e) {
+          if (
+            !this.header.contains(e.target) &&
+            this.navigation.classList.contains("active")
+          ) {
+            this.navigation.classList.remove("active");
+            this.mobileMenuToggle.classList.remove("active");
+            this.resetHamburgerMenu();
+          }
+        }
+
+        /**
+         * Reset hamburger menu icon
+         */
+        resetHamburgerMenu() {
+          const spans = this.mobileMenuToggle.querySelectorAll("span");
+          spans[0].style.transform = "none";
+          spans[1].style.opacity = "1";
+          spans[2].style.transform = "none";
+        }
+      }
+
+      /**
+       * Initialize application when DOM is fully loaded
+       */
+      document.addEventListener("DOMContentLoaded", () => {
+        new ConferenceApp();
+        new PerformanceOptimizer();
+      });
+
+      /**
+       * Handle global errors
+       */
+      window.addEventListener("error", (e) => {
+        console.error("Application Error:", e.error);
+      });
+
+      window.addEventListener("unhandledrejection", (e) => {
+        console.error("Unhandled Promise Rejection:", e.reason);
+        e.preventDefault();
+      });
+    </script>
+  </body>
+</html>
