@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About GCET - G H Patel College of Engineering & Technology</title>
+
+    <!-- Preconnect for performance optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Google Fonts - Ubuntu for consistent typography -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <style>
+      /* ===== CSS RESET AND BASE STYLES ===== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        font-size: 16px;
+      }
+
+      body {
+        font-family: "Ubuntu", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
+        line-height: 1.6;
+        color: #1f2937;
+        background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+        min-height: 100vh;
+        overflow-x: hidden;
+        animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* ===== UTILITY CLASSES ===== */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* ===== HEADER AND NAVIGATION STYLES ===== */
+      /* Main header with navigation */
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+        z-index: 1000;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .header.scrolled {
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      /* Header logos - above navigation */
+      .header-logos {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.75rem 0;
+        gap: 3rem;
+        border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+      }
+
+      .header-logo {
+        height: 45px;
+        width: auto;
+        object-fit: contain;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+      }
+
+      .header-logo:hover {
+        transform: scale(1.05);
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+      }
+
+      /* Logo section in header */
+      .logo-section {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .logo-text h1 {
+        font-size: 18px;
+        font-weight: 700;
+        color: #1f2937;
+        line-height: 1.2;
+        letter-spacing: -0.025em;
+      }
+
+      .logo-text p {
+        font-size: 12px;
+        color: #6b7280;
+        line-height: 1.2;
+        font-weight: 500;
+      }
+
+      /* Navigation styles */
+      .navigation {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .nav-link {
+        color: #4b5563;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 15px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        padding: 8px 0;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: #3b82f6;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #3b82f6, #1e40af);
+        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 1px;
+      }
+
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        width: 100%;
+      }
+
+      /* Dropdown navigation */
+      .nav-dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: white;
+        min-width: 250px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        border-radius: 12px;
+        padding: 8px 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(-50%) translateY(-10px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
+        border: 1px solid #e5e7eb;
+        backdrop-filter: blur(10px);
+      }
+
+      .nav-dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      .dropdown-item {
+        display: block;
+        padding: 12px 20px;
+        color: #4b5563;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 14px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-left: 3px solid transparent;
+      }
+
+      .dropdown-item:hover {
+        background: linear-gradient(90deg, #f8fafc, #e0e7ff);
+        color: #3b82f6;
+        border-left-color: #3b82f6;
+        transform: translateX(4px);
+      }
+
+      /* CTA Button */
+      .cta-button {
+        background: linear-gradient(135deg, #3b82f6, #1e40af);
+        color: white;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+      }
+
+      .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+      }
+
+      /* Mobile menu toggle */
+      .mobile-menu-toggle {
+        display: none;
+        flex-direction: column;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+      }
+
+      .mobile-menu-toggle:hover {
+        background: rgba(59, 130, 246, 0.1);
+      }
+
+      .mobile-menu-toggle span {
+        width: 24px;
+        height: 3px;
+        background: #4b5563;
+        margin: 3px 0;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 2px;
+      }
+
+      .mobile-menu-toggle.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+        background: #3b82f6;
+      }
+
+      .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .mobile-menu-toggle.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+        background: #3b82f6;
+      }
+
+      /* ===== MAIN CONTENT STYLES ===== */
+      .main-content {
+        background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+        padding: 180px 0 80px; /* Increased top padding for fixed header with logos */
+        min-height: 100vh;
+        position: relative;
+      }
+
+      .main-content::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23000" opacity="0.02"/><circle cx="75" cy="75" r="1" fill="%23000" opacity="0.02"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        pointer-events: none;
+      }
+
+      .content-section {
+        margin-bottom: 4rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .content-section:last-child {
+        margin-bottom: 0;
+      }
+
+      /* Section headers */
+      .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+        animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .section-title {
+        font-size: clamp(2rem, 5vw, 3rem);
+        font-weight: 800;
+        color: #1f2937;
+        margin-bottom: 1rem;
+        letter-spacing: -0.025em;
+      }
+
+      .section-divider {
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, #3b82f6, #1e40af);
+        margin: 0 auto 2rem;
+        border-radius: 2px;
+      }
+
+      .section-subtitle {
+        font-size: 1.125rem;
+        color: #6b7280;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      /* ===== HERO SECTION ===== */
+      .hero-section {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        gap: 4rem;
+        align-items: stretch; /* Stretch both columns vertically */
+        margin-bottom: 5rem;
+        animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        min-height: 400px; /* Ensures balanced height */
+      }
+
+      .hero-content h2 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #1f2937;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+      }
+
+      .hero-content .highlight {
+        background: linear-gradient(135deg, #f63b3b, #af1e1e);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero-content .highlight-website {
+        background: linear-gradient(90deg, #3b82f6, #1e40af);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-decoration: none;
+      }
+
+      .hero-content p {
+        font-size: 1.125rem;
+        color: #4b5563;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .hero-logo img {
+        width: 100%;
+        max-width: 300px; /* Controls maximum width */
+        height: auto;
+      }
+
+      /* ===== PRINCIPAL MESSAGE SECTION ===== */
+      .principal-message {
+        background: white;
+        padding: 3rem;
+        border-radius: 24px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        border: 1px solid #f3f4f6;
+        margin-bottom: 4rem;
+        animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .principal-message::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 6px;
+        background: linear-gradient(90deg, #3b82f6, #1e40af, #8b5cf6);
+      }
+
+      .principal-message h3 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #1f2937;
+        text-align: center;
+        margin-bottom: 2rem;
+        position: relative;
+      }
+
+      .principal-message h3::after {
+        content: "";
+        position: absolute;
+        bottom: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, #3b82f6, #1e40af);
+        border-radius: 2px;
+      }
+
+      .message-content {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: 3rem;
+        align-items: start;
+      }
+
+      .principal-photo {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 16px;
+        border: 4px solid #e5e7eb;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .principal-photo:hover {
+        border-color: #3b82f6;
+        transform: scale(1.02);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      }
+
+      .message-text {
+        font-size: 1rem;
+        color: #4b5563;
+        line-height: 1.7;
+      }
+
+      .message-text p {
+        margin-bottom: 1.5rem;
+      }
+
+      .principal-signature {
+        margin-top: 2rem;
+        font-weight: 600;
+        color: #1f2937;
+      }
+
+      /* ===== DEPARTMENTS SECTION ===== */
+      .departments-section {
+        background: white;
+        padding: 3rem;
+        border-radius: 24px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        border: 1px solid #f3f4f6;
+        animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .departments-section h3 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #1f2937;
+        text-align: center;
+        margin-bottom: 3rem;
+        position: relative;
+      }
+
+      .departments-section h3::after {
+        content: "";
+        position: absolute;
+        bottom: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, #3b82f6, #1e40af);
+        border-radius: 2px;
+      }
+
+      .departments-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+      }
+
+      .department-category {
+        background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+        padding: 2rem;
+        border-radius: 16px;
+        border-left: 4px solid #3b82f6;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .department-category::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(59, 130, 246, 0.05),
+          rgba(30, 64, 175, 0.05)
+        );
+        opacity: 0;
+        transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .department-category:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .department-category:hover::before {
+        opacity: 1;
+      }
+
+      .department-category h4 {
+        font-size: 1.375rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 1.5rem;
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .department-category h4 i {
+        color: #3b82f6;
+        font-size: 1.25rem;
+      }
+
+      .department-category ul {
+        list-style: none;
+        padding: 0;
+        position: relative;
+        z-index: 1;
+      }
+
+      .department-category li {
+        color: #4b5563;
+        margin-bottom: 0.75rem;
+        padding-left: 1.5rem;
+        position: relative;
+        font-size: 0.9375rem;
+        line-height: 1.5;
+        font-weight: 500;
+      }
+
+      .department-category li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: #3b82f6;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+
+      /* Special styling for different categories */
+      .btech {
+        border-left-color: #3b82f6;
+      }
+      .mtech {
+        border-left-color: #10b981;
+      }
+      .diploma {
+        border-left-color: #f59e0b;
+      }
+
+      .btech h4 i {
+        color: #3b82f6;
+      }
+      .mtech h4 i {
+        color: #10b981;
+      }
+      .diploma h4 i {
+        color: #f59e0b;
+      }
+
+      /* ===== FOOTER STYLES ===== */
+      .footer {
+        background: linear-gradient(135deg, #1f2937, #111827);
+        color: white;
+        padding: 4rem 0 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="footerPattern" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23ffffff" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23footerPattern)"/></svg>');
+        pointer-events: none;
+      }
+
+      .footer-content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+      }
+
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 2rem;
+      }
+
+      .footer .logo-icon {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #3b82f6, #1e40af);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+      }
+
+      .footer .logo-text h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: white;
+        line-height: 1.2;
+      }
+
+      .footer .logo-text p {
+        font-size: 0.875rem;
+        color: #9ca3af;
+        line-height: 1.2;
+      }
+
+      /* Contact Information Grid */
+      /* Force location box to full width */
+      .footer-contact-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* fixed 3 columns for laptop */
+        gap: 2rem;
+        margin-bottom: 3rem;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .location-item {
+        grid-column: 1 / 4; /* span all 3 columns */
+      }
+
+      .footer-contact-item {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1.5rem;
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .footer-contact-item:hover {
+        background: rgba(255, 255, 255, 0.08);
+        transform: translateY(-2px);
+      }
+
+      .footer-contact-item h4 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: white;
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .footer-contact-item i {
+        color: #3b82f6;
+        font-size: 1.1rem;
+      }
+
+      .footer-contact-item p {
+        color: #9ca3af;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-contact-item a {
+        color: #3b82f6;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-contact-item a:hover {
+        color: #60a5fa;
+      }
+
+      .footer-divider {
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #374151, transparent);
+        margin-bottom: 2rem;
+      }
+
+      .footer-bottom p {
+        color: #9ca3af;
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-credit {
+        color: #6b7280;
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+
+      /* ===== ANIMATIONS ===== */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ===== RESPONSIVE DESIGN ===== */
+      @media (max-width: 1024px) {
+        .hero-section {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+          text-align: center;
+        }
+
+        .hero-logo {
+          order: -1;
+        }
+
+        .message-content {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+          text-align: center;
+        }
+
+        .footer-contact-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .location-item {
+          grid-column: auto;
+        }
+      }
+
+      @media (max-width: 768px) {
+        /* Mobile navigation */
+        .header-logos {
+          gap: 2rem;
+          padding: 0.5rem 0;
+        }
+
+        .header-logo {
+          height: 35px;
+        }
+
+        .navigation {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: rgba(255, 255, 255, 0.98);
+          backdrop-filter: blur(20px);
+          flex-direction: column;
+          padding: 2rem;
+          border-top: 1px solid #e5e7eb;
+          gap: 1rem;
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .navigation.active {
+          display: flex;
+        }
+
+        .mobile-menu-toggle {
+          display: flex;
+        }
+
+        .main-content {
+          padding: 160px 0 60px;
+        }
+
+        .hero-content h2 {
+          font-size: 2rem;
+        }
+
+        .principal-message,
+        .departments-section {
+          padding: 2rem;
+        }
+
+        .principal-photo {
+          height: 200px;
+        }
+        .message-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+
+        .principal-photo {
+          order: 1;
+        }
+
+        .message-text {
+          order: 2;
+        }
+
+        .principal-signature {
+          order: 3;
+          margin-top: 1.5rem;
+        }
+
+        .footer {
+          padding: 3rem 0 1.5rem;
+        }
+
+        .footer-content {
+          padding: 0 1rem;
+        }
+
+        .footer-logo {
+          flex-direction: column;
+          align-items: center;
+          gap: 8px;
+          margin-bottom: 1.5rem;
+        }
+
+        .footer-contact-grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .footer-contact-item {
+          padding: 1rem;
+          text-align: center;
+        }
+
+        .footer-contact-item h4 {
+          font-size: 0.95rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .footer-contact-item p {
+          font-size: 0.85rem;
+          line-height: 1.4;
+        }
+
+        .location-item {
+          margin-bottom: 0.5rem;
+        }
+
+        /* Mobile view - Logo first, then content */
+        .hero-section {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .hero-logo {
+          order: -1;
+          margin-bottom: 2rem;
+        }
+
+        .hero-logo img {
+          max-width: 200px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          padding: 0 16px;
+        }
+
+        .main-content {
+          padding: 140px 0 40px;
+        }
+
+        .header-logos {
+          gap: 1rem;
+        }
+
+        .header-logo {
+          height: 30px;
+        }
+
+        .hero-content h2 {
+          font-size: 1.75rem;
+        }
+
+        .principal-message,
+        .departments-section {
+          padding: 1.5rem;
+        }
+        .principal-signature {
+          font-size: 0.9rem;
+        }
+
+        .departments-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-logo img {
+          max-width: 150px;
+        }
+
+        .footer {
+          padding: 2rem 0 1rem;
+        }
+
+        .footer-content {
+          padding: 0 1rem;
+        }
+
+        .footer-contact-grid {
+          grid-template-columns: 1fr;
+          gap: 0.75rem;
+        }
+
+        .footer-contact-item {
+          padding: 0.75rem;
+          text-align: center;
+        }
+
+        .footer-logo {
+          gap: 6px;
+          margin-bottom: 1rem;
+        }
+
+        .footer-contact-item h4 {
+          font-size: 0.9rem;
+        }
+
+        .footer-contact-item p {
+          font-size: 0.8rem;
+        }
+      }
+
+      /* ===== ACCESSIBILITY AND FOCUS STYLES ===== */
+      button:focus,
+      a:focus {
+        outline: 2px solid #3b82f6;
+        outline-offset: 2px;
+      }
+
+      ::selection {
+        background: #dbeafe;
+        color: #1e40af;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ===== HEADER WITH NAVIGATION ===== -->
+    <header class="header" id="header">
+      <div class="container">
+        <!-- Header logos above navigation -->
+        <div class="header-logos">
+          <img src="logos/cvm.png" alt="CVM Logo" class="header-logo" />
+          <img src="logos/gcetlogo.png" alt="GCET Logo" class="header-logo" />
+          <img
+            src="logos/CVM-Logo (2).png"
+            alt="CVM Extended Logo"
+            class="header-logo"
+          />
+        </div>
+
+        <div class="header-content">
+          <!-- Logo section in header -->
+          <div class="logo-section">
+            <img
+              src="logos/Niis2026.png"
+              alt="NIIS 2026 Logo"
+              class="header-logo"
+              style="max-width: 80px; height: auto"
+            />
+          </div>
+
+          <!-- Main navigation -->
+          <nav class="navigation" id="navigation">
+            <a href="index.html" class="nav-link">Home</a>
+
+            <!-- About dropdown -->
+            <div class="nav-dropdown">
+              <a href="index.html#about" class="nav-link active">About</a>
+              <div class="dropdown-menu">
+                <a href="niis2026.html" class="dropdown-item">NIIS 2026</a>
+                <a href="gcet.html" class="dropdown-item">GCET</a>
+              </div>
+            </div>
+
+            <!-- Committee dropdown -->
+            <div class="nav-dropdown">
+              <a href="#" class="nav-link">Committee</a>
+              <div class="dropdown-menu">
+                <a href="Organizing-committee.html" class="dropdown-item"
+                  >Organizing Committee</a
+                >
+                <a href="Technical-Committee.html" class="dropdown-item"
+                  >Technical Advisory Committee</a
+                >
+                <a href="#track-coordinators" class="dropdown-item"
+                  >Track Co-ordinators</a
+                >
+              </div>
+            </div>
+
+            <a href="keynote.html" class="nav-link">Keynote Speaker</a>
+
+            <!-- Submission dropdown -->
+            <div class="nav-dropdown">
+              <a href="#" class="nav-link">Submission</a>
+              <div class="dropdown-menu">
+                <a href="call-for-papers.html" class="dropdown-item"
+                  >Call For Papers</a
+                >
+                <a href="#" class="dropdown-item">Author Guidelines</a>
+                <a href="submission-guidelines.html" class="dropdown-item"
+                  >Submission Guidelines</a
+                >
+              </div>
+            </div>
+
+            <!-- Registration dropdown -->
+            <div class="nav-dropdown">
+              <a href="#" class="nav-link">Registration</a>
+              <div class="dropdown-menu">
+                <a href="#" class="dropdown-item">Conference Registration</a>
+                <a href="#" class="dropdown-item">Payment Methods</a>
+                <a href="#" class="dropdown-item">Registration FAQ</a>
+              </div>
+            </div>
+
+            <a href="index.html#contact" class="nav-link">Contact</a>
+
+            <!-- CTA Button -->
+            <a
+              href="https://forms.gle/poL6xmD6jXPGCveL6"
+              target="_blank"
+              class="cta-button"
+            >
+              <i class="fas fa-user-plus"></i>
+              Register Now
+            </a>
+          </nav>
+
+          <!-- Mobile menu toggle -->
+          <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <br />
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Main section header -->
+        <div class="section-header">
+          <h2 class="section-title">About GCET</h2>
+          <div class="section-divider"></div>
+          <p class="section-subtitle">
+            G H Patel College of Engineering & Technology
+          </p>
+        </div>
+
+        <!-- Hero Section with Logo -->
+        <div class="content-section">
+          <div class="hero-section">
+            <div class="hero-content">
+              <h2>Welcome to <span class="highlight">GCET</span></h2>
+              <p style="text-align: justify">
+                <i>
+                  To produce engineering graduates who are globally competitive,
+                  live by set of core values, are able to accept any
+                  professional challenge thrown at them, and remain responsive
+                  to the needs of India and the humanity.</i
+                ><br /><span style="text-align: right; color: #9ca3af">
+                  <i>-Vision of GCET</i></span
+                >
+              </p>
+              <p style="text-align: justify">
+                Shri Gordhanbhai Hathibhai Patel, an eminent philanthropist of
+                Gujarat, made a generous donation of Rupees Three Crores for the
+                new college. In honour of this magnanimous gesture, the college
+                has been named G H Patel College of Engineering and Technology,
+                popularly known as GCET. GCET is managed by Charutar Vidya
+                Mandal (CVM), a registered charitable trust established in 1945.
+                Since its inceptionthe trust has been striving for the
+                upliftment of rural society through education.This college was
+                affiliated to Sardar Patel University from the year 1996 to
+                2008. later on from the year 2008, Institute is affiliated to
+                Gujarat Technological University. New admission form year 2020
+                will be done under the Charutar Vidyamandal University.
+              </p>
+              <p>
+                Website:
+                <a href="http://www.gcet.ac.in" target="_blank"
+                  ><span class="highlight-website" style="text-decoration: none"
+                    >www.gcet.ac.in</span
+                  ></a
+                >
+              </p>
+            </div>
+            <div class="hero-logo">
+              <img src="logos/gcetlogo.png" alt="GCET Logo" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Principal's Message -->
+        <div class="content-section">
+          <div class="principal-message">
+            <h3>Principal's Message</h3>
+            <div class="message-content">
+              <img
+                src="OrganizingImgs/kaushik_nath.jpg"
+                alt="Dr. Kaushik Nath - Principal GCET"
+                class="principal-photo"
+              />
+              <div class="message-text">
+                <p style="text-align: justify">
+                  Welcome to G H Patel College of Engineering & Technology! As
+                  the Principal of this esteemed institution, I am proud to lead
+                  a college that has consistently maintained its commitment to
+                  academic excellence, innovation, and holistic development of
+                  students.
+                </p>
+                <p style="text-align: justify">
+                  At GCET, we believe in nurturing not just competent engineers,
+                  but responsible citizens who can contribute meaningfully to
+                  society. Our faculty members are dedicated to providing
+                  quality education that combines theoretical knowledge with
+                  practical application, ensuring our graduates are
+                  industry-ready and globally competitive.
+                </p>
+                <p style="text-align: justify">
+                  The upcoming NIIS 2026 conference exemplifies our commitment
+                  to research and innovation. This international platform will
+                  bring together researchers, academicians, and industry experts
+                  to share knowledge and collaborate on next-generation
+                  technologies that will shape our future.
+                </p>
+                <p style="text-align: justify">
+                  I invite you to be part of our journey towards excellence and
+                  innovation. Together, we can build a better tomorrow through
+                  engineering and technology.
+                </p>
+                <div class="principal-signature">
+                  <strong>Dr. Kaushik Nath</strong><br />
+                  Principal & Dean FOET<br />
+                  G H Patel College of Engineering & Technology
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Departments Section -->
+        <div class="content-section">
+          <div class="departments-section">
+            <h3>Academic Programs</h3>
+            <div class="departments-grid">
+              <!-- B.Tech Programs -->
+              <div class="department-category btech">
+                <h4><i class="fas fa-graduation-cap"></i> B.Tech Programs</h4>
+                <ul>
+                  <li>Chemical Engineering</li>
+                  <li>Information Technology</li>
+                  <li>Computer Science and Engineering (IoT)</li>
+                  <li>Mechanical Engineering</li>
+                  <li>Electronics & Communication</li>
+                  <li>Information & Communication Technology</li>
+                  <li>Mechatronics Engineering</li>
+                  <li>Computer Engineering</li>
+                  <li>Computer Science and Design</li>
+                  <li>Electrical Engineering</li>
+                  <li>Civil Engineering</li>
+                  <li>Applied Science & Humanities</li>
+                </ul>
+              </div>
+
+              <!-- M.Tech Programs -->
+              <div class="department-category mtech">
+                <h4><i class="fas fa-user-graduate"></i> M.Tech Programs</h4>
+                <ul>
+                  <li>Communication System Engineering</li>
+                  <li>Information Technology</li>
+                  <li>Industrial Engineering</li>
+                  <li>Mechatronics Engineering</li>
+                  <li>Electrical Engineering</li>
+                  <li>Embedded Systems</li>
+                  <li>Chemical Engineering</li>
+                  <li>Computer Engineering</li>
+                </ul>
+              </div>
+
+              <!-- Diploma Programs -->
+              <div class="department-category diploma">
+                <h4><i class="fas fa-certificate"></i> Diploma Programs</h4>
+                <ul>
+                  <li>Chemical</li>
+                  <li>IT</li>
+                  <li>Electrical</li>
+                  <li>Computer</li>
+                  <li>Mechatronics</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <div class="logo-icon">
+              <i class="fas fa-university"></i>
+            </div>
+            <div class="logo-text">
+              <h3>NIIS 2026</h3>
+              <p>International Conference</p>
+            </div>
+          </div>
+
+          <!-- Contact Information Grid -->
+          <div class="footer-contact-grid">
+            <div class="footer-contact-item">
+              <h4><i class="fas fa-envelope"></i> Email</h4>
+              <p style="font-size: medium">
+                <a href="mailto:niis2026@gcet.ac.in">niis2026@gcet.ac.in</a>
+              </p>
+            </div>
+
+            <div class="footer-contact-item">
+              <h4><i class="fas fa-phone"></i> Dr. Bhaskar Thakker</h4>
+              <p>
+                <a href="tel:+919574383265" style="font-size: medium"
+                  >+91 9574383265</a
+                >
+              </p>
+              <!-- <p>
+                <a
+                  href="mailto:bhaskarthakkar@gcet.ac.in"
+                  style="font-size: medium"
+                  >bhaskarthakkar@gcet.ac.in</a
+                >
+              </p> -->
+            </div>
+
+            <div class="footer-contact-item">
+              <h4><i class="fas fa-phone"></i> Dr. Priyang Bhatt</h4>
+              <p>
+                <a href="tel:+919879849707" style="font-size: medium"
+                  >+91 9879849707</a
+                >
+              </p>
+              <!-- <p>
+                <a
+                  href="mailto:priyangbhatt@gcet.ac.in"
+                  style="font-size: medium"
+                  >priyangbhatt@gcet.ac.in</a
+                >
+              </p> -->
+            </div>
+
+            <div class="footer-contact-item location-item">
+              <h4><i class="fas fa-map-marker-alt"></i> Location</h4>
+              <a
+                href="https://maps.app.goo.gl/TVv7ZMzeciHrsMsM7"
+                target="_blank"
+                style="text-decoration: none"
+              >
+                <p style="font-size: medium; color: #3b82f6">
+                  G H Patel College of Engineering & Technology<br />
+                  Vallabh Vidyanagar, Gujarat, India
+                </p>
+              </a>
+            </div>
+          </div>
+
+          <div class="footer-divider"></div>
+
+          <div class="footer-bottom">
+            <p>&copy; 2026 NIIS Conference. All rights reserved.</p>
+            <p class="footer-credit">
+              Designed & Developed by Student Team of CP & IT GCET College
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+      /**
+       * ===== GCET PAGE JAVASCRIPT =====
+       * Handles navigation, animations, and responsive behavior
+       */
+
+      class GCETApp {
+        constructor() {
+          this.init();
+        }
+
+        /**
+         * Initialize the application
+         */
+        init() {
+          this.setupEventListeners();
+          this.initializeScrollAnimations();
+          this.initializeNavigation();
+          console.log("🚀 GCET About Page Initialized!");
+        }
+
+        /**
+         * Set up all event listeners
+         */
+        setupEventListeners() {
+          // Mobile menu toggle
+          const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+          const navigation = document.getElementById("navigation");
+
+          if (mobileMenuToggle && navigation) {
+            mobileMenuToggle.addEventListener("click", () => {
+              navigation.classList.toggle("active");
+              mobileMenuToggle.classList.toggle("active");
+            });
+          }
+
+          // Smooth scrolling for navigation links
+          document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+            anchor.addEventListener("click", (e) => {
+              e.preventDefault();
+              const target = document.querySelector(
+                anchor.getAttribute("href")
+              );
+              if (target) {
+                const headerHeight =
+                  document.getElementById("header").offsetHeight;
+                const targetPosition = target.offsetTop - headerHeight - 20;
+
+                window.scrollTo({
+                  top: targetPosition,
+                  behavior: "smooth",
+                });
+
+                // Close mobile menu if open
+                navigation.classList.remove("active");
+                mobileMenuToggle.classList.remove("active");
+              }
+            });
+          });
+
+          // Header scroll effect
+          window.addEventListener("scroll", () => {
+            this.handleScroll();
+          });
+
+          // Close mobile menu when clicking outside
+          document.addEventListener("click", (e) => {
+            if (
+              !document.getElementById("header").contains(e.target) &&
+              navigation.classList.contains("active")
+            ) {
+              navigation.classList.remove("active");
+              mobileMenuToggle.classList.remove("active");
+            }
+          });
+        }
+
+        /**
+         * Handle scroll events for header styling
+         */
+        handleScroll() {
+          const header = document.getElementById("header");
+          const scrolled = window.scrollY > 50;
+          header.classList.toggle("scrolled", scrolled);
+        }
+
+        /**
+         * Initialize scroll-based animations
+         */
+        initializeScrollAnimations() {
+          const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px",
+          };
+
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.style.animationPlayState = "running";
+              }
+            });
+          }, observerOptions);
+
+          // Observe content sections for animations
+          document
+            .querySelectorAll(".content-section")
+            .forEach((section, index) => {
+              section.style.animationDelay = `${0.2 + index * 0.1}s`;
+              section.style.animationPlayState = "paused";
+              observer.observe(section);
+            });
+
+          // Observe department categories
+          document
+            .querySelectorAll(".department-category")
+            .forEach((category, index) => {
+              category.style.animationDelay = `${0.1 + index * 0.1}s`;
+              category.style.animationPlayState = "paused";
+              observer.observe(category);
+            });
+        }
+
+        /**
+         * Initialize navigation functionality
+         */
+        initializeNavigation() {
+          // Add any navigation-specific initialization here
+        }
+      }
+
+      /**
+       * ===== APPLICATION INITIALIZATION =====
+       */
+      document.addEventListener("DOMContentLoaded", () => {
+        new GCETApp();
+      });
+
+      /**
+       * ===== ERROR HANDLING =====
+       */
+      window.addEventListener("error", (e) => {
+        console.error("GCET Page Error:", e.error);
+      });
+
+      window.addEventListener("unhandledrejection", (e) => {
+        console.error("Unhandled Promise Rejection:", e.reason);
+        e.preventDefault();
+      });
+    </script>
+  </body>
+</html>
