@@ -115,7 +115,7 @@
 
       .header-content {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         padding: 12px 0;
         position: relative;
@@ -1914,6 +1914,27 @@
         font-size: 0.45rem;
         text-transform: uppercase;
       }
+
+      /* === 3D Enhancements === */
+.three-bg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.floating-orbs{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.floating-orbs .orb{position:absolute;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle at 35% 35%, rgba(59,130,246,0.35), rgba(30,64,175,0.0) 60%);filter:blur(1px);animation:floatOrb 14s ease-in-out infinite}
+@keyframes floatOrb{0%{transform:translate3d(-10px,0,0) scale(0.9);opacity:.9}50%{transform:translate3d(10px,-20px,0) scale(1.05);opacity:1}100%{transform:translate3d(-10px,0,0) scale(0.9);opacity:.9}}
+.tilt{transform-style:preserve-3d;will-change:transform;position:relative}
+.tilt::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--glow-x,50%) var(--glow-y,50%), rgba(255,255,255,0.25), transparent 40%);opacity:0;transition:opacity .2s;border-radius:inherit;pointer-events:none}
+.tilt:hover::after{opacity:1}
+
+/* Center navbar on laptop/desktop */
+@media (min-width:1024px){
+  .navigation{justify-content:center !important;margin-left:auto;margin-right:auto;width:100%}
+  .header-content{display:flex;justify-content:center;gap:.5rem}
+}
+
+/* Hide decorative circle layers (replace with 3D) */
+.hero::after,.about::before,.topics::after{display:none !important}
+
+/* Ensure sections allow absolute 3D layers */
+section,.main-content,.page-header,.content-section{position:relative;z-index:1}
     </style>
   </head>
 
@@ -1939,9 +1960,9 @@
         <div class="header-content">
           <!-- Logo section in header -->
 
-
+          <!-- Center the navigation by adding justify-content: center -->
           <!-- Main navigation -->
-          <nav class="navigation" id="navigation">
+          <nav class="navigation" id="navigation" style="justify-content: center; width: 100%;">
             <a href="#home" class="nav-link active">Home</a>
 
             <!-- About dropdown -->
@@ -2185,47 +2206,44 @@
         </div>
 
         <div class="topics-grid">
-          <div class="topic-card animate-on-scroll" data-topic="electronics">
+          <!-- Updated topic cards to reflect the 4 new tracks -->
+          <div class="topic-card animate-on-scroll" data-topic="energy">
             <div class="topic-icon blue">
               <i class="fas fa-microchip"></i>
             </div>
-            <h3>Electronics & VLSI</h3>
+            <h3>Integrated Systems in Energy, Communication and Sensing</h3>
             <p>
-              Advanced semiconductor technologies and electronic system design
-              for next-generation applications.
+              Advanced semiconductor technologies, power systems, and communication networks for next-generation applications.
+            </p>
+          </div>
+
+          <div class="topic-card animate-on-scroll" data-topic="embedded">
+            <div class="topic-icon green">
+              <i class="fas fa-network-wired"></i>
+            </div>
+            <h3>Embedded Systems, IoT and Robotics</h3>
+            <p>
+              Internet of Things, robotics, and embedded system architectures for intelligent automation.
             </p>
           </div>
 
           <div class="topic-card animate-on-scroll" data-topic="ai">
-            <div class="topic-icon green">
+            <div class="topic-icon purple">
               <i class="fas fa-brain"></i>
             </div>
-            <h3>AI/ML Integration</h3>
+            <h3>Artificial Intelligence and Computing</h3>
             <p>
-              Artificial intelligence and machine learning solutions for
-              intelligent automation systems.
+              Machine learning, data analytics, and computational intelligence for smart systems.
             </p>
           </div>
 
-          <div class="topic-card animate-on-scroll" data-topic="iot">
-            <div class="topic-icon purple">
-              <i class="fas fa-network-wired"></i>
-            </div>
-            <h3>Embedded Systems & IoT</h3>
-            <p>
-              Internet of Things and smart network architectures for connected
-              intelligent systems.
-            </p>
-          </div>
-
-          <div class="topic-card animate-on-scroll" data-topic="cps">
+          <div class="topic-card animate-on-scroll" data-topic="secure">
             <div class="topic-icon orange">
-              <i class="fas fa-cogs"></i>
+              <i class="fas fa-shield-alt"></i>
             </div>
-            <h3>Cyber-Physical Systems</h3>
+            <h3>Secure and Emerging Technologies</h3>
             <p>
-              Integration of computational algorithms and physical components in
-              modern systems.
+              Cybersecurity, blockchain, quantum computing, and next-generation secure systems.
             </p>
           </div>
         </div>
@@ -3039,66 +3057,140 @@
         const closeModal = document.getElementById("closeModal");
 
         const topicDetails = {
-          electronics: {
-            title: "Electronics & VLSI",
+          <!-- Updated modal content with new tracks and subtracks -->
+          energy: {
+            title: "Integrated Systems in Energy, Communication and Sensing",
             topics: [
               "Optical & Microwave Communication",
-              "VLSI and Semiconductor Technologies",
-              "Solar Systems & Electric Vehicles",
-              "Smart Grid Systems",
-              "Satellite Communication",
-              "Power Systems, Power Electronics, Drives",
-              "MEMS and Sensor Design",
-              "Biomedical Instrumentation",
+              "Satellite Communication Systems",
               "Antenna Design & RF Propagation",
+              "Wireless Power Transfer and Energy Harvesting",
+              "Terahertz and Millimeter-Wave Communication",
+              "VLSI Design and Semiconductor Technologies",
+              "Nanoelectronics and Organic Electronics",
+              "System-on-Chip (SoC) and Lab-on-Chip Designs",
+              "MEMS/NEMS and Sensor Design",
+              "Biomedical Instrumentation & Biosensors",
+              "IoT-Enabled Sensor Networks",
+              "Electric Vehicles and Battery Management Systems (BMS)",
+              "Solar Energy Systems and Photovoltaics",
+              "Smart Grid Technologies and Microgrids",
+              "Power Electronics and Energy Conversion Systems",
+              "Electric Drives and Motor Control Systems",
+              "Renewable Energy Integration and Control",
+              "HVDC and FACTS in Power Systems",
+              "Wireless Charging Technologies",
+              "EMI/EMC in Power and Communication Systems",
+              "Control Systems for Energy and Industrial Applications",
+              "Sustainable and Green Electronics",
+              "Electromagnetic Interference & Compatibility (EMI/EMC)",
+              "High-Frequency Circuit Design",
+              "Radar and Remote Sensing Technologies"
+            ],
+          },
+          embedded: {
+            title: "Embedded Systems, IoT and Robotics",
+            topics: [
+              "Embedded Systems Design and Optimization",
+              "Real-Time and Safety-Critical Embedded Systems",
+              "Wireless Sensor Networks (WSN) and Protocols",
+              "Low-Power and Energy-Harvesting Sensor Networks",
+              "Mobile Ad-hoc Networks (MANETs) and Routing Protocols",
+              "Vehicular Ad-hoc Networks (VANETs) and Intelligent Transportation Systems",
+              "Underwater and Under-Ice Communication Networks",
+              "Internet of Things (IoT) Architectures, Protocols, and Standards",
+              "IoT Security and Privacy Issues",
+              "Fog, Edge, and Cloud Integration for IoT Systems",
+              "Robotics: Autonomous Robots and Human-Robot Interaction",
+              "Industrial Robotics and Industry 5.0 Applications",
+              "Automation in Manufacturing and Process Control",
+              "Control Systems: Adaptive, Robust, and Predictive Control",
+              "Intelligent Networking: Software Defined Networks (SDN) for IoT",
+              "Communication Systems for Low-Latency and High Reliability",
+              "Wearable Health Monitoring Devices and Remote Patient Monitoring",
+              "Cyber-Physical Systems (CPS) and Digital Twins",
+              "Sensor Fusion and Multimodal Data Processing",
+              "AI and Machine Learning in Embedded and Networked Systems",
+              "Smart Cities: IoT and Networked Automation",
+              "Network Security for Embedded and IoT Systems",
+              "Cooperative and Swarm Robotics",
+              "Autonomous Vehicles and Drone Networks",
+              "Wireless Power Transfer in Sensor and Embedded Networks",
+              "Resource Management and QoS in Wireless Networks",
+              "Localization and Tracking in Ad-hoc and Sensor Networks",
+              "Protocol Design for Real-Time and Critical Systems",
+              "Underwater Robotics and Communication Technologies"
             ],
           },
           ai: {
-            title: "AI/ML Integration",
+            title: "Artificial Intelligence and Computing",
             topics: [
-              "Artificial Intelligence (ML & DL)",
-              "Data Analytics",
-              "Image & Video Processing",
-              "Fuzzy Systems",
-              "Signal Processing",
-              "Cognitive Radio Networks",
-              "Cognitive Science",
-              "Computational Intelligence & Optimization",
-              "Bio-Mechanics",
-              "Bio-Informatics",
+              "Artificial Intelligence (AI), Machine Learning (ML), and Deep Learning (DL)",
+              "Explainable AI (XAI) and Responsible AI",
+              "Natural Language Processing (NLP) and Language Models",
+              "Generative AI and Foundation Models",
+              "Reinforcement Learning and Adaptive Systems",
+              "Transfer Learning and Few-shot Learning",
+              "Data Analytics and Predictive Modeling",
+              "Big Data Processing and Scalable AI Architectures",
+              "Time Series Analysis and Forecasting",
+              "Computer Vision and Pattern Recognition",
+              "Image & Video Processing and Compression Techniques",
+              "3D Image Reconstruction and Object Detection",
+              "Fuzzy Logic and Hybrid Intelligent Systems",
+              "Evolutionary Algorithms and Swarm Intelligence",
+              "Neuro-Fuzzy and Genetic Algorithms",
+              "Signal Processing for AI and Communications",
+              "Audio and Speech Processing",
+              "Cognitive Radio Networks and Dynamic Spectrum Access",
+              "Brain-Computer Interface (BCI) Systems",
+              "Human-Centered AI and Affective Computing",
+              "Cognitive Modeling and Neural Computation",
+              "Computational Neuroscience and Neural Signal Analysis",
+              "Bio-Informatics and Genomic Signal Processing",
+              "Biomedical Signal and Image Processing",
+              "Bio-Mechanics and Computational Physiology",
+              "AI in Drug Discovery and Healthcare Systems",
+              "Computational Intelligence for Smart Healthcare",
+              "Optimization Techniques in Engineering and AI",
+              "Metaheuristics and Nature-Inspired Computing",
+              "Multi-objective Optimization and Decision Making",
+              "AI for Environmental and Social Impact Analytics",
+              "Robotics Perception and AI-based Control Systems",
+              "AI for Cybersecurity and Anomaly Detection",
+              "Federated and Distributed AI Architectures"
             ],
           },
-          iot: {
-            title: "Embedded Systems & IoT",
+          secure: {
+            title: "Secure and Emerging Technologies",
             topics: [
-              "Energy Systems",
-              "Embedded Systems",
-              "Wireless Sensor Networks",
-              "Robotics & Automation",
-              "Mobile Ad-hoc Networks (MANETs)",
-              "Vehicular Ad-hoc Networks (VANETs)",
-              "Control Systems",
-              "IoT Architectures & Protocols",
-              "Health Monitoring Devices",
-              "Industry 5.0",
-              "Automation",
-              "Intelligent Networking",
-              "Communication Systems",
-              "Underwater Communication Networks",
-            ],
-          },
-          cps: {
-            title: "Cyber-Physical Systems",
-            topics: [
-              "Cyber Security",
-              "Software Defined Networks",
-              "Augmented / Virtual Reality (AR/VR)",
-              "Nano Technology in Intelligent Systems",
-              "Blockchain & Distributed Ledger Tech",
-              "Cloud / Edge / Fog Computing",
-              "Cyber-Physical Systems",
-              "Future Internet & 5G/6G Networks",
-              "Green Computing",
+              "Cyber Security and Threat Intelligence",
+              "Network Security and Intrusion Detection Systems",
+              "Privacy-Preserving Machine Learning and Federated Learning",
+              "Software Defined Networking (SDN) and Network Function Virtualization (NFV)",
+              "Virtualization and Containerization Technologies (e.g., Docker, Kubernetes)",
+              "Blockchain, Smart Contracts, and Decentralized Applications (dApps)",
+              "Distributed Ledger Technologies for Industry 5.0",
+              "Cloud Computing Models and Virtualized Infrastructure",
+              "Edge, Fog, and Mist Computing Architectures",
+              "Serverless and Microservices-based Computing",
+              "Quantum Cryptography and Post-Quantum Security",
+              "Digital Twin Technology in Smart Systems",
+              "Augmented Reality (AR), Virtual Reality (VR), and Mixed Reality (MR)",
+              "Extended Reality (XR) and Human-Centered Computing",
+              "Nanoelectronics in Smart Devices",
+              "Nano Sensors and Nano-Communication Networks",
+              "5G/6G Networks and Next-Gen Wireless Standards",
+              "Future Internet Architectures (e.g., Named Data Networking)",
+              "Internet of Everything (IoE) and Smart Environments",
+              "Cyber-Physical Systems (CPS) Security and Resilience",
+              "Autonomous Systems and Secure Control Architectures",
+              "Trustworthy AI and Secure Intelligent Systems",
+              "Green Computing and Sustainable Data Centers",
+              "Energy-Efficient Cloud and Edge Infrastructures",
+              "Digital Sovereignty and Decentralized Identity Systems",
+              "AI-Driven Network Management and Optimization",
+              "Intelligent Load Balancing and Resource Allocation in Cloud/Edge"
             ],
           },
         };
@@ -3127,6 +3219,129 @@
           }
         });
       });
+
+// 3D Enhancements
+(function(){
+  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  function create3DBackground(section){
+    if(!section) return;
+    section.classList.add('has-3d');
+    const canvas=document.createElement('canvas');
+    canvas.className='three-bg';
+    section.prepend(canvas);
+    const ctx=canvas.getContext('2d');
+    const DPR=window.devicePixelRatio||1;
+    let particles=[], w=0,h=0,mouse={x:0,y:0};
+    
+    function resize(){
+      const rect=section.getBoundingClientRect();
+      w=Math.max(1,rect.width);h=Math.max(1,rect.height);
+      canvas.width=w*DPR;canvas.height=h*DPR;canvas.style.width=w+'px';canvas.style.height=h+'px';
+      init();
+    }
+    
+    function init(){
+      const base = prefersReduced ? 0 : Math.floor((w*h)/(10000));
+      const count = Math.max(20, Math.min(220, base));
+      particles=new Array(count).fill(0).map(()=>({
+        x: Math.random()*w*DPR,
+        y: Math.random()*h*DPR,
+        z: Math.random()*1+0.2,
+        r: (Math.random()*1.2+0.6)*DPR,
+        vx: (Math.random()-0.5)*0.15,
+        vy: (Math.random()-0.5)*0.15
+      }));
+    }
+    
+    section.addEventListener('mousemove', e=>{
+      const rect=section.getBoundingClientRect();
+      mouse.x=(e.clientX-rect.left)/rect.width-0.5;
+      mouse.y=(e.clientY-rect.top)/rect.height-0.5;
+    });
+    
+    function draw(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      if(!prefersReduced){
+        particles.forEach(p=>{
+          p.x += p.vx + mouse.x*0.6*p.z*DPR;
+          p.y += p.vy + mouse.y*0.6*p.z*DPR;
+          if(p.x < 0) p.x += canvas.width; if(p.x > canvas.width) p.x -= canvas.width;
+          if(p.y < 0) p.y += canvas.height; if(p.y > canvas.height) p.y -= canvas.height;
+          const alpha=0.12+0.6*p.z;
+          const grad=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*8);
+          grad.addColorStop(0,`rgba(59,130,246,${0.25*alpha})`);
+          grad.addColorStop(1,`rgba(59,130,246,0)`);
+          ctx.fillStyle=grad;
+          ctx.beginPath();ctx.arc(p.x,p.y,p.r*6,0,Math.PI*2);ctx.fill();
+        });
+      }
+      requestAnimationFrame(draw);
+    }
+    
+    new ResizeObserver(resize).observe(section);
+    resize(); requestAnimationFrame(draw);
+  }
+  
+  function enhanceSections(){
+    const selectors=['.hero','.about','.topics','.dates','.contact','.keynote','.committee','.main-content','.page-header','.content-section','.principal-message','.departments-section','.tracks-section','.deadline-section','.conveners-section','.venue-card'];
+    const set=new Set(); selectors.forEach(s=>document.querySelectorAll(s).forEach(el=>set.add(el)));
+    set.forEach(el=>create3DBackground(el));
+  }
+  
+  function addTilt(){
+    const tiltSel=['.feature-card','.topic-card','.date-card','.contact-card','.venue-card','.registration-card','.department-category','.track-card','.convener-card','.committee-card','.speaker-card','.guideline-card','.footer-contact-item'];
+    document.querySelectorAll(tiltSel.join(',')).forEach(el=>{
+      el.classList.add('tilt');
+      if(prefersReduced) return;
+      el.addEventListener('mousemove',e=>{
+        const r=el.getBoundingClientRect();
+        const x=(e.clientX-r.left)/r.width, y=(e.clientY-r.top)/r.height;
+        const rx=(0.5-y)*10, ry=(x-0.5)*12;
+        el.style.transform=`perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(0)`;
+        el.style.boxShadow='0 20px 40px rgba(0,0,0,0.12)';
+        el.style.setProperty('--glow-x',`${x*100}%`);
+        el.style.setProperty('--glow-y',`${y*100}%`);
+      });
+      el.addEventListener('mouseleave',()=>{
+        el.style.transform='perspective(900px) rotateX(0) rotateY(0)';
+        el.style.boxShadow='';
+      });
+    });
+  }
+  
+  function addFloatingOrbs(){
+    if(prefersReduced) return;
+    const targets = document.querySelectorAll('section, .main-content');
+    targets.forEach(sec=>{
+      const container=document.createElement('div');container.className='floating-orbs';
+      const count=Math.min(6,Math.max(2,Math.floor(sec.clientWidth/400)));
+      for(let i=0;i<count;i++){
+        const orb=document.createElement('div');orb.className='orb';
+        orb.style.left=(Math.random()*100)+'%';
+        orb.style.top=(Math.random()*100)+'%';
+        orb.style.animationDelay=(Math.random()*5)+'s';
+        orb.style.setProperty('--scale', (0.75+Math.random()*0.9).toFixed(2));
+        container.appendChild(orb);
+      }
+      sec.appendChild(container);
+    });
+  }
+  
+  function centerNavbar(){
+    const nav=document.getElementById('navigation');
+    if(nav){ nav.style.justifyContent='center'; nav.style.width='100%'; }
+  }
+  
+  function init3D(){ enhanceSections(); addTilt(); addFloatingOrbs(); centerNavbar(); }
+  
+  // Initialize 3D enhancements
+  if(document.readyState==='loading'){ 
+    document.addEventListener('DOMContentLoaded',init3D); 
+  } else { 
+    init3D(); 
+  }
+})();
     </script>
   </body>
 </html>
