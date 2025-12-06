@@ -1,1267 +1,554 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Call for Papers - NIIS 2026</title>
+    
+    <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    
     <style>
-      /* Reset and Base Styles */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
-          Roboto, sans-serif;
-        line-height: 1.6;
-        color: #1f2937;
-        background-color: #ffffff;
-      }
-
-      /* Container */
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 24px;
-      }
-
-      /* ===== HEADER AND NAVIGATION STYLES ===== */
-      /* Main header with navigation */
-      .header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(20px);
-        border-bottom: 1px solid rgba(229, 231, 235, 0.8);
-        z-index: 1000;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      }
-
-      .header.scrolled {
-        background: rgba(255, 255, 255, 0.98);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        border-bottom-color: rgba(229, 231, 235, 1);
-      }
-
-      /* Header logos - above navigation */
-      .header-logos {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0.75rem 0;
-        gap: 3rem;
-        border-bottom: 1px solid rgba(229, 231, 235, 0.5);
-      }
-
-      .header-logo {
-        height: 45px;
-        width: auto;
-        object-fit: contain;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
-      }
-
-      .header-logo:hover {
-        transform: scale(1.05);
-        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
-      }
-
-      .header-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 12px 0;
-        position: relative;
-      }
-
-      /* Logo section in header */
-      .logo-section {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-
-      .logo-text h1 {
-        font-size: 18px;
-        font-weight: 700;
-        color: #1f2937;
-        line-height: 1.2;
-        letter-spacing: -0.025em;
-      }
-
-      .logo-text p {
-        font-size: 12px;
-        color: #6b7280;
-        line-height: 1.2;
-        font-weight: 500;
-      }
-
-      /* Navigation styles */
-      .navigation {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
-      }
-
-      .nav-link {
-        color: #4b5563;
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 15px;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        padding: 8px 0;
-      }
-
-      .nav-link:hover,
-      .nav-link.active {
-        color: #3b82f6;
-      }
-
-      .nav-link::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: linear-gradient(90deg, #3b82f6, #1e40af);
-        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        border-radius: 1px;
-      }
-
-      .nav-link:hover::after,
-      .nav-link.active::after {
-        width: 100%;
-      }
-
-      /* Dropdown navigation */
-      .nav-dropdown {
-        position: relative;
-        display: inline-block;
-      }
-
-      .dropdown-menu {
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        background: white;
-        min-width: 250px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        border-radius: 12px;
-        padding: 8px 0;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateX(-50%) translateY(-10px);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: 1000;
-        border: 1px solid #e5e7eb;
-        backdrop-filter: blur(10px);
-      }
-
-      .nav-dropdown:hover .dropdown-menu {
-        opacity: 1;
-        visibility: visible;
-        transform: translateX(-50%) translateY(0);
-      }
-
-      .dropdown-item {
-        display: block;
-        padding: 12px 20px;
-        color: #4b5563;
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 14px;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        border-left: 3px solid transparent;
-      }
-
-      .dropdown-item:hover {
-        background: linear-gradient(90deg, #f8fafc, #e0e7ff);
-        color: #3b82f6;
-        border-left-color: #3b82f6;
-        transform: translateX(4px);
-      }
-
-      /* CTA Button */
-      .cta-button {
-        background: linear-gradient(135deg, #3b82f6, #1e40af);
-        color: white;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 12px 24px;
-        border-radius: 8px;
-        font-weight: 600;
-        font-size: 14px;
-        cursor: pointer;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-      }
-
-      .cta-button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
-        background: linear-gradient(135deg, #2563eb, #1d4ed8);
-      }
-
-      /* Mobile menu toggle */
-      .mobile-menu-toggle {
-        display: none;
-        flex-direction: column;
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 8px;
-        border-radius: 6px;
-        transition: all 0.3s ease;
-      }
-
-      .mobile-menu-toggle:hover {
-        background: rgba(59, 130, 246, 0.1);
-      }
-
-      .mobile-menu-toggle span {
-        width: 24px;
-        height: 3px;
-        background: #4b5563;
-        margin: 3px 0;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        border-radius: 2px;
-      }
-
-      .mobile-menu-toggle.active span:nth-child(1) {
-        transform: rotate(-45deg) translate(-5px, 6px);
-        background: #3b82f6;
-      }
-
-      .mobile-menu-toggle.active span:nth-child(2) {
-        opacity: 0;
-      }
-
-      .mobile-menu-toggle.active span:nth-child(3) {
-        transform: rotate(45deg) translate(-5px, -6px);
-        background: #3b82f6;
-      }
-
-      /* Main Content */
-      .main-content {
-        margin-top: 80px;
-        padding: 80px 0;
-      }
-
-      .page-header {
-        text-align: center;
-        margin-bottom: 80px;
-        background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
-        padding: 80px 0;
-        margin-top: -80px;
-        margin-bottom: 80px;
-      }
-
-      .page-title {
-        font-size: clamp(36px, 6vw, 64px);
-        font-weight: 900;
-        color: #1f2937;
-        margin-bottom: 24px;
-        line-height: 1.1;
-      }
-
-      .page-title .highlight {
-        color: #3b82f6;
-      }
-
-      .page-subtitle {
-        font-size: clamp(18px, 3vw, 24px);
-        color: #4b5563;
-        margin-bottom: 16px;
-        font-weight: 600;
-        line-height: 1.3;
-      }
-
-      .page-description {
-        font-size: 18px;
-        color: #6b7280;
-        line-height: 1.6;
-        max-width: 800px;
-        margin: 0 auto;
-      }
-
-      /* Content Sections */
-      .content-section {
-        margin-bottom: 80px;
-      }
-
-      .section-title {
-        font-size: 32px;
-        font-weight: 800;
-        color: #1f2937;
-        margin-bottom: 32px;
-        text-align: center;
-        position: relative;
-      }
-
-      .section-title::after {
-        content: "";
-        position: absolute;
-        bottom: -12px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 60px;
-        height: 3px;
-        background: #3b82f6;
-        border-radius: 2px;
-      }
-
-      .intro-text {
-        font-size: 18px;
-        color: #4b5563;
-        line-height: 1.7;
-        margin-bottom: 48px;
-        text-align: center;
-        max-width: 900px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      /* Topics Grid */
-      .topics-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 24px;
-        margin-bottom: 48px;
-      }
-
-      .topic-card {
-        background: white;
-        padding: 24px;
-        border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        border: 1px solid #f3f4f6;
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .topic-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, #3b82f6, #1e40af);
-        transform: scaleX(0);
-        transition: transform 0.3s ease;
-      }
-
-      .topic-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-      }
-
-      .topic-card:hover::before {
-        transform: scaleX(1);
-      }
-
-      .topic-item {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 16px;
-        font-size: 16px;
-        color: #374151;
-        font-weight: 500;
-        line-height: 1.5;
-      }
-
-      .topic-item:last-child {
-        margin-bottom: 0;
-      }
-
-      .topic-emoji {
-        font-size: 20px;
-        flex-shrink: 0;
-      }
-
-      /* Important Notice */
-      .important-notice {
-        background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-        border: 2px solid #3b82f6;
-        border-radius: 16px;
-        padding: 32px;
-        margin: 48px 0;
-        text-align: center;
-      }
-
-      .notice-title {
-        font-size: 24px;
-        font-weight: 700;
-        color: #1e40af;
-        margin-bottom: 16px;
-      }
-
-      .notice-text {
-        font-size: 16px;
-        color: #1e40af;
-        line-height: 1.6;
-        font-weight: 500;
-      }
-
-      /* ===== FOOTER STYLES ===== */
-      .footer {
-        background: linear-gradient(135deg, #1f2937, #111827);
-        color: white;
-        padding: 4rem 0 2rem;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .footer::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="footerPattern" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23ffffff" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23footerPattern)"/></svg>');
-        pointer-events: none;
-      }
-
-      .footer-content {
-        position: relative;
-        z-index: 1;
-        text-align: center;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      .footer-logo {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-        margin-bottom: 2rem;
-      }
-
-      .footer .logo-icon {
-        width: 40px;
-        height: 40px;
-        background: linear-gradient(135deg, #3b82f6, #1e40af);
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-      }
-
-      .footer .logo-text h3 {
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: white;
-        line-height: 1.2;
-      }
-
-      .footer .logo-text p {
-        font-size: 0.875rem;
-        color: #9ca3af;
-        line-height: 1.2;
-      }
-
-      /* Contact Information Grid */
-      .footer-contact-grid {
-        display: grid;
-        grid-template-columns: repeat(
-          3,
-          1fr
-        ); /* Three columns for desktop/laptop */
-        gap: 2rem;
-        margin-bottom: 3rem;
-        max-width: 1000px;
-        margin-left: auto;
-        margin-right: auto;
-        padding: 0 1rem;
-      }
-
-      .location-item {
-        grid-column: 1 / -1; /* Full width for location */
-      }
-
-      .footer-contact-item {
-        background: rgba(255, 255, 255, 0.05);
-        padding: 1.5rem;
-        border-radius: 12px;
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .footer-contact-item:hover {
-        background: rgba(255, 255, 255, 0.08);
-        transform: translateY(-2px);
-      }
-
-      .footer-contact-item h4 {
-        font-size: 1rem;
-        font-weight: 600;
-        color: white;
-        margin-bottom: 0.75rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-
-      .footer-contact-item i {
-        color: #3b82f6;
-        font-size: 1.1rem;
-      }
-
-      .footer-contact-item p {
-        color: #9ca3af;
-        font-size: 0.875rem;
-        line-height: 1.5;
-        margin-bottom: 0.5rem;
-      }
-
-      .footer-contact-item a {
-        color: #3b82f6;
-        text-decoration: none;
-        transition: color 0.3s ease;
-      }
-
-      .footer-contact-item a:hover {
-        color: #60a5fa;
-      }
-
-      .footer-divider {
-        width: 100%;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, #374151, transparent);
-        margin-bottom: 2rem;
-      }
-
-      .footer-bottom p {
-        color: #9ca3af;
-        margin-bottom: 0.5rem;
-      }
-
-      .footer-credit {
-        color: #6b7280;
-        font-size: 0.875rem;
-        font-weight: 500;
-      }
-
-      /* Responsive Design */
-      @media (max-width: 1024px) {
-        .navigation {
-          display: none;
-          position: absolute;
-          top: 100%;
-          left: 0;
-          right: 0;
-          background: white;
-          flex-direction: column;
-          padding: 24px;
-          border-top: 1px solid #e5e7eb;
-          gap: 16px;
-        }
-
-        .navigation.active {
-          display: flex;
-        }
-
-        .mobile-menu-toggle {
-          display: flex;
-        }
-
-        .dropdown-menu {
-          position: static;
-          opacity: 1;
-          visibility: visible;
-          transform: none;
-          box-shadow: none;
-          border: none;
-          padding: 0;
-          margin-top: 8px;
-        }
-
-        .dropdown-item {
-          padding: 8px 0;
-          border-left: none;
-        }
-        .footer-contact-grid {
-          grid-template-columns: 1fr;
-          gap: 1.5rem;
-        }
-
-        .location-item {
-          grid-column: auto;
-        }
-      }
-
-      @media (max-width: 768px) {
-        .container {
-          padding: 0 16px;
-        }
-
-        .page-header {
-          padding: 60px 0;
-        }
-
-        .main-content {
-          padding: 60px 0;
-        }
-
-        .content-section {
-          margin-bottom: 60px;
-        }
-
-        .topics-grid {
-          grid-template-columns: 1fr;
-          gap: 20px;
-        }
-
-        .topic-card {
-          padding: 20px;
-        }
-
-        .important-notice {
-          padding: 24px;
-          margin: 32px 0;
-        }
-
-        .footer {
-          padding: 3rem 0 1.5rem;
-        }
-
-        .footer-content {
-          padding: 0 1rem;
-        }
-
-        .footer-logo {
-          flex-direction: column;
-          align-items: center;
-          gap: 8px;
-          margin-bottom: 1.5rem;
-        }
-
-        .footer-contact-grid {
-          grid-template-columns: 1fr;
-          gap: 1rem;
-        }
-
-        .footer-contact-item {
-          padding: 1rem;
-          text-align: center;
-        }
-
-        .footer-contact-item h4 {
-          font-size: 0.95rem;
-          margin-bottom: 0.5rem;
-        }
-
-        .footer-contact-item p {
-          font-size: 0.85rem;
-          line-height: 1.4;
-        }
-
-        .location-item {
-          margin-bottom: 0.5rem;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .topic-item {
-          font-size: 14px;
-        }
-
-        .section-title {
-          font-size: 28px;
-        }
-
-        .notice-title {
-          font-size: 20px;
-        }
-
-        .notice-text {
-          font-size: 14px;
-        }
-        .footer {
-          padding: 2rem 0 1rem;
-        }
-
-        .footer-content {
-          padding: 0 1rem;
-        }
-
-        .footer-contact-grid {
-          grid-template-columns: 1fr;
-          gap: 0.75rem;
-        }
-
-        .footer-contact-item {
-          padding: 0.75rem;
-          text-align: center;
-        }
-
-        .footer-logo {
-          gap: 6px;
-          margin-bottom: 1rem;
-        }
-
-        .footer-contact-item h4 {
-          font-size: 0.9rem;
-        }
-
-        .footer-contact-item p {
-          font-size: 0.8rem;
-        }
-      }
-
-      /* Animation */
-      @media (prefers-reduced-motion: no-preference) {
-        .topic-card {
-          opacity: 0;
-          transform: translateY(20px);
-          animation: fadeInUp 0.6s ease forwards;
-        }
-
-        .topic-card:nth-child(1) {
-          animation-delay: 0.1s;
-        }
-        .topic-card:nth-child(2) {
-          animation-delay: 0.2s;
-        }
-        .topic-card:nth-child(3) {
-          animation-delay: 0.3s;
-        }
-        .topic-card:nth-child(4) {
-          animation-delay: 0.4s;
-        }
-        .topic-card:nth-child(5) {
-          animation-delay: 0.5s;
-        }
-        .topic-card:nth-child(6) {
-          animation-delay: 0.6s;
-        }
-      }
-
-      @keyframes fadeInUp {
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
+/* 
+ * NIIS 2026 - Shared Styles
+ */
+
+:root {
+    /* Colors - Deep Teal / Indigo Theme */
+    --primary: #0f172a;
+    --primary-light: #1e293b;
+    --accent: #06b6d4;
+    --accent-hover: #0891b2;
+    --indigo: #4f46e5;
+    --text-main: #1f2937;
+    --text-muted: #64748b;
+    --bg-light: #f8fafc;
+    --white: #ffffff;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    --gradient-accent: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+    --gradient-card: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.5) 100%);
+
+    /* Spacing */
+    --container-width: 1280px;
+    --header-height: 80px;
+
+    /* Effects */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+}
+
+/* Reset & Base */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: 'Inter', sans-serif; color: var(--text-main); background-color: var(--bg-light); line-height: 1.6; overflow-x: hidden; }
+a { text-decoration: none; color: inherit; transition: color 0.2s ease; }
+ul { list-style: none; }
+img { max-width: 100%; height: auto; display: block; }
+
+/* Utility Classes */
+.container { max-width: var(--container-width); margin: 0 auto; padding: 0 1.5rem; }
+.section { padding: 4rem 0; position: relative; }
+.text-center { text-align: center; }
+.text-accent { color: var(--accent); }
+.font-bold { font-weight: 700; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; transition: all 0.2s ease; cursor: pointer; border: none; gap: 0.5rem; }
+.btn-primary { background: var(--gradient-accent); color: white; box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(6, 182, 212, 0.4); }
+
+/* Header & Nav */
+.header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 0, 0, 0.05); transition: all 0.3s ease; }
+.header__top { background: var(--bg-light); border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding: 0.75rem 0; }
+.header__logos { display: flex; justify-content: center; align-items: center; gap: 3rem; flex-wrap: wrap; }
+.header__logo-img { height: 60px; width: auto; transition: transform 0.3s ease; }
+.header__logo-img:hover { transform: scale(1.05); }
+
+.nav { height: var(--header-height); display: flex; align-items: center; justify-content: center; }
+.nav__menu { display: flex; gap: 2.5rem; align-items: center; margin: 0; padding: 0; }
+.nav__item { position: relative; }
+.nav__link { font-weight: 500; color: var(--text-main); position: relative; padding: 0.5rem 0; font-size: 0.95rem; cursor: pointer; display: flex; align-items: center; gap: 0.25rem; }
+.nav__link:hover { color: var(--indigo); }
+.nav__link i { font-size: 0.75rem; opacity: 0.6; margin-top: 1px; }
+
+/* Dropdowns */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: white;
+    min-width: 240px;
+    box-shadow: var(--shadow-lg);
+    border-radius: var(--radius-lg);
+    padding: 0.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 100;
+}
+.nav__item:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+.dropdown-item { display: block; padding: 0.75rem 1rem; color: var(--text-main); border-radius: 0.5rem; font-size: 0.9rem; transition: background 0.1s; }
+.dropdown-item:hover { background: var(--bg-light); color: var(--indigo); }
+
+/* Mobile Menu */
+.nav__toggle { display: none; font-size: 1.5rem; background: none; border: none; color: var(--text-main); cursor: pointer; position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); }
+.nav__mobile-view { display: none; }
+
+/* Section Header */
+.section-header { text-align: center; margin-bottom: 2.5rem; }
+.section-title { font-size: 2.25rem; font-weight: 800; color: var(--primary); margin-bottom: 0.5rem; }
+.section-title span { color: var(--accent); }
+.section-desc { max-width: 700px; margin: 0 auto; color: var(--text-muted); }
+
+/* Footer */
+.footer { background: var(--primary); color: #cbd5e1; padding: 4rem 0 2rem; border-top: 1px solid rgba(255, 255, 255, 0.05); }
+.footer__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem; }
+.footer h4 { color: white; font-size: 1.25rem; margin-bottom: 1.5rem; }
+.footer a { color: #94a3b8; }
+.footer a:hover { color: var(--accent); }
+.footer__bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.875rem; }
+
+/* 
+ * PAGE SPECIFIC STYLES
+ */
+.main-content { padding-top: 0; min-height: 80vh; }
+
+/* Hero Section */
+.hero { 
+    padding-top: calc(var(--header-height) + 10rem); 
+    padding-bottom: 4rem; 
+    padding-left: 1.5rem; 
+    padding-right: 1.5rem; 
+    background: var(--gradient-hero); 
+    position: relative; 
+    overflow: hidden; 
+    margin-bottom: 4rem; 
+    color: white; 
+}
+.hero::before { 
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; 
+    background-image: radial-gradient(circle at 20% 30%, rgba(6, 182, 212, 0.15) 0%, transparent 40%), 
+                      radial-gradient(circle at 80% 70%, rgba(79, 70, 229, 0.15) 0%, transparent 40%); 
+    pointer-events: none; 
+}
+.hero__content { position: relative; z-index: 10; text-align: center; } 
+.hero__title { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; color: white; }
+.hero__subtitle { font-size: 1.25rem; color: #cbd5e1; margin-bottom: 0; }
+
+/* Content Grid */
+.intro-text { font-size: 1.15rem; color: var(--text-muted); text-align: center; max-width: 900px; margin: 0 auto 3rem; }
+
+/* Topics Grid */
+.topics-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+    gap: 1.5rem; 
+    margin-bottom: 4rem; 
+}
+.topic-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.topic-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(6, 182, 212, 0.3);
+}
+.topic-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 500;
+    color: var(--text-main);
+}
+.topic-item i {
+    color: var(--accent);
+    width: 20px;
+    text-align: center;
+}
+
+/* Submission Box */
+.submission-box {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.05) 0%, rgba(79, 70, 229, 0.05) 100%);
+    border-left: 5px solid var(--accent);
+    border-radius: var(--radius-lg);
+    padding: 3rem;
+    margin: 4rem auto;
+    max-width: 1000px;
+    text-align: center;
+}
+.submission-box h3 {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+.submission-box p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .header__top { display: none; }
+    .nav { position: relative; justify-content: center; padding: 0.5rem 1rem; height: 80px; } 
+    .nav__menu { display: none; }
+    .nav__toggle { display: block; position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); font-size: 1.5rem; }
+    .mobile-logos { display: flex !important; align-items: center; justify-content: space-between; width: 100%; padding-right: 3.5rem; }
+    .mobile-logo-img { height: 55px; width: auto; max-width: 22%; object-fit: contain; }
+    .hero__title { font-size: 2.5rem; }
+    
+    .nav__mobile-view {
+        position: fixed; top: 0; right: 0; bottom: 0; width: 85%; max-width: 320px; background: white; z-index: 2000;
+        padding: 2rem; box-shadow: -10px 0 30px rgba(0,0,0,0.1); transform: translateX(100%); transition: transform 0.3s ease;
+        display: flex; flex-direction: column; overflow-y: auto;
+    }
+    .nav__mobile-view.active { transform: translateX(0); }
+    .mobile-menu-header { display: flex; justify-content: flex-end; margin-bottom: 2rem; }
+    .mobile-close-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main); }
+    .mobile-link-group { opacity: 1; }
+    .nav__mobile-link { font-size: 1.1rem; font-weight: 600; display: block; padding: 0.75rem 0; border-bottom: 1px solid #f1f5f9; color: var(--primary); display: flex; justify-content: space-between; align-items: center; }
+    .mobile-submenu { display: none; padding-left: 1rem; background: #f8fafc; margin-bottom: 0.5rem; border-radius: 0.5rem; }
+    .mobile-submenu.active { display: block; }
+    .mobile-sublink { display: block; padding: 0.6rem 0; font-size: 0.95rem; color: var(--text-muted); }
+    .mobile-dropdown-icon { transition: transform 0.2s; font-size: 0.9rem; }
+    .nav__mobile-link.active .mobile-dropdown-icon { transform: rotate(180deg); }
+}
     </style>
-  </head>
-  <body>
-    <!-- ===== HEADER WITH NAVIGATION ===== -->
-    <header class="header" id="header">
-      <div class="container">
-        <!-- Header logos above navigation -->
-       <div class="header-logos">
-          <div class="logo-section">
-            <img src="logos/Niis2026.png" alt="NIIS 2026 Logo" class="header-logo" style="max-width: 80px; height: auto;" />
-          </div>
-          <img src="logos/cvm.png" alt="CVM Logo" class="header-logo" style="max-width: 80px; height: auto;" />
-          <img src="logos/gcetlogo.png" alt="GCET Logo" class="header-logo" style="max-width: 80px; height: auto;" />
-          <img
-            src="logos/CVM-Logo (2).png"
-            alt="CVM Extended Logo"
-            class="header-logo"
-            style="max-width: 80px; height: auto;"
-          />
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container header__logos">
+                <img src="logos/Niis2026.png" alt="NIIS 2026" class="header__logo-img">
+                <img src="logos/cvm.png" alt="CVM" class="header__logo-img">
+                <img src="logos/gcetlogo.png" alt="GCET" class="header__logo-img">
+                <img src="logos/CVM-Logo (2).png" alt="CVM Extended" class="header__logo-img">
+            </div>
         </div>
+        
+        <div class="container">
+            <nav class="nav">
+                <!-- Mobile Logos (Hidden on Desktop) -->
+                <div class="mobile-logos" style="display: none;">
+                    <img src="logos/Niis2026.png" alt="NIIS 2026" class="mobile-logo-img">
+                    <img src="logos/cvm.png" alt="CVM" class="mobile-logo-img">
+                    <img src="logos/gcetlogo.png" alt="GCET" class="mobile-logo-img">
+                    <img src="logos/CVM-Logo (2).png" alt="CVM Extended" class="mobile-logo-img">
+                </div>
 
-          <!-- Main navigation -->
-          <nav class="navigation" id="navigation">
-            <a href="index.html" class="nav-link">Home</a>
+                <!-- Desktop Menu -->
+                <ul class="nav__menu">
+                    <li class="nav__item"><a href="index.html" class="nav__link">Home</a></li>
+                    
+                    <li class="nav__item">
+                        <span class="nav__link">About <i class="fas fa-chevron-down"></i></span>
+                        <div class="dropdown-menu">
+                            <a href="niis2026.html" class="dropdown-item">About NIIS 2026</a>
+                            <a href="gcet.html" class="dropdown-item">About GCET</a>
+                        </div>
+                    </li>
 
-            <!-- About dropdown -->
-            <div class="nav-dropdown">
-              <a href="#about" class="nav-link">About</a>
-              <div class="dropdown-menu">
-                <a href="niis2026.html" class="dropdown-item">NIIS 2026</a>
-                <a href="gcet.html" class="dropdown-item">GCET</a>
-              </div>
-            </div>
+                    <li class="nav__item">
+                        <span class="nav__link">Committee <i class="fas fa-chevron-down"></i></span>
+                        <div class="dropdown-menu">
+                            <a href="Organizing-committee.html" class="dropdown-item">Organizing Committee</a>
+                            <a href="technical-committee.html" class="dropdown-item">Technical Advisory</a>
+                            <a href="#track-coordinators" class="dropdown-item">Track Coordinators</a>
+                        </div>
+                    </li>
 
-            <!-- Committee dropdown -->
-            <div class="nav-dropdown">
-              <a href="#" class="nav-link">Committee</a>
-              <div class="dropdown-menu">
-                <a href="committee.html" class="dropdown-item"
-                  >Organizing Committee</a
-                >
-                <a href="ITC.html" class="dropdown-item"
-                  >Technical Advisory Committee</a
-                >
-                <a href="#track-coordinators" class="dropdown-item"
-                  >Track Co-ordinators</a
-                >
-              </div>
-            </div>
+                    <li class="nav__item"><a href="keynote.html" class="nav__link">Keynote Speakers</a></li>
 
-            <a href="keynote.html" class="nav-link">Keynote Speaker</a>
+                    <li class="nav__item">
+                        <span class="nav__link">Submission <i class="fas fa-chevron-down"></i></span>
+                        <div class="dropdown-menu">
+                            <a href="call-for-papers.html" class="dropdown-item">Call for Papers</a>
+                            <a href="#" class="dropdown-item">Author Guidelines</a>
+                            <a href="submission-guidelines.html" class="dropdown-item">Submission Guidelines</a>
+                        </div>
+                    </li>
 
-            <!-- Submission dropdown -->
-            <div class="nav-dropdown">
-              <a href="#" class="nav-link active">Submission</a>
-              <div class="dropdown-menu">
-                <a href="call-for-papers.html" class="dropdown-item"
-                  >Call For Papers</a
-                >
-                <a href="#" class="dropdown-item">Author Guidelines</a>
-                <a href="submission-guidelines.html" class="dropdown-item"
-                  >Submission Guidelines</a
-                >
-              </div>
-            </div>
+                    <li class="nav__item">
+                        <span class="nav__link">Registration <i class="fas fa-chevron-down"></i></span>
+                        <div class="dropdown-menu">
+                            <a href="#" class="dropdown-item">Conference Registration</a>
+                            <a href="#" class="dropdown-item">Payment Methods</a>
+                            <a href="#" class="dropdown-item">Registration FAQ</a>
+                        </div>
+                    </li>
 
-            <!-- Registration dropdown -->
-            <div class="nav-dropdown">
-              <a href="#" class="nav-link">Registration</a>
-              <div class="dropdown-menu">
-                <a href="#" class="dropdown-item">Conference Registration</a>
-                <a href="#" class="dropdown-item">Payment Methods</a>
-                <a href="#" class="dropdown-item">Registration FAQ</a>
-              </div>
-            </div>
+                    <li class="nav__item"><a href="contact.html" class="nav__link">Contact</a></li>
+                </ul>
 
-            <a href="#contact" class="nav-link">Contact</a>
-
-            <!-- CTA Button -->
-            <a
-              href="https://forms.gle/poL6xmD6jXPGCveL6"
-              target="_blank"
-              class="cta-button"
-            >
-              <i class="fas fa-user-plus"></i>
-              Register Now
-            </a>
-          </nav>
-
-          <!-- Mobile menu toggle -->
-          <button class="mobile-menu-toggle" id="mobileMenuToggle">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+                <button class="nav__toggle" id="mobile-menu-toggle" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
         </div>
-      </div>
     </header>
-    <br>
-    <br>
-    <br>
+
+    <!-- Mobile Nav Slide-out -->
+    <div class="nav__mobile-view" id="mobile-menu">
+        <div class="mobile-menu-header">
+            <button class="mobile-close-btn" id="mobile-menu-close"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <a href="index.html" class="nav__mobile-link">Home</a>
+        
+        <div class="mobile-link-group">
+            <div class="nav__mobile-link mobile-dropdown-trigger">About <i class="fas fa-chevron-down mobile-dropdown-icon"></i></div>
+            <div class="mobile-submenu">
+                <a href="niis2026.html" class="mobile-sublink">About NIIS 2026</a>
+                <a href="gcet.html" class="mobile-sublink">About GCET</a>
+            </div>
+        </div>
+
+        <div class="mobile-link-group">
+            <div class="nav__mobile-link mobile-dropdown-trigger">Committee <i class="fas fa-chevron-down mobile-dropdown-icon"></i></div>
+            <div class="mobile-submenu">
+                <a href="Organizing-committee.html" class="mobile-sublink">Organizing Committee</a>
+                <a href="technical-committee.html" class="mobile-sublink">Technical Advisory</a>
+                <a href="#track-coordinators" class="mobile-sublink">Track Coordinators</a>
+            </div>
+        </div>
+
+        <a href="keynote.html" class="nav__mobile-link">Keynote Speakers</a>
+
+        <div class="mobile-link-group">
+            <div class="nav__mobile-link mobile-dropdown-trigger">Submission <i class="fas fa-chevron-down mobile-dropdown-icon"></i></div>
+            <div class="mobile-submenu">
+                <a href="call-for-papers.html" class="mobile-sublink">Call for Papers</a>
+                <a href="#" class="mobile-sublink">Author Guidelines</a>
+                <a href="submission-guidelines.html" class="mobile-sublink">Submission Guidelines</a>
+            </div>
+        </div>
+
+        <div class="mobile-link-group">
+            <div class="nav__mobile-link mobile-dropdown-trigger">Registration <i class="fas fa-chevron-down mobile-dropdown-icon"></i></div>
+            <div class="mobile-submenu">
+                <a href="#" class="mobile-sublink">Conference Registration</a>
+                <a href="#" class="mobile-sublink">Payment Methods</a>
+                <a href="#" class="mobile-sublink">Registration FAQ</a>
+            </div>
+        </div>
+
+        <a href="contact.html" class="nav__mobile-link">Contact</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero__content">
+            <h1 class="hero__title">
+                Call for <span class="text-accent">Papers</span>
+            </h1>
+            <p class="hero__subtitle">
+                NIIS 2026 - International Conference
+            </p>
+            <p style="color: #94a3b8; margin-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Join us in presenting cutting-edge research in Networking, Communication, and Computing Technology.
+            </p>
+        </div>
+    </section>
 
     <!-- Main Content -->
     <main class="main-content">
-      <!-- Page Header -->
-      <section class="page-header">
         <div class="container">
-          <h1 class="page-title">
-            Call for <span class="highlight">Papers</span>
-          </h1>
-          <p class="page-subtitle">NIIS 2026 International Conference</p>
-          <p class="page-description">
-            Join us in presenting cutting-edge research in Networking,
-            Communication, and Computing Technology
-          </p>
+            
+            <!-- Conference Overview -->
+            <div class="section-header">
+                <h2 class="section-title">Conference <span class="text-accent">Overview</span></h2>
+                <p class="intro-text">
+                    NIIS 2026 is an international conference where theory, practices, and applications of Networking, Communication, and Computing Technology and related topics are presented and discussed. Original contributions are solicited on topics covered under broad areas such as (but not limited to):
+                </p>
+            </div>
+
+            <!-- Topics Grid -->
+            <div class="topics-grid">
+                <!-- Group 1 -->
+                <div class="topic-card">
+                    <div class="topic-item"><i class="fas fa-robot"></i> Artificial Intelligence (ML & DL)</div>
+                    <div class="topic-item"><i class="fas fa-satellite-dish"></i> Optical & Microwave Communication</div>
+                    <div class="topic-item"><i class="fas fa-bolt"></i> Energy Systems</div>
+                    <div class="topic-item"><i class="fas fa-chart-bar"></i> Data Analytics</div>
+                    <div class="topic-item"><i class="fas fa-microchip"></i> Embedded Systems</div>
+                </div>
+
+                <!-- Group 2 -->
+                <div class="topic-card">
+                    <div class="topic-item"><i class="fas fa-wifi"></i> Wireless Sensor Networks</div>
+                    <div class="topic-item"><i class="fas fa-user-shield"></i> Cyber Security</div>
+                    <div class="topic-item"><i class="fas fa-microchip"></i> VLSI and Semiconductor</div>
+                    <div class="topic-item"><i class="fas fa-car-battery"></i> Solar Systems & Electric Vehicles</div>
+                    <div class="topic-item"><i class="fas fa-vr-cardboard"></i> AR / VR Technology</div>
+                </div>
+
+                <!-- Group 3 -->
+                <div class="topic-card">
+                    <div class="topic-item"><i class="fas fa-network-wired"></i> Software Defined Networks</div>
+                    <div class="topic-item"><i class="fas fa-solar-panel"></i> Smart Grid Systems</div>
+                    <div class="topic-item"><i class="fas fa-robot"></i> Robotics & Automation</div>
+                    <div class="topic-item"><i class="fas fa-satellite"></i> Satellite Communication</div>
+                    <div class="topic-item"><i class="fas fa-atom"></i> Nano Technology</div>
+                </div>
+
+                <!-- Group 4 -->
+                <div class="topic-card">
+                    <div class="topic-item"><i class="fas fa-link"></i> Blockchain & DLT</div>
+                    <div class="topic-item"><i class="fas fa-mobile-alt"></i> Mobile Ad-hoc Networks (MANETs)</div>
+                    <div class="topic-item"><i class="fas fa-sliders-h"></i> Control Systems</div>
+                    <div class="topic-item"><i class="fas fa-image"></i> Image & Video Processing</div>
+                    <div class="topic-item"><i class="fas fa-car-side"></i> VANETs</div>
+                </div>
+                
+                 <!-- Group 5 -->
+                <div class="topic-card">
+                    <div class="topic-item"><i class="fas fa-wave-square"></i> Fuzzy Systems</div>
+                    <div class="topic-item"><i class="fas fa-microphone-alt"></i> Signal Processing</div>
+                    <div class="topic-item"><i class="fas fa-broadcast-tower"></i> Cognitive Radio Networks</div>
+                    <div class="topic-item"><i class="fas fa-plug"></i> Power Systems & Drives</div>
+                    <div class="topic-item"><i class="fas fa-leaf"></i> Green Computing</div>
+                </div>
+
+                 <!-- Group 6 -->
+                <div class="topic-card">
+                    <div class="topic-item"><i class="fas fa-cloud"></i> Cloud / Edge / Fog Computing</div>
+                    <div class="topic-item"><i class="fas fa-server"></i> Cyber-Physical Systems</div>
+                    <div class="topic-item"><i class="fas fa-water"></i> Underwater Communication</div>
+                    <div class="topic-item"><i class="fas fa-phone-alt"></i> Communication Systems</div>
+                    <div class="topic-item"><i class="fas fa-brain"></i> Cognitive Science</div>
+                </div>
+
+                <!-- Group 7 -->
+                <div class="topic-card">
+                    <div class="topic-item"><i class="fas fa-globe"></i> Future Internet & 5G/6G</div>
+                    <div class="topic-item"><i class="fas fa-code-branch"></i> Computational Intelligence</div>
+                    <div class="topic-item"><i class="fas fa-project-diagram"></i> IoT Architectures & Protocols</div>
+                    <div class="topic-item"><i class="fas fa-heartbeat"></i> Health Monitoring Devices</div>
+                    <div class="topic-item"><i class="fas fa-industry"></i> Industry 5.0</div>
+                </div>
+
+                 <!-- Group 8 -->
+                <div class="topic-card">
+                    <div class="topic-item"><i class="fas fa-ruler-combined"></i> MEMS and Sensor Design</div>
+                    <div class="topic-item"><i class="fas fa-notes-medical"></i> Biomedical Instrumentation</div>
+                    <div class="topic-item"><i class="fas fa-signal"></i> Antenna Design & RF</div>
+                    <div class="topic-item"><i class="fas fa-running"></i> Bio-Mechanics</div>
+                    <div class="topic-item"><i class="fas fa-dna"></i> Bio-Informatics</div>
+                    <div class="topic-item"><i class="fas fa-project-diagram"></i> Intelligent Networking</div>
+                </div>
+
+            </div>
+
+            <!-- Submission Notice -->
+            <div class="submission-box">
+                <h3><i class="fas fa-file-alt"></i> Submission Requirements</h3>
+                <p>
+                    English is the official language of the conference. We welcome paper submissions. Prospective authors are invited to submit full (original) research papers which are NOT submitted, published, or under consideration anywhere in other conferences or journals. Papers must be submitted in electronic format (Doc or Docx) through the CMT Conference Management System only.
+                </p>
+                <div style="margin-top: 1.5rem;">
+                    <a href="submission-guidelines.html" class="btn btn-primary"><i class="fas fa-arrow-right"></i> View Guidelines</a>
+                </div>
+            </div>
+
         </div>
-      </section>
-
-      <!-- Conference Overview -->
-      <section class="content-section">
-        <div class="container">
-          <h2 class="section-title">Conference Overview</h2>
-          <p class="intro-text">
-            NIIS 2026, is an international conference where theory, practices,
-            and applications of Networking, Communication and Computing
-            Technology and related topics are presented and discussed. Original
-            contributions are solicited on topics covered under broad areas such
-            as (but not limited to):
-          </p>
-        </div>
-      </section>
-
-      <!-- Research Topics -->
-      <section class="content-section">
-        <div class="container">
-          <h2 class="section-title">Research Topics</h2>
-          <div class="topics-grid">
-            <div class="topic-card">
-              <div class="topic-item">
-                <span class="topic-emoji">🤖</span>
-                <span>Artificial Intelligence (ML & DL)</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">📡</span>
-                <span>Optical & Microwave Communication</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">⚡</span>
-                <span>Energy Systems</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">📊</span>
-                <span>Data Analytics</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">🔌</span>
-                <span>Embedded Systems</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">📶</span>
-                <span>Wireless Sensor Networks</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">🔒</span>
-                <span>Cyber Security</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">💻</span>
-                <span>VLSI and Semiconductor Technologies</span>
-              </div>
-            </div>
-
-            <div class="topic-card">
-              <div class="topic-item">
-                <span class="topic-emoji">🚗</span>
-                <span>Solar Systems & Electric Vehicles</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">🕶️</span>
-                <span>Augmented / Virtual Reality (AR/VR)</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">🗂️</span>
-                <span>Software Defined Networks</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">🔋</span>
-                <span>Smart Grid Systems</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">🤖</span>
-                <span>Robotics & Automation</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">🛰️</span>
-                <span>Satellite Communication</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">🔬</span>
-                <span>Nano Technology in Intelligent Systems</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">🔗</span>
-                <span>Blockchain & Distributed Ledger Tech</span>
-              </div>
-            </div>
-
-            <div class="topic-card">
-              <div class="topic-item">
-                <span class="topic-emoji">📱</span>
-                <span>Mobile Ad-hoc Networks (MANETs)</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">🎛️</span>
-                <span>Control Systems</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">🖼️</span>
-                <span>Image & Video Processing</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">🚗</span>
-                <span>Vehicular Ad-hoc Networks (VANETs)</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">➰</span>
-                <span>Fuzzy Systems</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">🎙️</span>
-                <span>Signal Processing</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">📻</span>
-                <span>Cognitive Radio Networks</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">⚙️</span>
-                <span>Power Systems, Power Electronics, Drives</span>
-              </div>
-            </div>
-
-            <div class="topic-card">
-              <div class="topic-item">
-                <span class="topic-emoji">🌿</span>
-                <span>Green Computing</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">☁️</span>
-                <span>Cloud / Edge / Fog Computing</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">🤖</span>
-                <span>Cyber-Physical Systems</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">🌊</span>
-                <span>Underwater Communication Networks</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">📞</span>
-                <span>Communication Systems</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">🧠</span>
-                <span>Cognitive Science</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">🌐</span>
-                <span>Future Internet & 5G/6G Networks</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">📈</span>
-                <span>Computational Intelligence & Optimization</span>
-              </div>
-            </div>
-
-            <div class="topic-card">
-              <div class="topic-item">
-                <span class="topic-emoji">📡</span>
-                <span>IoT Architectures & Protocols</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">🏥</span>
-                <span>Health Monitoring Devices</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">🏭</span>
-                <span>Industry 5.0</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">📐</span>
-                <span>MEMS and Sensor Design</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">🧪</span>
-                <span>Biomedical Instrumentation</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">📡</span>
-                <span>Antenna Design & RF Propagation</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">🦴</span>
-                <span>Bio-Mechanics</span>
-              </div>
-              <div class="topic-item">
-                <span class="topic-emoji">🧬</span>
-                <span>Bio-Informatics</span>
-              </div>
-            </div>
-
-            <div class="topic-card">
-              <div class="topic-item">
-                <span class="topic-emoji">🌐</span>
-                <span>Intelligent Networking</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Important Notice -->
-      <section class="content-section">
-        <div class="container">
-          <div class="important-notice">
-            <h3 class="notice-title">📝 Submission Requirements</h3>
-            <p class="notice-text">
-              English is the official language of the conference. We welcome
-              paper submissions. Prospective authors are invited to submit full
-              (original) research papers; which are NOT
-              submitted/published/under consideration anywhere in other
-              conferences/journals; in electronic (Doc or Docx) format through
-              the CMT Conference Management System only.
-            </p>
-          </div>
-        </div>
-      </section>
     </main>
 
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-logo">
-            <div class="logo-icon">
-              <i class="fas fa-university"></i>
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div>
+                    <h4><i class="fas fa-map-marker-alt text-accent"></i> Venue</h4>
+                    <p>G H Patel College of Engineering & Technology</p>
+                    <p>Vallabh Vidyanagar, Gujarat, India</p>
+                </div>
+                <div>
+                    <h4><i class="fas fa-envelope text-accent"></i> Contact</h4>
+                    <p>Dr. Bhaskar Thakker: +91 9574383265</p>
+                    <p>Dr. Priyang Bhatt: +91 9879849707</p>
+                    <br>
+                    <a href="mailto:niis2026@gcet.ac.in">niis2026@gcet.ac.in</a>
+                </div>
+                 <div>
+                    <h4><i class="fas fa-link text-accent"></i> Quick Links</h4>
+                    <ul style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <li><a href="submission-guidelines.html">Submission Guidelines</a></li>
+                        <li><a href="call-for-papers.html">Call for Papers</a></li>
+                        <li><a href="#">Registration</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="logo-text">
-              <h3>NIIS 2026</h3>
-              <p>International Conference</p>
+            <div class="footer__bottom">
+                <p>&copy; 2026 NIIS Conference. All Rights Reserved.</p>
             </div>
-          </div>
-
-          <!-- Contact Information Grid -->
-          <div class="footer-contact-grid">
-            <div class="footer-contact-item">
-              <h4><i class="fas fa-envelope"></i> Email</h4>
-              <p style="font-size: medium">
-                <a href="mailto:niis2026@gcet.ac.in">niis2026@gcet.ac.in</a>
-              </p>
-            </div>
-
-            <div class="footer-contact-item">
-              <h4><i class="fas fa-phone"></i> Dr. Bhaskar Thakker</h4>
-              <p>
-                <a href="tel:+919574383265" style="font-size: medium"
-                  >+91 9574383265</a
-                >
-              </p>
-              <!-- <p>
-                <a
-                  href="mailto:bhaskarthakkar@gcet.ac.in"
-                  style="font-size: medium"
-                  >bhaskarthakkar@gcet.ac.in</a
-                >
-              </p> -->
-            </div>
-
-            <div class="footer-contact-item">
-              <h4><i class="fas fa-phone"></i> Dr. Priyang Bhatt</h4>
-              <p>
-                <a href="tel:+919879849707" style="font-size: medium"
-                  >+91 9879849707</a
-                >
-              </p>
-              <!-- <p>
-                <a
-                  href="mailto:priyangbhatt@gcet.ac.in"
-                  style="font-size: medium"
-                  >priyangbhatt@gcet.ac.in</a
-                >
-              </p> -->
-            </div>
-
-            <div class="footer-contact-item location-item">
-              <h4><i class="fas fa-map-marker-alt"></i> Location</h4>
-              <a
-                href="https://maps.app.goo.gl/TVv7ZMzeciHrsMsM7"
-                target="_blank"
-                style="text-decoration: none"
-              >
-                <p style="font-size: medium; color: #3b82f6">
-                  G H Patel College of Engineering & Technology<br />
-                  Vallabh Vidyanagar, Gujarat, India
-                </p>
-              </a>
-            </div>
-          </div>
-
-          <div class="footer-divider"></div>
-
-          <div class="footer-bottom">
-            <p>&copy; 2026 NIIS Conference. All rights reserved.</p>
-            <p class="footer-credit">
-              Designed & Developed by Student Team of CP & IT GCET College
-            </p>
-          </div>
         </div>
-      </div>
     </footer>
 
+    <!-- JavaScript -->
     <script>
-      // Mobile menu functionality
-      document.addEventListener("DOMContentLoaded", function () {
-        const mobileMenuToggle = document.getElementById("mobileMenuToggle");
-        const navigation = document.getElementById("navigation");
-        const header = document.getElementById("header");
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleBtn = document.getElementById('mobile-menu-toggle');
+            const closeBtn = document.getElementById('mobile-menu-close');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const dropdownTriggers = document.querySelectorAll('.mobile-dropdown-trigger');
 
-        // Mobile menu toggle
-        if (mobileMenuToggle) {
-          mobileMenuToggle.addEventListener("click", function () {
-            navigation.classList.toggle("active");
-            mobileMenuToggle.classList.toggle("active");
+            // Open Menu
+            toggleBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
 
-            // Animate hamburger menu
-            const spans = mobileMenuToggle.querySelectorAll("span");
-            const isActive = navigation.classList.contains("active");
+            // Close Menu
+            closeBtn.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
 
-            if (isActive) {
-              spans[0].style.transform = "rotate(-45deg) translate(-5px, 6px)";
-              spans[1].style.opacity = "0";
-              spans[2].style.transform = "rotate(45deg) translate(-5px, -6px)";
-            } else {
-              spans[0].style.transform = "none";
-              spans[1].style.opacity = "1";
-              spans[2].style.transform = "none";
-            }
-          });
-        }
+            // Mobile Dropdowns
+            dropdownTriggers.forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    const parent = trigger.parentElement;
+                    const submenu = parent.querySelector('.mobile-submenu');
+                    const link = trigger; 
+                    
+                    submenu.classList.toggle('active');
+                    link.classList.toggle('active'); 
+                });
+            });
 
-        // Header scroll effect
-        window.addEventListener("scroll", function () {
-          if (window.scrollY > 100) {
-            header.classList.add("scrolled");
-          } else {
-            header.classList.remove("scrolled");
-          }
+            // Close when clicking outside
+            document.addEventListener('click', (e) => {
+                if (mobileMenu.classList.contains('active') && 
+                    !mobileMenu.contains(e.target) && 
+                    !toggleBtn.contains(e.target)) {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
         });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-          anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute("href"));
-            if (target) {
-              const headerHeight = header.offsetHeight;
-              const targetPosition = target.offsetTop - headerHeight - 20;
-
-              window.scrollTo({
-                top: targetPosition,
-                behavior: "smooth",
-              });
-            }
-          });
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener("click", function (e) {
-          if (
-            !header.contains(e.target) &&
-            navigation.classList.contains("active")
-          ) {
-            navigation.classList.remove("active");
-            mobileMenuToggle.classList.remove("active");
-
-            const spans = mobileMenuToggle.querySelectorAll("span");
-            spans[0].style.transform = "none";
-            spans[1].style.opacity = "1";
-            spans[2].style.transform = "none";
-          }
-        });
-      });
     </script>
-  </body>
+</body>
 </html>

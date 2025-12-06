@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Technical Advisory Committee - NIIS 2026</title>
+    <title>Contact Us - NIIS 2026</title>
     
     <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,7 +17,7 @@
     
     <style>
 /* 
- * NIIS 2026 - Shared Styles (Copied from index.html)
+ * NIIS 2026 - Shared Styles
  */
 
 :root {
@@ -121,12 +121,11 @@ img { max-width: 100%; height: auto; display: block; }
 .footer__bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.875rem; }
 
 /* 
- * NIIS 2026 Specific Styles (Upgraded Design)
+ * PAGE SPECIFIC STYLES
  */
-.main-content { padding-top: 120px; min-height: 80vh; }
+.main-content { padding-top: 0; min-height: 80vh; }
 
-/* Hero Section Styles (Fixed & Upgraded) */
-/* Added enough top padding to clear the 80px fixed header */
+/* Hero Section */
 .hero { 
     padding-top: calc(var(--header-height) + 10rem); 
     padding-bottom: 4rem; 
@@ -135,50 +134,148 @@ img { max-width: 100%; height: auto; display: block; }
     background: var(--gradient-hero); 
     position: relative; 
     overflow: hidden; 
-    margin-bottom: 2rem; 
-    color: white; /* Important: Text is white on dark bg */
+    margin-bottom: 4rem; 
+    color: white; 
 }
-/* Radial glow effects */
 .hero::before { 
     content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; 
     background-image: radial-gradient(circle at 20% 30%, rgba(6, 182, 212, 0.15) 0%, transparent 40%), 
                       radial-gradient(circle at 80% 70%, rgba(79, 70, 229, 0.15) 0%, transparent 40%); 
     pointer-events: none; 
 }
+.hero__content { position: relative; z-index: 10; text-align: center; } 
+.hero__title { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; color: white; }
+.hero__subtitle { font-size: 1.25rem; color: #cbd5e1; margin-bottom: 0; }
 
-.hero__content { display: flex; flex-direction: column; align-items: center; gap: 2rem; position: relative; z-index: 10; text-align: center; } 
-.hero__text { max-width: 900px; margin: 0 auto; text-align: center; }
-.hero__badge { 
-    display: inline-flex; align-items: center; gap: 0.5rem; 
-    background: rgba(255, 255, 255, 0.1); /* Lighter on dark bg */
-    color: #cbd5e1; 
-    font-size: 0.85rem; font-weight: 600; padding: 0.5rem 1rem; border-radius: 99px; margin-bottom: 1.5rem; 
-    border: 1px solid rgba(255, 255, 255, 0.2); 
-}
-.hero__title { 
-    font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.02em; 
-    color: white; /* White text for contrast */
-}
-.hero__title .text-accent { color: var(--accent); } /* Ensure accent color */
-
-.hero__subtitle { font-size: 1.25rem; color: #cbd5e1; line-height: 1.7; margin-bottom: 0; }
-
-/* Conveners Grid & Card Styles */
-.committee-wrapper { padding-bottom: 4rem; }
-.conveners-grid { 
+/* Contact Cards Grid */
+.contact-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem; 
-    justify-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
 }
-.convener-card { background: white; padding: 2.5rem 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); text-align: center; border: 1px solid rgba(0,0,0,0.05); transition: transform 0.3s; width: 100%; max-width: 350px; }
-.convener-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-top: 4px solid var(--accent); }
-.convener-image { width: 140px; height: 140px; border-radius: 50%; border: 4px solid var(--accent); margin: 0 auto 1.5rem; overflow: hidden; }
-.convener-image img { width: 100%; height: 100%; object-fit: cover; }
-.convener-info h4 { font-size: 1.2rem; font-weight: 700; color: var(--primary); margin-bottom: 0.5rem; }
-.convener-info .position { color: var(--accent); font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; }
-.convener-info .location { color: var(--text-muted); font-size: 0.9rem; }
 
+.contact-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-accent);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(6, 182, 212, 0.3);
+}
+
+.contact-card:hover::before {
+    transform: scaleX(1);
+}
+
+.contact-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(79, 70, 229, 0.1));
+    color: var(--accent);
+    transition: all 0.3s ease;
+}
+
+.contact-card:hover .contact-icon {
+    transform: scale(1.1) rotate(5deg);
+    background: var(--gradient-accent);
+    color: white;
+}
+
+.contact-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.contact-card p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+}
+
+.contact-card a {
+    color: var(--accent);
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.contact-card a:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+}
+
+/* Map Section */
+.map-section {
+    background: white;
+    border-radius: var(--radius-xl);
+    padding: 3rem;
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 4rem;
+}
+
+.map-container {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    height: 500px;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Info Banner */
+.info-banner {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.05), rgba(79, 70, 229, 0.05));
+    border-left: 5px solid var(--accent);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    margin-bottom: 4rem;
+    text-align: center;
+}
+
+.info-banner h3 {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.info-banner p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+}
 
 /* Responsive */
 @media (max-width: 1024px) {
@@ -186,13 +283,10 @@ img { max-width: 100%; height: auto; display: block; }
     .nav { position: relative; justify-content: center; padding: 0.5rem 1rem; height: 80px; } 
     .nav__menu { display: none; }
     .nav__toggle { display: block; position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); font-size: 1.5rem; }
-    
     .mobile-logos { display: flex !important; align-items: center; justify-content: space-between; width: 100%; padding-right: 3.5rem; }
     .mobile-logo-img { height: 55px; width: auto; max-width: 22%; object-fit: contain; }
-    
     .hero__title { font-size: 2.5rem; }
     
-    /* Mobile Nav Slide-out Style */
     .nav__mobile-view {
         position: fixed; top: 0; right: 0; bottom: 0; width: 85%; max-width: 320px; background: white; z-index: 2000;
         padding: 2rem; box-shadow: -10px 0 30px rgba(0,0,0,0.1); transform: translateX(100%); transition: transform 0.3s ease;
@@ -201,7 +295,6 @@ img { max-width: 100%; height: auto; display: block; }
     .nav__mobile-view.active { transform: translateX(0); }
     .mobile-menu-header { display: flex; justify-content: flex-end; margin-bottom: 2rem; }
     .mobile-close-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main); }
-    
     .mobile-link-group { opacity: 1; }
     .nav__mobile-link { font-size: 1.1rem; font-weight: 600; display: block; padding: 0.75rem 0; border-bottom: 1px solid #f1f5f9; color: var(--primary); display: flex; justify-content: space-between; align-items: center; }
     .mobile-submenu { display: none; padding-left: 1rem; background: #f8fafc; margin-bottom: 0.5rem; border-radius: 0.5rem; }
@@ -209,6 +302,10 @@ img { max-width: 100%; height: auto; display: block; }
     .mobile-sublink { display: block; padding: 0.6rem 0; font-size: 0.95rem; color: var(--text-muted); }
     .mobile-dropdown-icon { transition: transform 0.2s; font-size: 0.9rem; }
     .nav__mobile-link.active .mobile-dropdown-icon { transform: rotate(180deg); }
+    
+    .contact-grid { grid-template-columns: 1fr; }
+    .map-section { padding: 1.5rem; }
+    .map-container { height: 400px; }
 }
     </style>
 </head>
@@ -338,311 +435,106 @@ img { max-width: 100%; height: auto; display: block; }
     <!-- Hero Section -->
     <section class="hero">
         <div class="container hero__content">
-            <div class="hero__text">
-                <h1 class="hero__title">
-                    Technical Advisory <span class="text-accent">Committee</span>
-                </h1>
-                <p class="hero__subtitle">
-                     NIIS 2026 - International Conference
-                </p>
-            </div>
+            <h1 class="hero__title">
+                Contact <span class="text-accent">Us</span>
+            </h1>
+            <p class="hero__subtitle">
+                Get in Touch with NIIS 2026
+            </p>
+            <p style="color: #94a3b8; margin-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                We're here to help! Reach out to us for any queries regarding the conference.
+            </p>
         </div>
     </section>
 
     <!-- Main Content -->
-    <main class="main-content" style="padding-top: 0;">
+    <main class="main-content">
         <div class="container">
             
-            <!-- International Committee -->
-            <div class="committee-wrapper">
-                <div class="section-header">
-                    <h2 class="section-title">International <span class="text-accent">Committee</span></h2>
-                    <!-- <p class="section-desc">Leading with vision and guidance.</p> -->
-                </div>
+            <!-- Info Banner -->
+            <div class="info-banner">
+                <h3><i class="fas fa-info-circle"></i> Conference Information</h3>
+                <p>For any queries or assistance, feel free to contact our organizing team. We're here to help!</p>
+            </div>
+
+            <!-- Contact Cards -->
+            <div class="contact-grid">
                 
-                <div class="conveners-grid">
-                    <div class="convener-card">
-                        <div class="convener-image">
-                            <img src="TecnicalImgs/valentina.jpg" alt="Prof. Valentina Balas">
-                        </div>
-                        <div class="convener-info">
-                            <h4>Prof. Valentina Balas</h4>
-                            <p class="position">Professor, Aurel Vlaicu University of Arad</p>
-                            <p class="location">Academy of Romanian Scientists, ROMANIA</p>
-                        </div>
+                <!-- Contact Person 1 -->
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
                     </div>
+                    <h3>Dr. Bhaskar Thakker</h3>
+                    <p>Conference Convener</p>
+                    <p style="margin-top: 1rem;">
+                        <a href="tel:+919574383265">+91 9574383265</a>
+                    </p>
+                </div>
 
-                    <div class="convener-card">
-                        <div class="convener-image">
-                            <img src="TecnicalImgs/Kalpdrum_Passi.png" alt="Dr. Kalpdrum Passi">
-                        </div>
-                        <div class="convener-info">
-                            <h4>Dr. Kalpdrum Passi</h4>
-                            <p class="position">Laurentian University</p>
-                            <p class="location">Ontario, Canada</p>
-                        </div>
-                    </div>
 
-                    <div class="convener-card">
-                        <div class="convener-image">
-                            <img src="TecnicalImgs/sharnil.jpg" alt="Dr Sharnil Pandya">
-                        </div>
-                        <div class="convener-info">
-                            <h4>Dr Sharnil Pandya</h4>
-                            <p class="position">Computer and Information Sciences</p>
-                            <p class="location">Northumbria University</p>
-                        </div>
+                <!-- Email Card -->
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
                     </div>
+                    <h3>Email</h3>
+                    <p>For general inquiries and information</p>
+                    <p style="margin-top: 1rem;">
+                        <a href="mailto:niis2026@gcet.ac.in">niis2026@gcet.ac.in</a>
+                    </p>
+                </div>
 
-                    <div class="convener-card">
-                        <div class="convener-image">
-                            <img src="TecnicalImgs/chintanmodi.jpg" alt="Dr. Chintan Modi">
-                        </div>
-                        <div class="convener-info">
-                            <h4>Dr. Chintan Modi</h4>
-                            <p class="position">Fanshawer College</p>
-                            <p class="location">Canada</p>
-                        </div>
+                <!-- Contact Person 2 -->
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
                     </div>
-
-                    <div class="convener-card">
-                        <div class="convener-image">
-                            <img src="TecnicalImgs/sathishkumar.jpg" alt="Dr Sathishkumar Veerappampalayam Easwaramoorthy">
-                        </div>
-                        <div class="convener-info">
-                            <h4>Dr Sathishkumar V. Easwaramoorthy</h4>
-                            <p class="position">Senior Lecturer</p>
-                            <p class="location">Sunway University Malaysia</p>
-                        </div>
-                    </div>
-
-                    <div class="convener-card">
-                        <div class="convener-image">
-                            <img src="TecnicalImgs/Kiran.jpg" alt="Dr. Kiran Trivedi">
-                        </div>
-                        <div class="convener-info">
-                            <h4>Dr. Kiran Trivedi</h4>
-                            <p class="position">Associate Professor</p>
-                            <p class="location">University of Wollongong Australia</p>
-                        </div>
-                    </div>
-
-                    <div class="convener-card">
-                        <div class="convener-image">
-                            <img src="TecnicalImgs/Nilanjan.jpg" alt="Dr. Nilanjan Dey">
-                        </div>
-                        <div class="convener-info">
-                            <h4>Dr. Nilanjan Dey</h4>
-                            <p class="position">Visiting Fellow</p>
-                            <p class="location">University of Reading, UK</p>
-                        </div>
-                    </div>
-
-                    <div class="convener-card">
-                        <div class="convener-image">
-                            <img src="TecnicalImgs/Chintan-bhatt.jpg" alt="Dr. Chintan Bhatt">
-                        </div>
-                        <div class="convener-info">
-                            <h4>Dr. Chintan Bhatt</h4>
-                            <p class="position">Assistant Professor</p>
-                            <p class="location">University of Wollongong, Australia : India</p>
-                        </div>
-                    </div>
+                    <h3>Dr. Priyang Bhatt</h3>
+                    <p>Conference Convener</p>
+                    <p style="margin-top: 1rem;">
+                        <a href="tel:+919879849707">+91 9879849707</a>
+                    </p>
                 </div>
             </div>
 
-            <!-- National Committee -->
-            <div class="committee-wrapper">
-                <div class="section-header">
-                    <h2 class="section-title">National <span class="text-accent">Committee</span></h2>
+            <!-- Venue Card -->
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Venue</h3>
+                    <p><strong>G H Patel College of Engineering & Technology</strong></p>
+                    <p>Vallabh Vidyanagar</p>
+                    <p>Gujarat, India</p>
+                    <p style="margin-top: 1rem;">
+                        <a href="https://maps.app.goo.gl/TVv7ZMzeciHrsMsM7" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> View on Google Maps
+                        </a>
+                    </p>
                 </div>
-                
-                <div class="conveners-grid">
-                    <div class="convener-card">
-                        <div class="convener-image">
-                            <img src="TecnicalImgs/Lalit.png" alt="Dr. Lalit Mohan Patnaik">
-                        </div>
-                        <div class="convener-info">
-                            <h4>Dr. Lalit Mohan Patnaik</h4>
-                            <p class="location">IISC Bangalore</p>
-                        </div>
-                    </div>
 
-                    <div class="convener-card">
-                        <div class="convener-image">
-                            <img src="TecnicalImgs/Rajeeb.jpg" alt="Dr. Rajeeb Dey">
-                        </div>
-                        <div class="convener-info">
-                            <h4>Dr. Rajeeb Dey</h4>
-                            <p class="position">Associate Professor</p>
-                            <p class="location">NIT Silchar</p>
-                        </div>
-                    </div>
+                <br>
+                <br>
 
-                    <div class="convener-card">
-                        <div class="convener-image">
-                            <img src="TecnicalImgs/Mehul-Raval.jpg" alt="Dr. Mehul Raval">
-                        </div>
-                        <div class="convener-info">
-                            <h4>Dr. Mehul Raval</h4>
-                            <p class="position">Professor</p>
-                            <p class="location">Ahemdabad University</p>
-                        </div>
-                    </div>
+            <!-- Map Section -->
+            <div class="section-header">
+                <h2 class="section-title">Find <span class="text-accent">Us</span></h2>
+                <p class="section-desc">
+                    Locate our venue on the map below. We're easily accessible from major cities in Gujarat.
+                </p>
+            </div>
 
-                    <div class="convener-card">
-                        <div class="convener-image">
-                            <img src="keynoteImgs/devesh.jpeg" alt="Prof.(Dr.) Devesh Jinwala">
-                        </div>
-                        <div class="convener-info">
-                            <h4>Prof.(Dr.) Devesh Jinwala</h4>
-                            <p class="position">Professor</p>
-                            <p class="location">SVNIT, Surat</p>
-                        </div>
-                    </div>
+            
 
-                    <div class="convener-card">
-                        <div class="convener-image">
-                            <img src="TecnicalImgs/Kirshor.jpg" alt="Dr. Kishor Sarawadekar">
-                        </div>
-                        <div class="convener-info">
-                            <h4>Dr. Kishor Sarawadekar</h4>
-                            <p class="position">Associate Professor</p>
-                            <p class="location">IIT (BHU), Varanasi</p>
-                        </div>
-                    </div>
-
-                    <div class="convener-card">
-                        <div class="convener-image">
-                            <img src="TecnicalImgs/Daval-Pujara.jpg" alt="Prof Daval Pujara">
-                        </div>
-                        <div class="convener-info">
-                            <h4>Prof Daval Pujara</h4>
-                            <p class="position">Professor</p>
-                            <p class="location">School of Technology, PDPU</p>
-                        </div>
-                    </div>
-
-                    <div class="convener-card">
-                        <div class="convener-image">
-                            <img src="TecnicalImgs/chirag.jpg" alt="Dr. Chirag Paunwala">
-                        </div>
-                        <div class="convener-info">
-                            <h4>Dr. Chirag Paunwala</h4>
-                            <p class="position">Professor</p>
-                            <p class="location">SCET, Surat</p>
-                        </div>
-                    </div>
-
-                    <div class="convener-card">
-                        <div class="convener-image">
-                            <img src="TecnicalImgs/Deepak-Mishra.jpg" alt="Dr. Deepak Mishra">
-                        </div>
-                        <div class="convener-info">
-                            <h4>Dr. Deepak Mishra</h4>
-                            <p class="position">Space Application Center (SAC)</p>
-                            <p class="location">ISRO</p>
-                        </div>
-                    </div>
-
-                    <div class="convener-card">
-                        <div class="convener-image">
-                            <img src="TecnicalImgs/Satish-Chetwani.jpg" alt="Dr. Satish Chetweni">
-                        </div>
-                        <div class="convener-info">
-                            <h4>Dr. Satish Chetweni</h4>
-                            <p class="position">Director</p>
-                            <p class="location">Electrical Research & Development Association</p>
-                        </div>
-                    </div>
-
-                    <div class="convener-card">
-                        <div class="convener-image">
-                            <img src="TecnicalImgs/sameer-kulkarni.jpg" alt="Dr. Sameer Kulkarni">
-                        </div>
-                        <div class="convener-info">
-                            <h4>Dr. Sameer Kulkarni</h4>
-                            <p class="position">SVP at Decimal Point Analytics</p>
-                            <p class="location">Ex-Indian Air Force Leader</p>
-                        </div>
-                    </div>
-
-                    <div class="convener-card">
-                        <div class="convener-image">
-                            <img src="TecnicalImgs/Jayesh.jpg" alt="Prof. Jayesh Pabari">
-                        </div>
-                        <div class="convener-info">
-                            <h4>Prof. Jayesh Pabari</h4>
-                            <p class="location">Physical Research Laboratory</p>
-                        </div>
-                    </div>
-
-                    <div class="convener-card">
-                        <div class="convener-image">
-                            <img src="TecnicalImgs/PriyeshChauhan.jpg" alt="Prof. Priyesh Chauhan">
-                        </div>
-                        <div class="convener-info">
-                            <h4>Prof. Priyesh Chauhan</h4>
-                            <p class="position">Assistant Professor</p>
-                            <p class="location">IIT-RAM Gandhinagar</p>
-                        </div>
-                    </div>
-
-                    <div class="convener-card">
-                        <div class="convener-image">
-                            <img src="keynoteImgs/Rahul_Pandya.jpg" alt="Dr. Rahul Pandya">
-                        </div>
-                        <div class="convener-info">
-                            <h4>Dr. Rahul Pandya</h4>
-                            <p class="position">Professor</p>
-                            <p class="location">IIT Dharwad</p>
-                        </div>
-                    </div>
-
-                    <div class="convener-card">
-                        <div class="convener-image">
-                            <img src="TecnicalImgs/anand-darji.jpg" alt="Prof. Anand Darji">
-                        </div>
-                        <div class="convener-info">
-                            <h4>Prof. Anand Darji</h4>
-                            <p class="position">Professor</p>
-                            <p class="location">SVNIT, Surat</p>
-                        </div>
-                    </div>
-
-                    <div class="convener-card">
-                        <div class="convener-image">
-                            <img src="TecnicalImgs/omar-farooq.jpg" alt="Dr. Omar Farooq">
-                        </div>
-                        <div class="convener-info">
-                            <h4>Dr. Omar Farooq</h4>
-                            <p class="position">Professor</p>
-                            <p class="location">ZH College Of Engineering And Technology, AMU</p>
-                        </div>
-                    </div>
-
-                    <div class="convener-card">
-                        <div class="convener-image">
-                            <img src="TecnicalImgs/Satyabrata-Roy.jpg" alt="Dr. Satyabrata Roy">
-                        </div>
-                        <div class="convener-info">
-                            <h4>Dr. Satyabrata Roy</h4>
-                            <p class="position">Associate Professor</p>
-                            <p class="location">Manipal University Jaipur, India</p>
-                        </div>
-                    </div>
-
-                    <div class="convener-card">
-                        <div class="convener-image">
-                            <img src="TecnicalImgs/Kaushal.png" alt="Dr. Kaushal Desai">
-                        </div>
-                        <div class="convener-info">
-                            <h4>Dr. Kaushal Desai</h4>
-                            <p class="position">Professor</p>
-                            <p class="location">IIT Jodhpur</p>
-                        </div>
-                    </div>
-
+            <div class="map-section">
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.5087392679898!2d72.91715567486986!3d22.56006827950063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e4e1285d628d5%3A0xe6cee346bfaa35d0!2sG%20H%20Patel%20College%20of%20Engineering%20%26%20Technology!5e0!3m2!1sen!2sin!4v1765035675874!5m2!1sen!2sin"
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
                 </div>
             </div>
 
@@ -682,7 +574,6 @@ img { max-width: 100%; height: auto; display: block; }
 
     <!-- JavaScript -->
     <script>
-        // Use the same script as index.html / niis2026.html
         document.addEventListener('DOMContentLoaded', () => {
             const toggleBtn = document.getElementById('mobile-menu-toggle');
             const closeBtn = document.getElementById('mobile-menu-close');
@@ -706,10 +597,10 @@ img { max-width: 100%; height: auto; display: block; }
                 trigger.addEventListener('click', () => {
                     const parent = trigger.parentElement;
                     const submenu = parent.querySelector('.mobile-submenu');
-                    const link = trigger; // The clicked div itself
+                    const link = trigger; 
                     
                     submenu.classList.toggle('active');
-                    link.classList.toggle('active'); // Rotates icon
+                    link.classList.toggle('active'); 
                 });
             });
 

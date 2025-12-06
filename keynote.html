@@ -1,1355 +1,724 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Keynote Speakers - NIIS 2026</title>
-
-    <!-- Preconnect for performance optimization -->
+    
+    <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <!-- Google Fonts - Ubuntu for consistent typography -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Font Awesome for icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
-
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    
     <style>
-      /* ===== CSS RESET AND BASE STYLES ===== */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+/* 
+ * NIIS 2026 - Shared Styles (Copied from index.html)
+ */
 
-      html {
-        scroll-behavior: smooth;
-        font-size: 16px;
-      }
+:root {
+    /* Colors - Deep Teal / Indigo Theme */
+    --primary: #0f172a;
+    --primary-light: #1e293b;
+    --accent: #06b6d4;
+    --accent-hover: #0891b2;
+    --indigo: #4f46e5;
+    --text-main: #1f2937;
+    --text-muted: #64748b;
+    --bg-light: #f8fafc;
+    --white: #ffffff;
 
-      body {
-        font-family: "Ubuntu", -apple-system, BlinkMacSystemFont, "Segoe UI",
-          Roboto, sans-serif;
-        line-height: 1.6;
-        color: #1f2937;
-        background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
-        min-height: 100vh;
-        overflow-x: hidden;
-        animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-      }
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    --gradient-accent: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+    --gradient-card: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.5) 100%);
 
-      /* ===== UTILITY CLASSES ===== */
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 24px;
-      }
+    /* Spacing */
+    --container-width: 1280px;
+    --header-height: 80px;
 
-      /* ===== HEADER AND NAVIGATION STYLES ===== */
-      /* Main header with navigation */
-      .header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(20px);
-        border-bottom: 1px solid rgba(229, 231, 235, 0.8);
-        z-index: 1000;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      }
+    /* Effects */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+}
 
-      .header.scrolled {
-        background: rgba(255, 255, 255, 0.98);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        border-bottom-color: rgba(229, 231, 235, 1);
-      }
+/* Reset & Base */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: 'Inter', sans-serif; color: var(--text-main); background-color: var(--bg-light); line-height: 1.6; overflow-x: hidden; }
+a { text-decoration: none; color: inherit; transition: color 0.2s ease; }
+ul { list-style: none; }
+img { max-width: 100%; height: auto; display: block; }
 
-      /* Header logos - above navigation */
-      .header-logos {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0.75rem 0;
-        gap: 3rem;
-        border-bottom: 1px solid rgba(229, 231, 235, 0.5);
-      }
+/* Utility Classes */
+.container { max-width: var(--container-width); margin: 0 auto; padding: 0 1.5rem; }
+.section { padding: 4rem 0; position: relative; }
+.text-center { text-align: center; }
+.text-accent { color: var(--accent); }
+.font-bold { font-weight: 700; }
 
-      .header-logo {
-        height: 45px;
-        width: auto;
-        object-fit: contain;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
-      }
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; transition: all 0.2s ease; cursor: pointer; border: none; gap: 0.5rem; }
+.btn-primary { background: var(--gradient-accent); color: white; box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(6, 182, 212, 0.4); }
 
-      .header-logo:hover {
-        transform: scale(1.05);
-        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
-      }
+/* Header & Nav */
+.header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 0, 0, 0.05); transition: all 0.3s ease; }
+.header__top { background: var(--bg-light); border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding: 0.75rem 0; }
+.header__logos { display: flex; justify-content: center; align-items: center; gap: 3rem; flex-wrap: wrap; }
+.header__logo-img { height: 60px; width: auto; transition: transform 0.3s ease; }
+.header__logo-img:hover { transform: scale(1.05); }
 
-      .header-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 12px 0;
-        position: relative;
-      }
+.nav { height: var(--header-height); display: flex; align-items: center; justify-content: center; }
+.nav__menu { display: flex; gap: 2.5rem; align-items: center; margin: 0; padding: 0; }
+.nav__item { position: relative; }
+.nav__link { font-weight: 500; color: var(--text-main); position: relative; padding: 0.5rem 0; font-size: 0.95rem; cursor: pointer; display: flex; align-items: center; gap: 0.25rem; }
+.nav__link:hover { color: var(--indigo); }
+.nav__link i { font-size: 0.75rem; opacity: 0.6; margin-top: 1px; }
 
-      /* Logo section in header */
-      .logo-section {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
+/* Dropdowns */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: white;
+    min-width: 240px;
+    box-shadow: var(--shadow-lg);
+    border-radius: var(--radius-lg);
+    padding: 0.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 100;
+}
+.nav__item:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+.dropdown-item { display: block; padding: 0.75rem 1rem; color: var(--text-main); border-radius: 0.5rem; font-size: 0.9rem; transition: background 0.1s; }
+.dropdown-item:hover { background: var(--bg-light); color: var(--indigo); }
 
-      .logo-text h1 {
-        font-size: 18px;
-        font-weight: 700;
-        color: #1f2937;
-        line-height: 1.2;
-        letter-spacing: -0.025em;
-      }
+/* Mobile Menu */
+.nav__toggle { display: none; font-size: 1.5rem; background: none; border: none; color: var(--text-main); cursor: pointer; position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); }
+.nav__mobile-view { display: none; }
 
-      .logo-text p {
-        font-size: 12px;
-        color: #6b7280;
-        line-height: 1.2;
-        font-weight: 500;
-      }
+/* Section Header */
+.section-header { text-align: center; margin-bottom: 2.5rem; }
+.section-title { font-size: 2.25rem; font-weight: 800; color: var(--primary); margin-bottom: 0.5rem; }
+.section-title span { color: var(--accent); }
+.section-desc { max-width: 700px; margin: 0 auto; color: var(--text-muted); }
 
-      /* Navigation styles */
-      .navigation {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
-      }
+/* Footer */
+.footer { background: var(--primary); color: #cbd5e1; padding: 4rem 0 2rem; border-top: 1px solid rgba(255, 255, 255, 0.05); }
+.footer__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem; }
+.footer h4 { color: white; font-size: 1.25rem; margin-bottom: 1.5rem; }
+.footer a { color: #94a3b8; }
+.footer a:hover { color: var(--accent); }
+.footer__bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.875rem; }
 
-      .nav-link {
-        color: #4b5563;
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 15px;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        padding: 8px 0;
-      }
+/* 
+ * NIIS 2026 Specific Styles (Upgraded Design)
+ */
+.main-content { padding-top: 120px; min-height: 80vh; }
 
-      .nav-link:hover,
-      .nav-link.active {
-        color: #3b82f6;
-      }
+/* Hero Section Styles (Fixed & Upgraded) */
+/* Added enough top padding to clear the 80px fixed header */
+.hero { 
+    padding-top: calc(var(--header-height) + 10rem); 
+    padding-bottom: 4rem; 
+    padding-left: 1.5rem; 
+    padding-right: 1.5rem; 
+    background: var(--gradient-hero); 
+    position: relative; 
+    overflow: hidden; 
+    margin-bottom: 2rem; 
+    color: white; /* Important: Text is white on dark bg */
+}
+/* Radial glow effects */
+.hero::before { 
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; 
+    background-image: radial-gradient(circle at 20% 30%, rgba(6, 182, 212, 0.15) 0%, transparent 40%), 
+                      radial-gradient(circle at 80% 70%, rgba(79, 70, 229, 0.15) 0%, transparent 40%); 
+    pointer-events: none; 
+}
 
-      .nav-link::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: linear-gradient(90deg, #3b82f6, #1e40af);
-        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        border-radius: 1px;
-      }
+.hero__content { display: flex; flex-direction: column; align-items: center; gap: 2rem; position: relative; z-index: 10; text-align: center; } 
+.hero__text { max-width: 900px; margin: 0 auto; text-align: center; }
+.hero__badge { 
+    display: inline-flex; align-items: center; gap: 0.5rem; 
+    background: rgba(255, 255, 255, 0.1); /* Lighter on dark bg */
+    color: #cbd5e1; 
+    font-size: 0.85rem; font-weight: 600; padding: 0.5rem 1rem; border-radius: 99px; margin-bottom: 1.5rem; 
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+}
+.hero__title { 
+    font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.02em; 
+    color: white; /* White text for contrast */
+}
+.hero__title .text-accent { color: var(--accent); } /* Ensure accent color */
 
-      .nav-link:hover::after,
-      .nav-link.active::after {
-        width: 100%;
-      }
+.hero__subtitle { font-size: 1.25rem; color: #cbd5e1; line-height: 1.7; margin-bottom: 0; }
 
-      /* Dropdown navigation */
-      .nav-dropdown {
-        position: relative;
-        display: inline-block;
-      }
+/* 
+ * SPECIAL SPEAKER CARD STYLES FOR KEYNOTE PAGE (Horizontal & Square)
+ */
+.committee-wrapper { padding-bottom: 4rem; }
 
-      .dropdown-menu {
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        background: white;
-        min-width: 250px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        border-radius: 12px;
-        padding: 8px 0;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateX(-50%) translateY(-10px);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: 1000;
-        border: 1px solid #e5e7eb;
-        backdrop-filter: blur(10px);
-      }
+/* Grid for Keynote - 2 Column Layout */
+.speaker-grid-2col { 
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(550px, 1fr)); /* 2 columns on large screens */
+    gap: 2.5rem;
+    margin: 0 auto;
+    max-width: var(--container-width);
+}
 
-      .nav-dropdown:hover .dropdown-menu {
-        opacity: 1;
-        visibility: visible;
-        transform: translateX(-50%) translateY(0);
-      }
+/* Grid for Expert Talk - 3 Column Layout */
+.speaker-grid-3col { 
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* 3 columns on large screens (1200 / 3 approx 400) */
+    gap: 2rem;
+    margin: 0 auto;
+    max-width: var(--container-width);
+}
 
-      .dropdown-item {
-        display: block;
-        padding: 12px 20px;
-        color: #4b5563;
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 14px;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        border-left: 3px solid transparent;
-      }
+/* Base Card Style */
+.speaker-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+    width: 100%;
+    display: flex; /* Horizontal Layout */
+    flex-direction: row;
+    align-items: center; /* Center Vertically */
+    overflow: hidden;
+    position: relative; /* For topic badge positioning if needed */
+}
 
-      .dropdown-item:hover {
-        background: linear-gradient(90deg, #f8fafc, #e0e7ff);
-        color: #3b82f6;
-        border-left-color: #3b82f6;
-        transform: translateX(4px);
-      }
+.speaker-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-left: 5px solid var(--accent); /* Accent on left hover */
+}
 
-      /* CTA Button */
-      .cta-button {
-        background: linear-gradient(135deg, #3b82f6, #1e40af);
-        color: white;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 12px 24px;
-        border-radius: 8px;
-        font-weight: 600;
-        font-size: 14px;
-        cursor: pointer;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-      }
+/* Image Container */
+.speaker-img-container {
+    flex-shrink: 0;
+    line-height: 0;
+    overflow: hidden;
+    background: #f1f5f9;
+    
+    /* NEW STYLING REQUEST */
+    margin-left: 1.5rem; /* Left Margin */
+    border-radius: 16px; /* Rounded corners */
+    /* Square shape is maintained by width/height in variants below */
+}
 
-      .cta-button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
-        background: linear-gradient(135deg, #2563eb, #1d4ed8);
-      }
+.speaker-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
 
-      /* Mobile menu toggle */
-      .mobile-menu-toggle {
-        display: none;
+.speaker-card:hover .speaker-img-container img {
+    transform: scale(1.05);
+}
+
+/* Info Container */
+.speaker-info {
+    padding: 1.5rem 2rem;
+    flex-grow: 1;
+    text-align: left; /* Align text to left */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Topic Badge Highlight */
+.speaker-topic {
+    display: inline-block;
+    background: rgba(6, 182, 212, 0.1);
+    color: var(--accent-hover);
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 99px;
+    margin-bottom: 0.75rem;
+    align-self: flex-start;
+    border: 1px solid rgba(6, 182, 212, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.speaker-info h4 {
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+}
+
+.speaker-info .position {
+    color: var(--text-main);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    display: block;
+}
+
+.speaker-info .location {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.speaker-info .location i {
+    color: var(--indigo);
+}
+
+/* SIZE VARIANTS */
+
+/* Keynote Speakers (Larger) */
+.card-keynote {
+    min-height: 250px;
+}
+
+.card-keynote .speaker-img-container {
+    width: 250px;
+    height: 250px;
+}
+
+.card-keynote .speaker-info h4 {
+    font-size: 1.75rem;
+}
+
+.card-keynote .speaker-info .position {
+    font-size: 1.05rem;
+}
+
+/* Expert Speakers (Standard) */
+.card-expert {
+    min-height: 180px;
+}
+
+.card-expert .speaker-img-container {
+    width: 160px; /* Slightly smaller to fit 3 in row */
+    height: 160px;
+}
+
+.card-expert .speaker-info h4 {
+    font-size: 1.25rem;
+}
+
+.card-expert .speaker-info .position {
+    font-size: 0.95rem;
+}
+
+
+/* Responsive */
+@media (max-width: 1280px) {
+    /* Step down column count if too tight */
+    .speaker-grid-3col {
+        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); /* Fall back to 2 cols */
+    }
+}
+
+@media (max-width: 900px) {
+    /* Stack vertically on mobile/tablet */
+    .speaker-grid-2col,
+    .speaker-grid-3col {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Stack card contents vertically on mobile */
+    .speaker-card {
         flex-direction: column;
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 8px;
-        border-radius: 6px;
-        transition: all 0.3s ease;
-      }
-
-      .mobile-menu-toggle:hover {
-        background: rgba(59, 130, 246, 0.1);
-      }
-
-      .mobile-menu-toggle span {
-        width: 24px;
-        height: 3px;
-        background: #4b5563;
-        margin: 3px 0;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        border-radius: 2px;
-      }
-
-      .mobile-menu-toggle.active span:nth-child(1) {
-        transform: rotate(-45deg) translate(-5px, 6px);
-        background: #3b82f6;
-      }
-
-      .mobile-menu-toggle.active span:nth-child(2) {
-        opacity: 0;
-      }
-
-      .mobile-menu-toggle.active span:nth-child(3) {
-        transform: rotate(45deg) translate(-5px, -6px);
-        background: #3b82f6;
-      }
-
-      /* ===== KEYNOTE SECTION STYLES ===== */
-      .keynote {
-        background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
-        padding: 180px 0 80px; /* Increased top padding for fixed header */
-        min-height: 100vh;
-        position: relative;
-      }
-
-      .keynote::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23000" opacity="0.02"/><circle cx="75" cy="75" r="1" fill="%23000" opacity="0.02"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-        pointer-events: none;
-      }
-
-      .keynote-section {
-        margin-bottom: 5rem;
-        position: relative;
-        z-index: 1;
-      }
-
-      .keynote-section:last-child {
-        margin-bottom: 0;
-      }
-
-      /* Section headers */
-      .section-header {
         text-align: center;
-        margin-bottom: 4rem;
-        animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .section-title {
-        font-size: clamp(2rem, 5vw, 3rem);
-        font-weight: 800;
-        color: #1f2937;
-        margin-bottom: 1rem;
-        letter-spacing: -0.025em;
-      }
-
-      .section-divider {
-        width: 80px;
-        height: 4px;
-        background: linear-gradient(90deg, #3b82f6, #1e40af);
-        margin: 0 auto 2rem;
-        border-radius: 2px;
-      }
-
-      .section-subtitle {
-        font-size: 1.125rem;
-        color: #6b7280;
-        max-width: 600px;
-        margin: 0 auto;
-        line-height: 1.6;
-      }
-
-      .keynote-section-title {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #1f2937;
+    }
+    
+    .speaker-img-container {
+        width: 100% !important; /* Full width image */
+        height: 300px !important;
+        margin-left: 0; /* Remove margin on mobile */
+        border-radius: 0; /* Reset radius for full width look or keep it? user asked for rounding */
+        border-radius: 16px 16px 0 0; /* Top rounded on mobile */
+    }
+    
+    .speaker-info {
         text-align: center;
-        margin-bottom: 3rem;
-        position: relative;
-      }
-
-      .keynote-section-title::after {
-        content: "";
-        position: absolute;
-        bottom: -12px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 60px;
-        height: 3px;
-        background: linear-gradient(90deg, #3b82f6, #1e40af);
-        border-radius: 2px;
-      }
-
-      /* ===== SPEAKER GRID LAYOUTS ===== */
-      .keynote-grid {
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
-        margin-bottom: 2rem;
-        flex-wrap: wrap; /* Allow wrapping for mobile */
-      }
-
-      .expert-grid {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 2rem;
-      }
-
-      /* ===== SPEAKER CARD STYLES ===== */
-      .speaker-card {
-        background: white;
-        border-radius: 20px;
-        padding: 3rem;
-        text-align: center;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        border: 2px solid #dbeafe;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
-        max-width: 450px;
-        width: 100%;
-        animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        opacity: 0;
-        transform: translateY(30px);
-        background: linear-gradient(135deg, #ffffff, #f8fafc);
-      }
-
-      .speaker-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 6px;
-        background: linear-gradient(90deg, #3b82f6, #1e40af, #7c3aed);
-        transform: scaleX(0);
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .speaker-card:hover {
-        transform: translateY(-15px);
-        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
-        border-color: #3b82f6;
-      }
-
-      .speaker-card:hover::before {
-        transform: scaleX(1);
-      }
-
-      /* Speaker image */
-      .speaker-image {
-        width: 200px;
-        height: 200px;
-        margin: 0 auto 2rem;
-        border-radius: 50%;
-        overflow: hidden;
-        border: 6px solid #3b82f6;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
-      }
-
-      .speaker-card:hover .speaker-image {
-        transform: scale(1.05);
-        box-shadow: 0 12px 30px rgba(59, 130, 246, 0.4);
-      }
-
-      .speaker-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .speaker-card:hover .speaker-image img {
-        transform: scale(1.1);
-      }
-
-      /* Speaker information */
-      .speaker-info h4 {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #1e40af;
-        margin-bottom: 0.75rem;
-        line-height: 1.3;
-      }
-
-      .speaker-info .position {
-        color: #4b5563;
-        font-size: 1rem;
-        font-weight: 600;
-        margin-bottom: 0.5rem;
-        line-height: 1.4;
-      }
-
-      .speaker-info .affiliation {
-        color: #6b7280;
-        font-size: 0.875rem;
-        font-weight: 500;
-        margin-bottom: 0.25rem;
-        line-height: 1.4;
-      }
-
-      .speaker-info .location {
-        color: #9ca3af;
-        font-size: 0.8125rem;
-        font-weight: 400;
-        margin-top: 1rem;
-        font-style: italic;
-      }
-
-      /* Special styling for keynote speakers */
-      .keynote-speaker {
-        background: linear-gradient(135deg, #ffffff, #f0f9ff);
-        border: 3px solid #3b82f6;
-      }
-
-      .keynote-speaker .speaker-image {
-        border: 6px solid #1e40af;
-        box-shadow: 0 10px 25px rgba(30, 64, 175, 0.4);
-      }
-
-      .keynote-speaker .speaker-info h4 {
-        font-size: 1.75rem;
-        background: linear-gradient(135deg, #1e40af, #3b82f6);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      /* Expert talk speakers */
-      .expert-speaker {
-        background: linear-gradient(135deg, #ffffff, #fefbff);
-        border: 3px solid #7c3aed;
-      }
-
-      .expert-speaker .speaker-image {
-        border: 6px solid #7c3aed;
-        box-shadow: 0 10px 25px rgba(124, 58, 237, 0.4);
-      }
-
-      .expert-speaker .speaker-info h4 {
-        font-size: 1.5rem;
-        color: #7c3aed;
-      }
-
-      /* ===== FOOTER STYLES ===== */
-      .footer {
-        background: linear-gradient(135deg, #1f2937, #111827);
-        color: white;
-        padding: 4rem 0 2rem;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .footer::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="footerPattern" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23ffffff" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23footerPattern)"/></svg>');
-        pointer-events: none;
-      }
-
-      .footer-content {
-        position: relative;
-        z-index: 1;
-        text-align: center;
-      }
-
-      .footer-logo {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-        margin-bottom: 2rem;
-      }
-
-      .footer .logo-icon {
-        width: 40px;
-        height: 40px;
-        background: linear-gradient(135deg, #3b82f6, #1e40af);
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-      }
-
-      .footer .logo-text h3 {
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: white;
-        line-height: 1.2;
-      }
-
-      .footer .logo-text p {
-        font-size: 0.875rem;
-        color: #9ca3af;
-        line-height: 1.2;
-      }
-
-      /* Contact Information Grid */
-      /* Force location box to full width */
-      .footer-contact-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr); /* fixed 3 columns for laptop */
-        gap: 2rem;
-        margin-bottom: 3rem;
-        max-width: 1000px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .location-item {
-        grid-column: 1 / 4; /* span all 3 columns */
-      }
-
-      .footer-contact-item {
-        background: rgba(255, 255, 255, 0.05);
         padding: 1.5rem;
-        border-radius: 12px;
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .footer-contact-item:hover {
-        background: rgba(255, 255, 255, 0.08);
-        transform: translateY(-2px);
-      }
-
-      .footer-contact-item h4 {
-        font-size: 1rem;
-        font-weight: 600;
-        color: white;
-        margin-bottom: 0.75rem;
-        display: flex;
         align-items: center;
-        gap: 0.5rem;
-      }
+    }
 
-      .footer-contact-item i {
-        color: #3b82f6;
-        font-size: 1.1rem;
-      }
+    .speaker-topic {
+        margin-bottom: 1rem;
+    }
 
-      .footer-contact-item p {
-        color: #9ca3af;
-        font-size: 0.875rem;
-        line-height: 1.5;
-        margin-bottom: 0.5rem;
-      }
+    .card-keynote .speaker-info h4 { font-size: 1.5rem; }
+    .speaker-info .location { justify-content: center; }
+}
 
-      .footer-contact-item a {
-        color: #3b82f6;
-        text-decoration: none;
-        transition: color 0.3s ease;
-      }
-
-      .footer-contact-item a:hover {
-        color: #60a5fa;
-      }
-
-      .footer-divider {
-        width: 100%;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, #374151, transparent);
-        margin-bottom: 2rem;
-      }
-
-      .footer-bottom p {
-        color: #9ca3af;
-        margin-bottom: 0.5rem;
-      }
-
-      .footer-credit {
-        color: #6b7280;
-        font-size: 0.875rem;
-        font-weight: 500;
-      }
-
-      /* ===== ANIMATIONS ===== */
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      /* ===== DECORATIVE BACKGROUND ELEMENTS (LAPTOP ONLY) ===== */
-      @media (min-width: 1024px) {
-        .keynote::after {
-          content: "";
-          position: absolute;
-          top: 25%;
-          right: -3%;
-          width: 150px;
-          height: 150px;
-          background: radial-gradient(
-            circle,
-            rgba(59, 130, 246, 0.1) 0%,
-            transparent 70%
-          );
-          border-radius: 50%;
-          z-index: 0;
-        }
-
-        .keynote-section:nth-child(2)::before {
-          content: "";
-          position: absolute;
-          top: -2%;
-          left: -2%;
-          width: 120px;
-          height: 120px;
-          background: linear-gradient(
-            45deg,
-            rgba(124, 58, 237, 0.1),
-            transparent
-          );
-          border-radius: 50%;
-          z-index: 0;
-        }
-      }
-
-      /* ===== RESPONSIVE DESIGN ===== */
-
-      /* ===== TABLET VIEW (max-width: 1024px) ===== */
-      @media (max-width: 1024px) {
-        /* Footer Contact Grid - Tablet Layout */
-        .footer-contact-grid {
-          grid-template-columns: 1fr;
-          gap: 1.5rem;
-        }
-
-        .location-item {
-          grid-column: auto;
-        }
-      }
-
-      /* ===== MOBILE VIEW (max-width: 768px) ===== */
-      @media (max-width: 768px) {
-        /* Mobile navigation */
-        .header-logos {
-          gap: 2rem;
-          padding: 0.5rem 0;
-        }
-
-        .header-logo {
-          height: 35px;
-        }
-
-        .navigation {
-          display: none;
-          position: absolute;
-          top: 100%;
-          left: 0;
-          right: 0;
-          background: rgba(255, 255, 255, 0.98);
-          backdrop-filter: blur(20px);
-          flex-direction: column;
-          padding: 2rem;
-          border-top: 1px solid #e5e7eb;
-          gap: 1rem;
-          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .navigation.active {
-          display: flex;
-        }
-
-        .mobile-menu-toggle {
-          display: flex;
-        }
-
-        /* Keynote Section Mobile Fix */
-        .keynote {
-          padding: 200px 0 60px; /* Increased padding to prevent navbar overlap */
-        }
-
-        .keynote-section {
-          margin-bottom: 3rem;
-        }
-
-        .keynote-section-title {
-          font-size: 1.75rem;
-          margin-bottom: 2rem;
-        }
-
-        /* Single Column Layout for Mobile */
-        .keynote-grid {
-          flex-direction: column;
-          align-items: center;
-          gap: 2rem;
-        }
-
-        .expert-grid {
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .speaker-card {
-          padding: 2rem;
-          max-width: 350px;
-          width: 100%;
-        }
-
-        .speaker-image {
-          width: 150px;
-          height: 150px;
-        }
-
-        .speaker-info h4 {
-          font-size: 1.25rem;
-        }
-
-        .keynote-speaker .speaker-info h4 {
-          font-size: 1.375rem;
-        }
-
-        /* Mobile Footer - Vertical Layout */
-        .footer {
-          padding: 3rem 0 1.5rem;
-        }
-
-        .footer-content {
-          padding: 0 1rem;
-        }
-
-        .footer-logo {
-          flex-direction: column;
-          align-items: center;
-          gap: 8px;
-          margin-bottom: 1.5rem;
-        }
-
-        .footer-contact-grid {
-          grid-template-columns: 1fr;
-          gap: 1rem;
-        }
-
-        .footer-contact-item {
-          padding: 1rem;
-          text-align: center;
-        }
-
-        .footer-contact-item h4 {
-          font-size: 0.95rem;
-          margin-bottom: 0.5rem;
-        }
-
-        .footer-contact-item p {
-          font-size: 0.85rem;
-          line-height: 1.4;
-        }
-
-        .location-item {
-          margin-bottom: 0.5rem;
-        }
-      }
-
-      /* ===== SMALL MOBILE VIEW (max-width: 480px) ===== */
-      @media (max-width: 480px) {
-        .container {
-          padding: 0 16px;
-        }
-
-        .keynote {
-          padding: 180px 0 40px; /* Adjusted for smaller screens */
-        }
-
-        .keynote-section-title {
-          font-size: 1.5rem;
-        }
-
-        .speaker-card {
-          max-width: 300px;
-          padding: 1.5rem;
-        }
-
-        .speaker-image {
-          width: 120px;
-          height: 120px;
-        }
-
-        .speaker-info h4 {
-          font-size: 1.125rem;
-        }
-
-        .keynote-speaker .speaker-info h4 {
-          font-size: 1.25rem;
-        }
-
-        /* Mobile Footer Optimizations */
-        .footer {
-          padding: 3rem 0 1.5rem;
-        }
-
-        .footer-content {
-          padding: 0 1rem;
-        }
-
-        .footer-logo {
-          flex-direction: column;
-          align-items: center;
-          gap: 8px;
-          margin-bottom: 1.5rem;
-        }
-
-        .footer-contact-grid {
-          grid-template-columns: 1fr;
-          gap: 1rem;
-        }
-
-        .footer-contact-item {
-          padding: 1rem;
-          text-align: center;
-        }
-
-        .footer-contact-item h4 {
-          font-size: 0.95rem;
-          margin-bottom: 0.5rem;
-        }
-
-        .footer-contact-item p {
-          font-size: 0.85rem;
-          line-height: 1.4;
-        }
-
-        .location-item {
-          margin-bottom: 0.5rem;
-        }
-      }
-
-      /* Extra Small Devices (Phones) */
-      @media (max-width: 480px) {
-        .footer {
-          padding: 2rem 0 1rem;
-        }
-
-        .footer-content {
-          padding: 0 1rem;
-        }
-
-        .footer-contact-grid {
-          grid-template-columns: 1fr;
-          gap: 0.75rem;
-        }
-
-        .footer-contact-item {
-          padding: 0.75rem;
-          text-align: center;
-        }
-
-        .footer-logo {
-          gap: 6px;
-          margin-bottom: 1rem;
-        }
-
-        .footer-contact-item h4 {
-          font-size: 0.9rem;
-        }
-
-        .footer-contact-item p {
-          font-size: 0.8rem;
-        }
-      }
-
-      /* ===== ACCESSIBILITY AND FOCUS STYLES ===== */
-      button:focus,
-      a:focus {
-        outline: 2px solid #3b82f6;
-        outline-offset: 2px;
-      }
-
-      ::selection {
-        background: #dbeafe;
-        color: #1e40af;
-      }
+@media (max-width: 1024px) {
+    .header__top { display: none; }
+    .nav { position: relative; justify-content: center; padding: 0.5rem 1rem; height: 80px; } 
+    .nav__menu { display: none; }
+    .nav__toggle { display: block; position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); font-size: 1.5rem; }
+    
+    .mobile-logos { display: flex !important; align-items: center; justify-content: space-between; width: 100%; padding-right: 3.5rem; }
+    .mobile-logo-img { height: 55px; width: auto; max-width: 22%; object-fit: contain; }
+    
+    .hero__title { font-size: 2.5rem; }
+    
+    /* Mobile Nav Slide-out Style */
+    .nav__mobile-view {
+        position: fixed; top: 0; right: 0; bottom: 0; width: 85%; max-width: 320px; background: white; z-index: 2000;
+        padding: 2rem; box-shadow: -10px 0 30px rgba(0,0,0,0.1); transform: translateX(100%); transition: transform 0.3s ease;
+        display: flex; flex-direction: column; overflow-y: auto;
+    }
+    .nav__mobile-view.active { transform: translateX(0); }
+    .mobile-menu-header { display: flex; justify-content: flex-end; margin-bottom: 2rem; }
+    .mobile-close-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main); }
+    
+    .mobile-link-group { opacity: 1; }
+    .nav__mobile-link { font-size: 1.1rem; font-weight: 600; display: block; padding: 0.75rem 0; border-bottom: 1px solid #f1f5f9; color: var(--primary); display: flex; justify-content: space-between; align-items: center; }
+    .mobile-submenu { display: none; padding-left: 1rem; background: #f8fafc; margin-bottom: 0.5rem; border-radius: 0.5rem; }
+    .mobile-submenu.active { display: block; }
+    .mobile-sublink { display: block; padding: 0.6rem 0; font-size: 0.95rem; color: var(--text-muted); }
+    .mobile-dropdown-icon { transition: transform 0.2s; font-size: 0.9rem; }
+    .nav__mobile-link.active .mobile-dropdown-icon { transform: rotate(180deg); }
+}
     </style>
-  </head>
+</head>
 
-  <body>
-    <header class="header" id="header">
-      <div class="container">
-        <!-- Header logos above navigation -->
-        <div class="header-logos">
-          <div class="logo-section">
-            <img src="logos/Niis2026.png" alt="NIIS 2026 Logo" class="header-logo" style="max-width: 80px; height: auto;" />
-          </div>
-          <img src="logos/cvm.png" alt="CVM Logo" class="header-logo" style="max-width: 80px; height: auto;" />
-          <img src="logos/gcetlogo.png" alt="GCET Logo" class="header-logo" style="max-width: 80px; height: auto;" />
-          <img
-            src="logos/CVM-Logo (2).png"
-            alt="CVM Extended Logo"
-            class="header-logo"
-            style="max-width: 80px; height: auto;"
-          />
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container header__logos">
+                <img src="logos/Niis2026.png" alt="NIIS 2026" class="header__logo-img">
+                <img src="logos/cvm.png" alt="CVM" class="header__logo-img">
+                <img src="logos/gcetlogo.png" alt="GCET" class="header__logo-img">
+                <img src="logos/CVM-Logo (2).png" alt="CVM Extended" class="header__logo-img">
+            </div>
         </div>
+        
+        <div class="container">
+            <nav class="nav">
+                <!-- Mobile Logos (Hidden on Desktop) -->
+                <div class="mobile-logos" style="display: none;">
+                    <img src="logos/Niis2026.png" alt="NIIS 2026" class="mobile-logo-img">
+                    <img src="logos/cvm.png" alt="CVM" class="mobile-logo-img">
+                    <img src="logos/gcetlogo.png" alt="GCET" class="mobile-logo-img">
+                    <img src="logos/CVM-Logo (2).png" alt="CVM Extended" class="mobile-logo-img">
+                </div>
 
-          <!-- Main navigation -->
-          <nav class="navigation" id="navigation">
-            <a href="index.html" class="nav-link">Home</a>
+                <!-- Desktop Menu -->
+                <ul class="nav__menu">
+                    <li class="nav__item"><a href="index.html" class="nav__link">Home</a></li>
+                    
+                    <li class="nav__item">
+                        <span class="nav__link">About <i class="fas fa-chevron-down"></i></span>
+                        <div class="dropdown-menu">
+                            <a href="niis2026.html" class="dropdown-item">About NIIS 2026</a>
+                            <a href="gcet.html" class="dropdown-item">About GCET</a>
+                        </div>
+                    </li>
 
-            <!-- About dropdown -->
-            <div class="nav-dropdown">
-              <a href="index.html#about" class="nav-link">About</a>
-              <div class="dropdown-menu">
-                <a href="niis2026.html" class="dropdown-item">NIIS 2026</a>
-                <a href="gcet.html" class="dropdown-item">GCET</a>
-              </div>
-            </div>
+                    <li class="nav__item">
+                        <span class="nav__link">Committee <i class="fas fa-chevron-down"></i></span>
+                        <div class="dropdown-menu">
+                            <a href="Organizing-committee.html" class="dropdown-item">Organizing Committee</a>
+                            <a href="technical-committee.html" class="dropdown-item">Technical Advisory</a>
+                            <a href="#track-coordinators" class="dropdown-item">Track Coordinators</a>
+                        </div>
+                    </li>
 
-            <!-- Committee dropdown -->
-            <div class="nav-dropdown">
-              <a href="#" class="nav-link">Committee</a>
-              <div class="dropdown-menu">
-                <a href="Organizing-committee.html" class="dropdown-item"
-                  >Organizing Committee</a
-                >
-                <a href="Technical-Committee.html" class="dropdown-item"
-                  >Technical Advisory Committee</a
-                >
-                <a href="#track-coordinators" class="dropdown-item"
-                  >Track Co-ordinators</a
-                >
-              </div>
-            </div>
+                    <li class="nav__item"><a href="keynote.html" class="nav__link">Keynote Speakers</a></li>
 
-            <a href="keynote.html" class="nav-link active">Keynote Speaker</a>
+                    <li class="nav__item">
+                        <span class="nav__link">Submission <i class="fas fa-chevron-down"></i></span>
+                        <div class="dropdown-menu">
+                            <a href="call-for-papers.html" class="dropdown-item">Call for Papers</a>
+                            <a href="#" class="dropdown-item">Author Guidelines</a>
+                            <a href="submission-guidelines.html" class="dropdown-item">Submission Guidelines</a>
+                        </div>
+                    </li>
 
-            <!-- Submission dropdown -->
-            <div class="nav-dropdown">
-              <a href="#" class="nav-link">Submission</a>
-              <div class="dropdown-menu">
-                <a href="call-for-papers.html" class="dropdown-item"
-                  >Call For Papers</a
-                >
-                <a href="#" class="dropdown-item">Author Guidelines</a>
-                <a href="submission-guidelines.html" class="dropdown-item"
-                  >Submission Guidelines</a
-                >
-              </div>
-            </div>
+                    <li class="nav__item">
+                        <span class="nav__link">Registration <i class="fas fa-chevron-down"></i></span>
+                        <div class="dropdown-menu">
+                            <a href="#" class="dropdown-item">Conference Registration</a>
+                            <a href="#" class="dropdown-item">Payment Methods</a>
+                            <a href="#" class="dropdown-item">Registration FAQ</a>
+                        </div>
+                    </li>
 
-            <!-- Registration dropdown -->
-            <div class="nav-dropdown">
-              <a href="#" class="nav-link">Registration</a>
-              <div class="dropdown-menu">
-                <a href="#" class="dropdown-item">Conference Registration</a>
-                <a href="#" class="dropdown-item">Payment Methods</a>
-                <a href="#" class="dropdown-item">Registration FAQ</a>
-              </div>
-            </div>
+                    <li class="nav__item"><a href="contact.html" class="nav__link">Contact</a></li>
+                </ul>
 
-            <a href="#contact" class="nav-link">Contact</a>
-
-            <!-- CTA Button -->
-            <a
-              href="https://forms.gle/poL6xmD6jXPGCveL6"
-              target="_blank"
-              class="cta-button"
-            >
-              <i class="fas fa-user-plus"></i>
-              Register Now
-            </a>
-          </nav>
-
-          <!-- Mobile menu toggle -->
-          <button class="mobile-menu-toggle" id="mobileMenuToggle">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+                <button class="nav__toggle" id="mobile-menu-toggle" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
         </div>
-      </div>
     </header>
 
-    <!-- ===== KEYNOTE SECTION ===== -->
-    <section id="keynote" class="keynote">
-      <div class="container">
-        <!-- Main section header -->
-        <div class="section-header">
-          <h2 class="section-title">Distinguished Speakers</h2>
-          <div class="section-divider"></div>
-          <p class="section-subtitle">
-            Renowned experts sharing their insights and expertise at NIIS 2026
-          </p>
+    <!-- Mobile Nav Slide-out -->
+    <div class="nav__mobile-view" id="mobile-menu">
+        <div class="mobile-menu-header">
+            <button class="mobile-close-btn" id="mobile-menu-close"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <a href="index.html" class="nav__mobile-link">Home</a>
+        
+        <div class="mobile-link-group">
+            <div class="nav__mobile-link mobile-dropdown-trigger">About <i class="fas fa-chevron-down mobile-dropdown-icon"></i></div>
+            <div class="mobile-submenu">
+                <a href="niis2026.html" class="mobile-sublink">About NIIS 2026</a>
+                <a href="gcet.html" class="mobile-sublink">About GCET</a>
+            </div>
         </div>
 
-        <!-- Keynote Speakers Section -->
-        <div class="keynote-section">
-          <h3 class="keynote-section-title">Keynote Speakers</h3>
-          <div class="keynote-grid">
-            <div class="speaker-card keynote-speaker">
-              <div class="speaker-image">
-                <img
-                  src="keynoteImgs/devesh.jpeg"
-                  alt="Prof.(Dr.) Devesh Jinwala"
-                />
-              </div>
-              <div class="speaker-info">
-                <h4>Prof.(Dr.) Devesh Jinwala</h4>
-                <p class="position">Professor</p>
-                <p class="affiliation">Computer Engineering Department</p>
-                <p class="affiliation">SVNIT, Surat</p>
-                <p class="location">Gujarat, India</p>
-              </div>
+        <div class="mobile-link-group">
+            <div class="nav__mobile-link mobile-dropdown-trigger">Committee <i class="fas fa-chevron-down mobile-dropdown-icon"></i></div>
+            <div class="mobile-submenu">
+                <a href="Organizing-committee.html" class="mobile-sublink">Organizing Committee</a>
+                <a href="technical-committee.html" class="mobile-sublink">Technical Advisory</a>
+                <a href="#track-coordinators" class="mobile-sublink">Track Coordinators</a>
             </div>
-
-            <div class="speaker-card keynote-speaker">
-              <div class="speaker-image">
-                <img src="TecnicalImgs/sharnil.jpg" alt="Dr. Sharnil Pandya" />
-              </div>
-              <div class="speaker-info">
-                <h4>Dr Sharnil Pandya</h4>
-                <p class="position">Professor</p>
-                <p class="affiliation">Computer and Information Sciences</p>
-                <p class="affiliation">Northumbria University</p>
-                <p class="location">Tyne, England</p>
-              </div>
-            </div>
-          </div>
         </div>
 
-        <!-- Expert Talk Section -->
-        <div class="keynote-section">
-          <h3 class="keynote-section-title">Expert Talk</h3>
-          <div class="expert-grid">
-            <div class="speaker-card expert-speaker">
-              <div class="speaker-image">
-                <img
-                  src="keynoteImgs/Rahul_Pandya.jpg"
-                  alt="Dr. Rahul Pandya"
-                />
-              </div>
-              <div class="speaker-info">
-                <h4>Dr. Rahul Pandya</h4>
-                <p class="position">Professor</p>
-                <p class="affiliation">
-                  Electronics and Communication Engineering
+        <a href="keynote.html" class="nav__mobile-link">Keynote Speakers</a>
+
+        <div class="mobile-link-group">
+            <div class="nav__mobile-link mobile-dropdown-trigger">Submission <i class="fas fa-chevron-down mobile-dropdown-icon"></i></div>
+            <div class="mobile-submenu">
+                <a href="call-for-papers.html" class="mobile-sublink">Call for Papers</a>
+                <a href="#" class="mobile-sublink">Author Guidelines</a>
+                <a href="submission-guidelines.html" class="mobile-sublink">Submission Guidelines</a>
+            </div>
+        </div>
+
+        <div class="mobile-link-group">
+            <div class="nav__mobile-link mobile-dropdown-trigger">Registration <i class="fas fa-chevron-down mobile-dropdown-icon"></i></div>
+            <div class="mobile-submenu">
+                <a href="#" class="mobile-sublink">Conference Registration</a>
+                <a href="#" class="mobile-sublink">Payment Methods</a>
+                <a href="#" class="mobile-sublink">Registration FAQ</a>
+            </div>
+        </div>
+
+        <a href="contact.html" class="nav__mobile-link">Contact</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero__content">
+            <div class="hero__text">
+                <h1 class="hero__title">
+                    Keynote <span class="text-accent">Speakers</span>
+                </h1>
+                <p class="hero__subtitle">
+                     NIIS 2026 - International Conference
                 </p>
-                <p class="affiliation">IIT Dharwad</p>
-                <p class="location">Karnataka, India</p>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </section>
 
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-logo">
-            <div class="logo-icon">
-              <i class="fas fa-university"></i>
-            </div>
-            <div class="logo-text">
-              <h3>NIIS 2026</h3>
-              <p>International Conference</p>
-            </div>
-          </div>
+    <!-- Main Content -->
+    <main class="main-content" style="padding-top: 0;">
+        <div class="container">
+            
+            <!-- Keynote Speakers -->
+            <div class="committee-wrapper">
+                <div class="section-header">
+                    <h2 class="section-title">Keynote <span class="text-accent">Speakers</span></h2>
+                </div>
+                
+                <!-- 2 Column Grid for Keynote -->
+                <div class="speaker-grid-2col">
+                    
+                    <!-- Speaker 1 (Keynote - Large) -->
+                    <div class="speaker-card card-keynote">
+                        <div class="speaker-img-container">
+                            <img src="keynoteImgs/devesh.jpeg" alt="Prof.(Dr.) Devesh Jinwala">
+                        </div>
+                        <div class="speaker-info">
+                            <div class="speaker-topic">Topic: To Be Announced</div>
+                            <h4>Prof.(Dr.) Devesh Jinwala</h4>
+                            <span class="position">Professor, Computer Engineering Department</span>
+                            <span class="position">SVNIT</span>
+                            <div class="location">
+                                <i class="fas fa-map-marker-alt"></i> Surat, Gujarat, India
+                            </div>
+                        </div>
+                    </div>
 
-          <!-- Contact Information Grid -->
-          <div class="footer-contact-grid">
-            <div class="footer-contact-item">
-              <h4><i class="fas fa-envelope"></i> Email</h4>
-              <p style="font-size: medium">
-                <a href="mailto:niis2026@gcet.ac.in">niis2026@gcet.ac.in</a>
-              </p>
-            </div>
+                    <!-- Speaker 2 (Keynote - Large) -->
+                    <div class="speaker-card card-keynote">
+                        <div class="speaker-img-container">
+                            <img src="TecnicalImgs/sharnil.jpg" alt="Dr Sharnil Pandya">
+                        </div>
+                        <div class="speaker-info">
+                            <div class="speaker-topic">Topic: To Be Announced</div>
+                            <h4>Dr Sharnil Pandya</h4>
+                            <span class="position">Professor, Computer and Information Sciences</span>
+                            <span class="position">Northumbria University</span>
+                            <div class="location">
+                                <i class="fas fa-map-marker-alt"></i> Tyne, England
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="footer-contact-item">
-              <h4><i class="fas fa-phone"></i> Dr. Bhaskar Thakker</h4>
-              <p>
-                <a href="tel:+919574383265" style="font-size: medium"
-                  >+91 9574383265</a
-                >
-              </p>
-              <!-- <p>
-                <a
-                  href="mailto:bhaskarthakkar@gcet.ac.in"
-                  style="font-size: medium"
-                  >bhaskarthakkar@gcet.ac.in</a
-                >
-              </p> -->
-            </div>
-
-            <div class="footer-contact-item">
-              <h4><i class="fas fa-phone"></i> Dr. Priyang Bhatt</h4>
-              <p>
-                <a href="tel:+919879849707" style="font-size: medium"
-                  >+91 9879849707</a
-                >
-              </p>
-              <!-- <p>
-                <a
-                  href="mailto:priyangbhatt@gcet.ac.in"
-                  style="font-size: medium"
-                  >priyangbhatt@gcet.ac.in</a
-                >
-              </p> -->
+                </div>
             </div>
 
-            <div class="footer-contact-item location-item">
-              <h4><i class="fas fa-map-marker-alt"></i> Location</h4>
-              <a
-                href="https://maps.app.goo.gl/TVv7ZMzeciHrsMsM7"
-                target="_blank"
-                style="text-decoration: none"
-              >
-                <p style="font-size: medium; color: #3b82f6">
-                  G H Patel College of Engineering & Technology<br />
-                  Vallabh Vidyanagar, Gujarat, India
-                </p>
-              </a>
+            <!-- Expert Talk -->
+            <div class="committee-wrapper">
+                <div class="section-header">
+                    <h2 class="section-title">Expert <span class="text-accent">Speakers</span></h2>
+                </div>
+                
+                <!-- 3 Column Grid for Expert Talk -->
+                <div class="speaker-grid-3col">
+                    
+                    <!-- Speaker 3 (Expert - Standard) -->
+                    <div class="speaker-card card-expert">
+                        <div class="speaker-img-container">
+                            <img src="keynoteImgs/Rahul_Pandya.jpg" alt="Dr. Rahul Pandya">
+                        </div>
+                        <div class="speaker-info">
+                            <div class="speaker-topic">Topic: To Be Announced</div>
+                            <h4>Dr. Rahul Pandya</h4>
+                            <span class="position">Professor, Electronics and Communication Engineering</span>
+                            <span class="position">IIT Dharwad</span>
+                            <div class="location">
+                                <i class="fas fa-map-marker-alt"></i> Karnataka, India
+                            </div>
+                        </div>
+                    </div>
+
+                     <!-- <div class="speaker-card card-expert">
+                        <div class="speaker-img-container">
+                            <img src="keynoteImgs/Rahul_Pandya.jpg" alt="Dr. Rahul Pandya">
+                        </div>
+                        <div class="speaker-info">
+                            <div class="speaker-topic">Topic: To Be Announced</div>
+                            <h4>Dr. Rahul Pandya</h4>
+                            <span class="position">Professor, Electronics and Communication Engineering</span>
+                            <span class="position">IIT Dharwad</span>
+                            <div class="location">
+                                <i class="fas fa-map-marker-alt"></i> Karnataka, India
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="speaker-card card-expert">
+                        <div class="speaker-img-container">
+                            <img src="keynoteImgs/Rahul_Pandya.jpg" alt="Dr. Rahul Pandya">
+                        </div>
+                        <div class="speaker-info">
+                            <div class="speaker-topic">Topic: To Be Announced</div>
+                            <h4>Dr. Rahul Pandya</h4>
+                            <span class="position">Professor, Electronics and Communication Engineering</span>
+                            <span class="position">IIT Dharwad</span>
+                            <div class="location">
+                                <i class="fas fa-map-marker-alt"></i> Karnataka, India
+                            </div>
+                        </div>
+                    </div> -->
+
+                </div>
             </div>
-          </div>
 
-          <div class="footer-divider"></div>
-
-          <div class="footer-bottom">
-            <p>&copy; 2026 NIIS Conference. All rights reserved.</p>
-            <p class="footer-credit">
-              Designed & Developed by Student Team of CP & IT GCET College
-            </p>
-          </div>
         </div>
-      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div>
+                    <h4><i class="fas fa-map-marker-alt text-accent"></i> Venue</h4>
+                    <p>G H Patel College of Engineering & Technology</p>
+                    <p>Vallabh Vidyanagar, Gujarat, India</p>
+                </div>
+                <div>
+                    <h4><i class="fas fa-envelope text-accent"></i> Contact</h4>
+                    <p>Dr. Bhaskar Thakker: +91 9574383265</p>
+                    <p>Dr. Priyang Bhatt: +91 9879849707</p>
+                    <br>
+                    <a href="mailto:niis2026@gcet.ac.in">niis2026@gcet.ac.in</a>
+                </div>
+                 <div>
+                    <h4><i class="fas fa-link text-accent"></i> Quick Links</h4>
+                    <ul style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <li><a href="submission-guidelines.html">Submission Guidelines</a></li>
+                        <li><a href="call-for-papers.html">Call for Papers</a></li>
+                        <li><a href="#">Registration</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2026 NIIS Conference. All Rights Reserved.</p>
+            </div>
+        </div>
     </footer>
 
-    <!-- ===== JAVASCRIPT ===== -->
+    <!-- JavaScript -->
     <script>
-      /**
-       * ===== KEYNOTE SPEAKERS PAGE JAVASCRIPT =====
-       * Handles navigation, animations, and responsive behavior
-       */
+        // Use the same script as index.html / niis2026.html
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleBtn = document.getElementById('mobile-menu-toggle');
+            const closeBtn = document.getElementById('mobile-menu-close');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const dropdownTriggers = document.querySelectorAll('.mobile-dropdown-trigger');
 
-      class KeynoteApp {
-        constructor() {
-          this.init();
-        }
-
-        /**
-         * Initialize the application
-         */
-        init() {
-          this.setupEventListeners();
-          this.initializeScrollAnimations();
-          this.initializeNavigation();
-          console.log("🚀 Keynote Speakers Page Initialized!");
-        }
-
-        /**
-         * Set up all event listeners
-         */
-        setupEventListeners() {
-          // Mobile menu toggle
-          const mobileMenuToggle = document.getElementById("mobileMenuToggle");
-          const navigation = document.getElementById("navigation");
-
-          if (mobileMenuToggle && navigation) {
-            mobileMenuToggle.addEventListener("click", () => {
-              navigation.classList.toggle("active");
-              mobileMenuToggle.classList.toggle("active");
+            // Open Menu
+            toggleBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('active');
+                document.body.style.overflow = 'hidden';
             });
-          }
 
-          // Smooth scrolling for navigation links
-          document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-            anchor.addEventListener("click", (e) => {
-              e.preventDefault();
-              const target = document.querySelector(
-                anchor.getAttribute("href")
-              );
-              if (target) {
-                const headerHeight =
-                  document.getElementById("header").offsetHeight;
-                const targetPosition = target.offsetTop - headerHeight - 20;
+            // Close Menu
+            closeBtn.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
 
-                window.scrollTo({
-                  top: targetPosition,
-                  behavior: "smooth",
+            // Mobile Dropdowns
+            dropdownTriggers.forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    const parent = trigger.parentElement;
+                    const submenu = parent.querySelector('.mobile-submenu');
+                    const link = trigger; // The clicked div itself
+                    
+                    submenu.classList.toggle('active');
+                    link.classList.toggle('active'); // Rotates icon
                 });
-
-                // Close mobile menu if open
-                navigation.classList.remove("active");
-                mobileMenuToggle.classList.remove("active");
-              }
             });
-          });
 
-          // Header scroll effect
-          window.addEventListener("scroll", () => {
-            this.handleScroll();
-          });
-
-          // Close mobile menu when clicking outside
-          document.addEventListener("click", (e) => {
-            if (
-              !document.getElementById("header").contains(e.target) &&
-              navigation.classList.contains("active")
-            ) {
-              navigation.classList.remove("active");
-              mobileMenuToggle.classList.remove("active");
-            }
-          });
-        }
-
-        /**
-         * Handle scroll events for header styling
-         */
-        handleScroll() {
-          const header = document.getElementById("header");
-          const scrolled = window.scrollY > 50;
-          header.classList.toggle("scrolled", scrolled);
-        }
-
-        /**
-         * Initialize scroll-based animations
-         */
-        initializeScrollAnimations() {
-          const observerOptions = {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px",
-          };
-
-          const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.style.animationPlayState = "running";
-              }
+            // Close when clicking outside
+            document.addEventListener('click', (e) => {
+                if (mobileMenu.classList.contains('active') && 
+                    !mobileMenu.contains(e.target) && 
+                    !toggleBtn.contains(e.target)) {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
             });
-          }, observerOptions);
-
-          // Observe speaker cards for animations
-          document.querySelectorAll(".speaker-card").forEach((card, index) => {
-            card.style.animationDelay = `${0.2 + index * 0.3}s`;
-            card.style.animationPlayState = "paused";
-            observer.observe(card);
-          });
-        }
-
-        /**
-         * Initialize navigation functionality
-         */
-        initializeNavigation() {
-          // Add any navigation-specific initialization here
-        }
-      }
-
-      /**
-       * ===== APPLICATION INITIALIZATION =====
-       */
-      document.addEventListener("DOMContentLoaded", () => {
-        new KeynoteApp();
-      });
-
-      /**
-       * ===== ERROR HANDLING =====
-       */
-      window.addEventListener("error", (e) => {
-        console.error("Keynote Page Error:", e.error);
-      });
-
-      window.addEventListener("unhandledrejection", (e) => {
-        console.error("Unhandled Promise Rejection:", e.reason);
-        e.preventDefault();
-      });
+        });
     </script>
-  </body>
+</body>
 </html>
