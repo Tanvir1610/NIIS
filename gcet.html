@@ -68,6 +68,10 @@ img { max-width: 100%; height: auto; display: block; }
 .btn-primary { background: var(--gradient-accent); color: white; box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3); }
 .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(6, 182, 212, 0.4); }
 
+/* Desktop / Mobile visibility helpers */
+.desktop-only { display: block; }
+.mobile-only { display: none; }
+
 /* Header & Nav */
 .header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 0, 0, 0.05); transition: all 0.3s ease; }
 .header__top { background: var(--bg-light); border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding: 0.75rem 0; }
@@ -172,8 +176,15 @@ img { max-width: 100%; height: auto; display: block; }
 
 @media (max-width: 968px) {
     .hero__title { font-size: 2.5rem; }
-    .content-grid { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
-    .content-image-card { justify-content: center; max-width: 350px; margin: 0 auto; order: -1; }
+    .content-grid { 
+        display: flex; 
+        flex-direction: column-reverse; 
+        gap: 3rem; 
+        text-align: center; 
+    }
+    .content-image-card { justify-content: center; max-width: 350px; margin: 0 auto; }
+    .desktop-only { display: none; }
+    .mobile-only { display: block; }
 }
 
 
@@ -429,7 +440,10 @@ img { max-width: 100%; height: auto; display: block; }
             <div class="section" style="padding-bottom: 0;">
                 <div class="content-grid">
                     <div class="content-text">
-                        <h2 class="section-title" style="text-align: left; margin-bottom: 1.5rem;">Welcome to <span class="text-accent">GCET</span></h2>
+                        <!-- Desktop header (original position) -->
+                        <h2 class="section-title desktop-only" style="text-align: left; margin-bottom: 1.5rem;">
+                            Welcome to <span class="text-accent">GCET</span>
+                        </h2>
                         <div style="background: rgba(79, 70, 229, 0.05); padding: 1.5rem; border-left: 4px solid var(--accent); margin-bottom: 2rem; border-radius: 0 0.5rem 0.5rem 0;">
                             <p style="font-style: italic; color: var(--text-muted); margin-bottom: 0.5rem;">
                                 "To produce engineering graduates who are globally competitive, live by set of core values, are able to accept any professional challenge thrown at them, and remain responsive to the needs of India and the humanity."
@@ -449,7 +463,11 @@ img { max-width: 100%; height: auto; display: block; }
                         </p>
                     </div>
                     <div class="content-image-wrapper">
-                         <div class="content-image-card">
+                        <!-- Mobile header (shown above logo) -->
+                        <h2 class="section-title mobile-only" style="text-align: center; margin-bottom: 1.5rem;">
+                            Welcome to <span class="text-accent">GCET</span>
+                        </h2>
+                        <div class="content-image-card">
                             <img src="logos/gcetlogo.png" alt="GCET Logo" style="max-width: 500px; height: auto;" />
                          </div>
                     </div>
