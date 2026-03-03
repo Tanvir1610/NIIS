@@ -4,302 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Submission Guidelines - NIIS 2026</title>
-    
-    <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-    
-    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    
+    <link rel="stylesheet" href="/styles.css" />
     <style>
-/* 
- * NIIS 2026 - Shared Styles
- */
-
-:root {
-    /* Colors - Deep Teal / Indigo Theme */
-    --primary: #0f172a;
-    --primary-light: #1e293b;
-    --accent: #06b6d4;
-    --accent-hover: #0891b2;
-    --indigo: #4f46e5;
-    --text-main: #1f2937;
-    --text-muted: #64748b;
-    --bg-light: #f8fafc;
-    --white: #ffffff;
-
-    /* Gradients */
-    --gradient-hero: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-    --gradient-accent: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
-    --gradient-card: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.5) 100%);
-
-    /* Spacing */
-    --container-width: 1280px;
-    --header-height: 80px;
-
-    /* Effects */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --radius-lg: 1rem;
-    --radius-xl: 1.5rem;
-}
-
-/* Reset & Base */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
-body { font-family: 'Inter', sans-serif; color: var(--text-main); background-color: var(--bg-light); line-height: 1.6; overflow-x: hidden; }
-a { text-decoration: none; color: inherit; transition: color 0.2s ease; }
-ul { list-style: none; }
-img { max-width: 100%; height: auto; display: block; }
-
-/* Utility Classes */
-.container { max-width: var(--container-width); margin: 0 auto; padding: 0 1.5rem; }
-.section { padding: 4rem 0; position: relative; }
-.text-center { text-align: center; }
-.text-accent { color: var(--accent); }
-.font-bold { font-weight: 700; }
-
-.btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; transition: all 0.2s ease; cursor: pointer; border: none; gap: 0.5rem; }
-.btn-primary { background: var(--gradient-accent); color: white; box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3); }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(6, 182, 212, 0.4); }
-
-/* Header & Nav */
-.header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 0, 0, 0.05); transition: all 0.3s ease; }
-.header__top { background: var(--bg-light); border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding: 0.75rem 0; }
-.header__logos { display: flex; justify-content: center; align-items: center; gap: 3rem; flex-wrap: wrap; }
-.header__logo-img { height: 60px; width: auto; transition: transform 0.3s ease; }
-.header__logo-img:hover { transform: scale(1.05); }
-
-.nav { height: var(--header-height); display: flex; align-items: center; justify-content: center; }
-.nav__menu { display: flex; gap: 2.5rem; align-items: center; margin: 0; padding: 0; }
-.nav__item { position: relative; }
-.nav__link { font-weight: 500; color: var(--text-main); position: relative; padding: 0.5rem 0; font-size: 0.95rem; cursor: pointer; display: flex; align-items: center; gap: 0.25rem; }
-.nav__link:hover { color: var(--indigo); }
-.nav__link i { font-size: 0.75rem; opacity: 0.6; margin-top: 1px; }
-
-/* Dropdowns */
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    background: white;
-    min-width: 240px;
-    box-shadow: var(--shadow-lg);
-    border-radius: var(--radius-lg);
-    padding: 0.5rem;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 100;
-}
-.nav__item:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
-.dropdown-item { display: block; padding: 0.75rem 1rem; color: var(--text-main); border-radius: 0.5rem; font-size: 0.9rem; transition: background 0.1s; }
-.dropdown-item:hover { background: var(--bg-light); color: var(--indigo); }
-
-/* Mobile Menu */
-.nav__toggle { display: none; font-size: 1.5rem; background: none; border: none; color: var(--text-main); cursor: pointer; position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); }
-.nav__mobile-view { display: none; }
-
-/* Section Header */
-.section-header { text-align: center; margin-bottom: 2.5rem; }
-.section-title { font-size: 2.25rem; font-weight: 800; color: var(--primary); margin-bottom: 0.5rem; }
-.section-title span { color: var(--accent); }
-.section-desc { max-width: 700px; margin: 0 auto; color: var(--text-muted); }
-
-/* Footer */
-.footer { background: var(--primary); color: #cbd5e1; padding: 4rem 0 2rem; border-top: 1px solid rgba(255, 255, 255, 0.05); }
-.footer__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem; }
-.footer h4 { color: white; font-size: 1.25rem; margin-bottom: 1.5rem; }
-.footer a { color: #94a3b8; }
-.footer a:hover { color: var(--accent); }
-.footer__bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.875rem; }
-
-/* 
- * PAGE SPECIFIC STYLES
- */
-.main-content { padding-top: 0; min-height: 80vh; }
-
-/* Hero Section */
-.hero { 
-    padding-top: calc(var(--header-height) + 10rem); 
-    padding-bottom: 4rem; 
-    padding-left: 1.5rem; 
-    padding-right: 1.5rem; 
-    background: var(--gradient-hero); 
-    position: relative; 
-    overflow: hidden; 
-    margin-bottom: 4rem; 
-    color: white; 
-}
-.hero::before { 
-    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; 
-    background-image: radial-gradient(circle at 20% 30%, rgba(6, 182, 212, 0.15) 0%, transparent 40%), 
-                      radial-gradient(circle at 80% 70%, rgba(79, 70, 229, 0.15) 0%, transparent 40%); 
-    pointer-events: none; 
-}
-.hero__content { position: relative; z-index: 10; text-align: center; } 
-.hero__title { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; color: white; }
-.hero__subtitle { font-size: 1.25rem; color: #cbd5e1; margin-bottom: 0; }
-
-/* Content Grid */
-.intro-text { font-size: 1.15rem; color: var(--text-muted); text-align: center; max-width: 900px; margin: 0 auto 3rem; }
-
-/* Guidelines Grid */
-.guidelines-grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); 
-    gap: 2rem; 
-    margin-bottom: 4rem; 
-}
-.guideline-card {
-    background: white;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-    padding: 2rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid rgba(0,0,0,0.05);
-    position: relative;
-    overflow: hidden;
-}
-.guideline-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--gradient-accent);
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-}
-.guideline-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
-}
-.guideline-card:hover::before {
-    transform: scaleX(1);
-}
-.guideline-icon {
-    width: 64px;
-    height: 64px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-    font-size: 28px;
-}
-.guideline-icon.blue { background: #dbeafe; color: #3b82f6; }
-.guideline-icon.green { background: #d1fae5; color: #10b981; }
-.guideline-icon.purple { background: #e9d5ff; color: #8b5cf6; }
-.guideline-icon.orange { background: #fed7aa; color: #f59e0b; }
-.guideline-icon.red { background: #fecaca; color: #ef4444; }
-
-.guideline-card h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary);
-    margin-bottom: 1rem;
-}
-.guideline-list {
-    list-style: none;
-    padding: 0;
-}
-.guideline-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-}
-.guideline-list li:last-child { margin-bottom: 0; }
-.guideline-list li::before {
-    content: '✓';
-    color: #10b981;
-    font-weight: bold;
-    flex-shrink: 0;
-}
-
-/* Notice Boxes */
-.notice-box {
-    border-radius: var(--radius-lg);
-    padding: 2rem;
-    margin: 2rem 0;
-    text-align: center;
-}
-.notice-box h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-.notice-box p {
-    font-size: 1.05rem;
-    line-height: 1.7;
-}
-.notice-warning {
-    background: linear-gradient(135deg, #fef2f2, #fee2e2);
-    border-left: 5px solid #ef4444;
-}
-.notice-warning h3 { color: #dc2626; }
-.notice-warning p { color: #991b1b; }
-
-.notice-important {
-    background: linear-gradient(135deg, #fffbeb, #fef3c7);
-    border-left: 5px solid #f59e0b;
-}
-.notice-important h3 { color: #d97706; }
-.notice-important p { color: #92400e; }
-
-.notice-success {
-    background: linear-gradient(135deg, #f0fdf4, #dcfce7);
-    border-left: 5px solid #10b981;
-}
-.notice-success h3 { color: #16a34a; }
-.notice-success p { color: #15803d; }
-
-.notice-info {
-    background: linear-gradient(135deg, rgba(6, 182, 212, 0.05), rgba(79, 70, 229, 0.05));
-    border-left: 5px solid var(--accent);
-}
-.notice-info h3 { color: var(--primary); }
-.notice-info p { color: var(--text-muted); }
-
-/* Responsive */
-@media (max-width: 1024px) {
-    .header__top { display: none; }
-    .nav { position: relative; justify-content: center; padding: 0.5rem 1rem; height: 80px; } 
-    .nav__menu { display: none; }
-    .nav__toggle { display: block; position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); font-size: 1.5rem; }
-    .mobile-logos { display: flex !important; align-items: center; justify-content: space-between; width: 100%; padding-right: 3.5rem; }
-    .mobile-logo-img { height: 55px; width: auto; max-width: 22%; object-fit: contain; }
-    .hero__title { font-size: 2.5rem; }
-    
-    .nav__mobile-view {
-        position: fixed; top: 0; right: 0; bottom: 0; width: 85%; max-width: 320px; background: white; z-index: 2000;
-        padding: 2rem; box-shadow: -10px 0 30px rgba(0,0,0,0.1); transform: translateX(100%); transition: transform 0.3s ease;
-        display: flex; flex-direction: column; overflow-y: auto;
-    }
-    .nav__mobile-view.active { transform: translateX(0); }
-    .mobile-menu-header { display: flex; justify-content: flex-end; margin-bottom: 2rem; }
-    .mobile-close-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main); }
-    .mobile-link-group { opacity: 1; }
-    .nav__mobile-link { font-size: 1.1rem; font-weight: 600; display: block; padding: 0.75rem 0; border-bottom: 1px solid #f1f5f9; color: var(--primary); display: flex; justify-content: space-between; align-items: center; }
-    .mobile-submenu { display: none; padding-left: 1rem; background: #f8fafc; margin-bottom: 0.5rem; border-radius: 0.5rem; }
-    .mobile-submenu.active { display: block; }
-    .mobile-sublink { display: block; padding: 0.6rem 0; font-size: 0.95rem; color: var(--text-muted); }
-    .mobile-dropdown-icon { transition: transform 0.2s; font-size: 0.9rem; }
-    .nav__mobile-link.active .mobile-dropdown-icon { transform: rotate(180deg); }
-    
-    .guidelines-grid { grid-template-columns: 1fr; }
-}
+        .bg-light { background-color: var(--bg-light); }
+        .w-full { width: 100%; }
     </style>
 </head>
 
@@ -307,136 +19,61 @@ img { max-width: 100%; height: auto; display: block; }
 
     <!-- Header -->
     <header class="header">
-        <div class="header__top">
-            <div class="container header__logos">
-                <img src="logos/Niis2026.png" alt="NIIS 2026" class="header__logo-img">
-                <img src="logos/cvm.png" alt="CVM" class="header__logo-img">
-                <img src="logos/gcetlogo.png" alt="GCET" class="header__logo-img">
-                <img src="logos/CVM-Logo (2).png" alt="CVM Extended" class="header__logo-img">
+        <div class="header-top">
+            <div class="container flex items-center justify-center">
+                <div class="header-logos">
+                    <img src="https://via.placeholder.com/50x50?text=GCET" alt="GCET Logo" class="header-logo" />
+                    <img src="https://via.placeholder.com/50x50?text=NIIS" alt="NIIS Logo" class="header-logo" />
+                    <img src="https://via.placeholder.com/50x50?text=IEEE" alt="IEEE Logo" class="header-logo" />
+                </div>
             </div>
         </div>
-        
-        <div class="container">
-            <nav class="nav">
-                <!-- Mobile Logos (Hidden on Desktop) -->
-                <div class="mobile-logos" style="display: none;">
-                    <img src="logos/Niis2026.png" alt="NIIS 2026" class="mobile-logo-img">
-                    <img src="logos/cvm.png" alt="CVM" class="mobile-logo-img">
-                    <img src="logos/gcetlogo.png" alt="GCET" class="mobile-logo-img">
-                    <img src="logos/CVM-Logo (2).png" alt="CVM Extended" class="mobile-logo-img">
-                </div>
 
-                <!-- Desktop Menu -->
-                <ul class="nav__menu">
-                    <li class="nav__item"><a href="index.html" class="nav__link">Home</a></li>
-                    
-                    <li class="nav__item">
-                        <span class="nav__link">About <i class="fas fa-chevron-down"></i></span>
+        <nav class="nav">
+            <div class="container flex items-center justify-between w-full">
+                <a href="/" class="nav-brand">NIIS 2026</a>
+
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item">
+                        <a href="/tracks.html" class="nav-link">Tracks <i class="fas fa-chevron-down"></i></a>
                         <div class="dropdown-menu">
-                            <a href="niis2026.html" class="dropdown-item">About NIIS 2026</a>
-                            <a href="gcet.html" class="dropdown-item">About GCET</a>
+                            <a href="/tracks.html" class="dropdown-item">Conference Tracks</a>
+                            <a href="/tracks.html#topics" class="dropdown-item">Research Topics</a>
                         </div>
                     </li>
-
-                    <li class="nav__item">
-                        <span class="nav__link">Committee <i class="fas fa-chevron-down"></i></span>
+                    <li class="nav-item"><a href="/call-for-papers.html" class="nav-link">Call for Papers</a></li>
+                    <li class="nav-item"><a href="/submission-guidelines.html" class="nav-link">Guidelines</a></li>
+                    <li class="nav-item"><a href="/keynote.html" class="nav-link">Keynotes</a></li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Committees <i class="fas fa-chevron-down"></i></a>
                         <div class="dropdown-menu">
-                            <a href="Organizing-committee.html" class="dropdown-item">Organizing Committee</a>
-                            <a href="Technical-Committee.html" class="dropdown-item">Technical Advisory</a>
-                            <a href="#" class="dropdown-item">Track Coordinators</a>
+                            <a href="/Technical-Committee.html" class="dropdown-item">Technical Committee</a>
+                            <a href="/Organizing-committee.html" class="dropdown-item">Organizing Committee</a>
                         </div>
                     </li>
-
-                    <li class="nav__item"><a href="keynote.html" class="nav__link">Keynote Speakers</a></li>
-
-                    <li class="nav__item">
-                        <span class="nav__link">Submission <i class="fas fa-chevron-down"></i></span>
-                        <div class="dropdown-menu">
-                            <a href="call-for-papers.html" class="dropdown-item">Call for Papers</a>
-                            <a href="#" class="dropdown-item">Author Guidelines</a>
-                            <a href="submission-guidelines.html" class="dropdown-item">Submission Guidelines</a>
-                        </div>
-                    </li>
-
-                    <li class="nav__item">
-                        <span class="nav__link">Registration <i class="fas fa-chevron-down"></i></span>
-                        <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item">Conference Registration</a>
-                            <a href="#" class="dropdown-item">Payment Methods</a>
-                            <a href="#" class="dropdown-item">Registration FAQ</a>
-                        </div>
-                    </li>
-
-                    <li class="nav__item"><a href="contact.html" class="nav__link">Contact</a></li>
+                    <li class="nav-item"><a href="/contact.html" class="nav-link">Contact</a></li>
                 </ul>
 
-                <button class="nav__toggle" id="mobile-menu-toggle" aria-label="Toggle Navigation">
+                <button class="nav-toggle" id="mobile-menu-toggle">
                     <i class="fas fa-bars"></i>
                 </button>
-            </nav>
-        </div>
+            </div>
+        </nav>
     </header>
 
-    <!-- Mobile Nav Slide-out -->
-    <div class="nav__mobile-view" id="mobile-menu">
-        <div class="mobile-menu-header">
-            <button class="mobile-close-btn" id="mobile-menu-close"><i class="fas fa-times"></i></button>
-        </div>
-        
-        <a href="index.html" class="nav__mobile-link">Home</a>
-        
-        <div class="mobile-link-group">
-            <div class="nav__mobile-link mobile-dropdown-trigger">About <i class="fas fa-chevron-down mobile-dropdown-icon"></i></div>
-            <div class="mobile-submenu">
-                <a href="niis2026.html" class="mobile-sublink">About NIIS 2026</a>
-                <a href="gcet.html" class="mobile-sublink">About GCET</a>
-            </div>
-        </div>
-
-        <div class="mobile-link-group">
-            <div class="nav__mobile-link mobile-dropdown-trigger">Committee <i class="fas fa-chevron-down mobile-dropdown-icon"></i></div>
-            <div class="mobile-submenu">
-                <a href="Organizing-committee.html" class="mobile-sublink">Organizing Committee</a>
-                <a href="Technical-Committee.html" class="mobile-sublink">Technical Advisory</a>
-                <a href="#" class="mobile-sublink">Track Coordinators</a>
-            </div>
-        </div>
-
-        <a href="keynote.html" class="nav__mobile-link">Keynote Speakers</a>
-
-        <div class="mobile-link-group">
-            <div class="nav__mobile-link mobile-dropdown-trigger">Submission <i class="fas fa-chevron-down mobile-dropdown-icon"></i></div>
-            <div class="mobile-submenu">
-                <a href="call-for-papers.html" class="mobile-sublink">Call for Papers</a>
-                <a href="#" class="mobile-sublink">Author Guidelines</a>
-                <a href="submission-guidelines.html" class="mobile-sublink">Submission Guidelines</a>
-            </div>
-        </div>
-
-        <div class="mobile-link-group">
-            <div class="nav__mobile-link mobile-dropdown-trigger">Registration <i class="fas fa-chevron-down mobile-dropdown-icon"></i></div>
-            <div class="mobile-submenu">
-                <a href="#" class="mobile-sublink">Conference Registration</a>
-                <a href="#" class="mobile-sublink">Payment Methods</a>
-                <a href="#" class="mobile-sublink">Registration FAQ</a>
-            </div>
-        </div>
-
-        <a href="contact.html" class="nav__mobile-link">Contact</a>
-    </div>
-
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="container hero__content">
-            <h1 class="hero__title">
-                Submission <span class="text-accent">Guidelines</span>
-            </h1>
-            <p class="hero__subtitle">
-                NIIS 2026 - International Conference
-            </p>
-            <p style="color: #94a3b8; margin-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-                Complete guidelines for paper submission, review process, and publication requirements.
-            </p>
+    <section class="hero hero-solid">
+        <div class="container">
+            <div class="hero-content" style="grid-template-columns: 1fr;">
+                <div>
+                    <span class="hero-badge"><i class="fas fa-clipboard-list"></i> Submission Guidelines</span>
+                    <h1 class="hero-title">Detailed Guidelines for Paper Submission</h1>
+                    <p class="hero-subtitle">
+                        Follow these comprehensive guidelines to ensure your paper meets all requirements and is accepted for review.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 

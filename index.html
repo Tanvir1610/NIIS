@@ -3,1138 +3,468 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NIIS 2026 - International Conference on Next-Gen Integrated and Intelligent Systems</title>
+    <title>NIIS2026 - International Conference on Next-Gen Integrated and Intelligent Systems</title>
     
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     
-    <style>
-/* * NIIS 2026 - Index Page Styles
- * Implementation Note: All styles are scoped to this page/context. 
- */
-
-:root {
-    /* Colors - Deep Teal / Indigo Theme */
-    --primary: #0f172a;
-    --primary-light: #1e293b;
-    --accent: #06b6d4;
-    --accent-hover: #0891b2;
-    --indigo: #4f46e5;
-    --text-main: #1f2937;
-    --text-muted: #64748b;
-    --bg-light: #f8fafc;
-    --white: #ffffff;
-
-    /* Gradients */
-    --gradient-hero: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-    --gradient-accent: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
-    --gradient-card: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.5) 100%);
-
-    /* Spacing */
-    --container-width: 1280px;
-    --header-height: 80px;
-
-    /* Effects */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --radius-lg: 1rem;
-    --radius-xl: 1.5rem;
-}
-
-/* Reset & Base */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
-body { font-family: 'Inter', sans-serif; color: var(--text-main); background-color: var(--bg-light); line-height: 1.6; overflow-x: hidden; }
-a { text-decoration: none; color: inherit; transition: color 0.2s ease; }
-ul { list-style: none; }
-img { max-width: 100%; height: auto; display: block; }
-
-/* Utility Classes */
-.container { max-width: var(--container-width); margin: 0 auto; padding: 0 1.5rem; }
-.section { padding: 4rem 0; position: relative; } /* Reduced padding from 5rem */
-.text-center { text-align: center; }
-.text-accent { color: var(--accent); }
-.font-bold { font-weight: 700; }
-
-.btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; transition: all 0.2s ease; cursor: pointer; border: none; gap: 0.5rem; }
-.btn-primary { background: var(--gradient-accent); color: white; box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3); }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(6, 182, 212, 0.4); }
-.btn-text { color: var(--indigo); font-weight: 600; }
-.btn-text:hover { color: var(--accent); }
-
-/* Header & Nav */
-.header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 0, 0, 0.05); transition: all 0.3s ease; }
-.header__top { background: var(--bg-light); border-bottom: 1px solid rgba(0, 0, 0, 0.05); padding: 0.75rem 0; }
-.header__logos { display: flex; justify-content: center; align-items: center; gap: 3rem; flex-wrap: wrap; }
-.header__logo-img { height: 60px; width: auto; transition: transform 0.3s ease; } /* Increased size, removed grayscale */
-.header__logo-img:hover { transform: scale(1.05); }
-
-.nav { height: var(--header-height); display: flex; align-items: center; justify-content: center; /* Centered Nav */ }
-.nav__menu { display: flex; gap: 2.5rem; align-items: center; margin: 0; padding: 0; }
-.nav__item { position: relative; }
-.nav__link { font-weight: 500; color: var(--text-main); position: relative; padding: 0.5rem 0; font-size: 0.95rem; cursor: pointer; display: flex; align-items: center; gap: 0.25rem; }
-.nav__link:hover { color: var(--indigo); }
-.nav__link i { font-size: 0.75rem; opacity: 0.6; margin-top: 1px; }
-
-/* Dropdowns */
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    background: white;
-    min-width: 240px;
-    box-shadow: var(--shadow-lg);
-    border-radius: var(--radius-lg);
-    padding: 0.5rem;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 100;
-}
-.nav__item:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
-.dropdown-item { display: block; padding: 0.75rem 1rem; color: var(--text-main); border-radius: 0.5rem; font-size: 0.9rem; transition: background 0.1s; }
-.dropdown-item:hover { background: var(--bg-light); color: var(--indigo); }
-
-/* Mobile Menu */
-.nav__toggle { display: none; font-size: 1.5rem; background: none; border: none; color: var(--text-main); cursor: pointer; position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); }
-.nav__mobile-view { display: none; } /* Default hidden on desktop */
-
-/* Hero Section - Compacted */
-.hero { padding-top: calc(var(--header-height) + 120px); padding-bottom: 3rem; background: var(--gradient-hero); color: white; min-height: auto; /* Removed 85vh */ position: relative; overflow: hidden; }
-.hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: radial-gradient(circle at 20% 30%, rgba(6, 182, 212, 0.15) 0%, transparent 40%), radial-gradient(circle at 80% 70%, rgba(79, 70, 229, 0.15) 0%, transparent 40%); pointer-events: none; }
-.hero__content { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
-.hero__badge { display: inline-block; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(4px); border: 1px solid rgba(255, 255, 255, 0.2); padding: 0.5rem 1rem; border-radius: 2rem; font-size: 0.875rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; }
-.hero__title { font-size: clamp(2.5rem, 4vw, 3.5rem); line-height: 1.1; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
-.hero__subtitle { font-size: 1.1rem; color: #cbd5e1; margin-bottom: 2rem; max-width: 600px; }
-.hero__actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-.hero__cards { display: grid; gap: 1rem; grid-template-columns: repeat(2, 1fr); }
-
-.glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 1.25rem; border-radius: var(--radius-lg); transition: transform 0.3s ease, background 0.3s ease; }
-.glass-card:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.08); }
-.glass-card h3 { font-size: 1rem; margin-bottom: 0.5rem; color: white; }
-.glass-card p { color: #94a3b8; font-size: 0.85rem; margin-bottom: 0.5rem; }
-.glass-card--highlight { grid-column: 1 / -1; background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(59, 130, 246, 0.1)); border-color: rgba(6, 182, 212, 0.3); text-align: center; }
-
-/* === NEW HERO INFO ROW (TIMER + VENUE) - TIGHTER SPACING === */
-.hero-info-row {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-top: 2rem;
-    align-items: start;
-    width: 100%;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding-top: 1.25rem;
-}
-
-.hero-info-col {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-/* Row 1: Labels (with Icons) */
-.info-label {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 0.35rem;
-    opacity: 0.8;
-    min-height: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-    gap: 0.35rem;
-    line-height: 1.2;
-    flex-wrap: wrap;
-}
-
-/* Row 2: Main Content */
-#countdown {
-    display: flex;
-    gap: 1.25rem;
-    font-weight: 700;
-    font-size: 1.5rem;
-    font-family: monospace;
-    line-height: 1;
-}
-
-.venue-main {
-    font-weight: 700;
-    font-size: 1.1rem; 
-    line-height: 1.2;
-    font-family: 'Inter', sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 1.5rem;
-    text-align: center;
-}
-
-/* Row 3: Sub Content */
-.timer-unit {
-    font-size: 0.7rem;
-    font-weight: 400;
-    opacity: 0.7;
-    margin-top: 0.25rem;
-    text-transform: none;
-    font-family: 'Inter', sans-serif;
-}
-
-.venue-sub {
-    font-size: 0.75rem; 
-    font-weight: 500; 
-    opacity: 0.7;
-    letter-spacing: 0.3px;
-    margin-top: 0.25rem;
-}
-
-@media (max-width: 1024px) {
-    .hero-info-row {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-}
-
-/* Glimpse Section */
-.glimpse { padding: 4rem 0; background: white; }
-.glimpse__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 3rem; }
-.glimpse__img { border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); width: 100%; height: auto; object-fit: cover; }
-.stats-row { display: flex; gap: 3rem; justify-content: center; background: var(--bg-light); padding: 2rem; border-radius: var(--radius-lg); margin-top: 2rem; }
-.stat-item { text-align: center; }
-.stat-value { font-size: 2.5rem; font-weight: 800; color: var(--indigo); line-height: 1; margin-bottom: 0.5rem; }
-.stat-label { font-size: 0.9rem; color: var(--text-muted); font-weight: 500; }
-
-/* Common Sections */
-.section-header { text-align: center; margin-bottom: 2.5rem; }
-.section-title { font-size: 2.25rem; font-weight: 800; color: var(--primary); margin-bottom: 0.5rem; }
-.section-title span { color: var(--accent); }
-.section-desc { max-width: 700px; margin: 0 auto; color: var(--text-muted); }
-
-/* Topics/Conveners */
-.topics__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-.conveners-grid { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; }
-.topic-card { background: white; padding: 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid transparent; text-align: center; cursor: pointer; flex: 1; max-width: 320px; min-width: 280px; }
-.topic-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: rgba(79, 70, 229, 0.1); }
-.topic-icon { width: 56px; height: 56px; border-radius: 14px; background: #f0f9ff; color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1.25rem; }
-.topic-card h3 { font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--primary); }
-
-/* Dates */
-.dates__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
-.date-card { background: white; padding: 1.5rem; border-radius: var(--radius-lg); border-left: 4px solid var(--accent); box-shadow: var(--shadow-sm); }
-.date-card--urgent { border-left-color: #ef4444; }
-.date-card h3 { font-size: 1.25rem; font-weight: 700; color: var(--primary); }
-
-/* Modal */
-.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); z-index: 2000; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; }
-.modal.active { display: flex; opacity: 1; }
-.modal__content { background: white; padding: 2.5rem; border-radius: var(--radius-lg); max-width: 600px; width: 90%; max-height: 85vh; overflow-y: auto; position: relative; transform: translateY(20px); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: var(--shadow-lg); }
-.modal.active .modal__content { transform: translateY(0); }
-.modal__close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); transition: color 0.2s; }
-.modal__close:hover { color: var(--primary); }
-.modal__list { margin-top: 1.5rem; padding-left: 1.5rem; list-style: disc; }
-.modal__list li { margin-bottom: 0.5rem; color: var(--text-main); }
-
-/* Footer */
-.footer { background: var(--primary); color: #cbd5e1; padding: 4rem 0 2rem; border-top: 1px solid rgba(255, 255, 255, 0.05); }
-.footer__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem; }
-.footer h4 { color: white; font-size: 1.25rem; margin-bottom: 1.5rem; }
-.footer a { color: #94a3b8; }
-.footer a:hover { color: var(--accent); }
-.footer__bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.875rem; }
-
-/* Glimpse Slideshow */
-.slideshow-container { position: relative; width: 100%; padding-top: 66.66%; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); }
-.slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out; object-fit: cover; }
-.slide.active { opacity: 1; }
-
-/* About + News Grid */
-.about-news-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: start; }
-.news-box { background: white; padding: 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); border-top: 4px solid var(--accent); position: relative; overflow: hidden; height: 350px; }
-.news-header { margin-bottom: 1.5rem; font-size: 1.25rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; z-index: 2; position: relative; background: white; padding-bottom: 0.5rem; border-bottom: 1px solid #f1f5f9; }
-.news-content-wrapper { height: 250px; overflow: hidden; position: relative; mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%); }
-.news-track { animation: newsScroll 5s linear infinite; position: absolute; width: 100%; top: 100%; }
-.news-item { padding-bottom: 1rem; margin-bottom: 1.5rem; }
-.news-date { font-size: 0.8rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-.news-title { font-weight: 600; color: var(--primary); margin-top: 0.25rem; font-size: 1rem; line-height: 1.4; }
-
-@keyframes newsScroll { 
-    0% { transform: translateY(0); } 
-    100% { transform: translateY(-100%); } 
-}
-
-/* Dual Timers */
-.dual-timers-section { background: white; padding: 4rem 0; }
-.dual-timers { display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; max-width: 1000px; margin: 0 auto; }
-.timer-card { background: var(--primary); color: white; padding: 2rem; border-radius: var(--radius-lg); flex: 1; min-width: 300px; text-align: center; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s; }
-.timer-card:hover { transform: translateY(-5px); }
-.timer-title { font-size: 1.1rem; margin-bottom: 1rem; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; }
-.timer-display { display: flex; justify-content: center; gap: 1.5rem; font-family: monospace; font-size: 1.75rem; font-weight: 700; }
-.timer-unit { font-size: 0.8rem; font-weight: 400; opacity: 0.7; margin-top: 0.25rem; }
-
-/* === FLYER MODAL POPUP STYLES === */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.85); /* Dark background */
-    backdrop-filter: blur(8px);
-    z-index: 9999999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    padding: 10px; /* Small padding so image doesn't touch screen edge */
-}
-
-.modal-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.modal-content {
-    position: relative;
-    /* Resetting size to auto to fit image */
-    width: auto;
-    height: auto;
-    max-width: 100%; 
-    max-height: 100%;
-    
-    background: transparent; /* No background color needed for image-only modal */
-    box-shadow: none; /* No shadow needed on container, maybe on image */
-    border-radius: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-overlay.active .modal-content {
-    transform: scale(1);
-}
-
-.modal-image {
-    display: block;
-    width: auto;
-    height: auto;
-    /* Ensure it never overflows the screen */
-    max-width: 95vw;
-    max-height: 95vh;
-    object-fit: contain; /* Keeps aspect ratio perfect */
-    border-radius: 8px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-}
-
-.modal-close {
-    position: absolute;
-    top: -20px;
-    right: -20px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: white;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    color: var(--primary);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    transition: all 0.2s ease;
-    z-index: 100;
-}
-
-.modal-close:hover {
-    background: var(--accent);
-    color: white;
-    transform: rotate(90deg) scale(1.1);
-}
-
-/* Mobile Adjustments */
-@media (max-width: 768px) {
-    .modal-close {
-        top: 10px;
-        right: 10px;
-        width: 35px;
-        height: 35px;
-        font-size: 1.25rem;
-        background: rgba(255,255,255,0.9);
-    }
-}
-
-/* Responsive */
-@media (max-width: 1024px) {
-    .header__top { display: none; }
-    .nav { position: relative; justify-content: center; padding: 0.5rem 1rem; height: 80px; } 
-    .nav__menu { display: none; }
-    /* Toggle absolute right to allow logos to center */
-    .nav__toggle { display: block; position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); font-size: 1.5rem; }
-    
-    .mobile-logos { display: flex !important; align-items: center; justify-content: space-between; width: 100%; padding-right: 3.5rem; }
-    .mobile-logo-img { height: 55px; width: auto; max-width: 22%; object-fit: contain; } /* Larger, responsive */
-    
-    .hero { padding-top: 140px; }
-    .hero__content { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
-    .hero__actions { justify-content: center; }
-    .hero__subtitle { margin-left: auto; margin-right: auto; }
-    
-    /* Stack cards on mobile to allow full width for timer */
-    .hero__cards { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; display: grid; gap: 1rem; } 
-    .glass-card { text-align: center; } /* Ensure text inside cards is centered */
-    
-    /* New Hero Info Stack on Mobile */
-    .hero-info-row {
-        grid-template-columns: 1fr; /* Stack on mobile */
-        gap: 2rem;
-    }
-    
-    .countdown-container { 
-        margin-top: 2rem; 
-        width: 100%; 
-        display: flex; 
-        flex-direction: column; 
-        align-items: center; 
-        grid-column: 1 / -1; /* Explicitly span full width if needed */
-    }
-    #countdown { justify-content: center; width: 100%; }
-    
-    .glimpse__grid { grid-template-columns: 1fr; gap: 2rem; }
-    /* Force center for specific elements in mobile */
-    .glimpse .section-title { text-align: center !important; }
-    .glimpse h4 { text-align: center; }
-    
-    /* Center Tracks */
-    .topics__grid { justify-content: center; justify-items: center; }
-    .topic-card { margin: 0 auto; width: 100%; max-width: 320px; }
-    
-    .stats-row { flex-wrap: wrap; gap: 1.5rem; padding: 1.5rem; }
-    .stat-item { flex: 1 1 40%; min-width: 120px; }
-    
-    .about-news-grid { grid-template-columns: 1fr; }
-    .dual-timers { flex-direction: column; align-items: center; }
-    .timer-card { width: 100%; }
-    
-    .nav__mobile-view {
-        position: fixed; top: 0; right: 0; bottom: 0; width: 85%; max-width: 320px; background: white; z-index: 2000;
-        padding: 2rem; box-shadow: -10px 0 30px rgba(0,0,0,0.1); transform: translateX(100%); transition: transform 0.3s ease;
-        display: flex; flex-direction: column; overflow-y: auto;
-    }
-    .nav__mobile-view.active { transform: translateX(0); }
-    .mobile-menu-header { display: flex; justify-content: flex-end; margin-bottom: 2rem; }
-    .mobile-close-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main); }
-    
-    /* Mobile Accordion */
-    .mobile-link-group { opacity: 1; }
-    .nav__mobile-link { font-size: 1.1rem; font-weight: 600; display: block; padding: 0.75rem 0; border-bottom: 1px solid #f1f5f9; color: var(--primary); display: flex; justify-content: space-between; align-items: center; }
-    .mobile-submenu { display: none; padding-left: 1rem; background: #f8fafc; margin-bottom: 0.5rem; border-radius: 0.5rem; }
-    .mobile-submenu.active { display: block; }
-    .mobile-sublink { display: block; padding: 0.6rem 0; font-size: 0.95rem; color: var(--text-muted); }
-    .mobile-dropdown-icon { transition: transform 0.2s; font-size: 0.9rem; }
-    .nav__mobile-link.active .mobile-dropdown-icon { transform: rotate(180deg); }
-}
-    </style>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
-
+    <!-- Header -->
     <header class="header">
-        <div class="header__top">
-            <div class="container header__logos">
-                <img src="logos/Niis2026.png" alt="NIIS 2026" class="header__logo-img">
-                <img src="logos/cvm.png" alt="CVM" class="header__logo-img">
-                <img src="logos/gcetlogo.png" alt="GCET" class="header__logo-img">
-                <img src="logos/CVM-Logo (2).png" alt="CVM Extended" class="header__logo-img">
+        <div class="header-top">
+            <div class="container flex items-center justify-center">
+                <div class="header-logos">
+                    <img src="https://via.placeholder.com/50x50?text=GCET" alt="GCET Logo" class="header-logo" />
+                    <img src="https://via.placeholder.com/50x50?text=NIIS" alt="NIIS Logo" class="header-logo" />
+                    <img src="https://via.placeholder.com/50x50?text=IEEE" alt="IEEE Logo" class="header-logo" />
+                </div>
             </div>
         </div>
-        
-        <div class="container">
-            <nav class="nav">
-                <div class="mobile-logos" style="display: none;">
-                    <img src="logos/Niis2026.png" alt="NIIS 2026" class="mobile-logo-img">
-                    <img src="logos/cvm.png" alt="CVM" class="mobile-logo-img">
-                    <img src="logos/gcetlogo.png" alt="GCET" class="mobile-logo-img">
-                    <img src="logos/CVM-Logo (2).png" alt="CVM Extended" class="mobile-logo-img">
-                </div>
 
-                <ul class="nav__menu">
-                    <li class="nav__item"><a href="index.html" class="nav__link">Home</a></li>
-                    
-                    <li class="nav__item">
-                        <span class="nav__link">About <i class="fas fa-chevron-down"></i></span>
+        <nav class="nav">
+            <div class="container flex items-center justify-between w-full">
+                <a href="/" class="nav-brand">NIIS 2026</a>
+
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/tracks.html" class="nav-link">Tracks <i class="fas fa-chevron-down"></i></a>
                         <div class="dropdown-menu">
-                            <a href="niis2026.html" class="dropdown-item">About NIIS 2026</a>
-                            <a href="gcet.html" class="dropdown-item">About GCET</a>
+                            <a href="/tracks.html" class="dropdown-item">Conference Tracks</a>
+                            <a href="/tracks.html#topics" class="dropdown-item">Research Topics</a>
                         </div>
                     </li>
-
-                    <li class="nav__item">
-                        <span class="nav__link">Committee <i class="fas fa-chevron-down"></i></span>
+                    <li class="nav-item">
+                        <a href="/call-for-papers.html" class="nav-link">Call for Papers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/submission-guidelines.html" class="nav-link">Guidelines</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/keynote.html" class="nav-link">Keynotes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Committees <i class="fas fa-chevron-down"></i></a>
                         <div class="dropdown-menu">
-                            <a href="Organizing-committee.html" class="dropdown-item">Organizing Committee</a>
-                            <a href="Technical-Committee.html" class="dropdown-item">Technical Advisory</a>
-                            <a href="#" class="dropdown-item">Track Coordinators</a>
+                            <a href="/Technical-Committee.html" class="dropdown-item">Technical Committee</a>
+                            <a href="/Organizing-committee.html" class="dropdown-item">Organizing Committee</a>
                         </div>
                     </li>
-
-                    <li class="nav__item"><a href="keynote.html" class="nav__link">Keynote Speakers</a></li>
-
-                    <li class="nav__item">
-                        <span class="nav__link">Submission <i class="fas fa-chevron-down"></i></span>
-                        <div class="dropdown-menu">
-                            <a href="call-for-papers.html" class="dropdown-item">Call for Papers</a>
-                            <a href="#" class="dropdown-item">Author Guidelines</a>
-                            <a href="submission-guidelines.html" class="dropdown-item">Submission Guidelines</a>
-                        </div>
+                    <li class="nav-item">
+                        <a href="/contact.html" class="nav-link">Contact</a>
                     </li>
-
-                    <li class="nav__item">
-                        <span class="nav__link">Registration <i class="fas fa-chevron-down"></i></span>
-                        <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item">Conference Registration</a>
-                            <a href="#" class="dropdown-item">Payment Methods</a>
-                            <a href="#" class="dropdown-item">Registration FAQ</a>
-                        </div>
-                    </li>
-
-                    <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
                 </ul>
 
-                <button class="nav__toggle" id="mobile-menu-toggle" aria-label="Toggle Navigation">
+                <button class="nav-toggle" id="mobile-menu-toggle">
                     <i class="fas fa-bars"></i>
                 </button>
-            </nav>
-        </div>
+            </div>
+        </nav>
     </header>
 
-    <div class="nav__mobile-view" id="mobile-menu">
-        <div class="mobile-menu-header">
-            <button class="mobile-close-btn" id="mobile-menu-close"><i class="fas fa-times"></i></button>
-        </div>
-        
-        <a href="index.html" class="nav__mobile-link">Home</a>
-        
-        <div class="mobile-link-group">
-            <div class="nav__mobile-link mobile-dropdown-trigger">About <i class="fas fa-chevron-down mobile-dropdown-icon"></i></div>
-            <div class="mobile-submenu">
-                <a href="niis2026.html" class="mobile-sublink">About NIIS 2026</a>
-                <a href="gcet.html" class="mobile-sublink">About GCET</a>
-            </div>
-        </div>
-
-        <div class="mobile-link-group">
-            <div class="nav__mobile-link mobile-dropdown-trigger">Committee <i class="fas fa-chevron-down mobile-dropdown-icon"></i></div>
-            <div class="mobile-submenu">
-                <a href="Organizing-committee.html" class="mobile-sublink">Organizing Committee</a>
-                <a href="Technical-Committee.html" class="mobile-sublink">Technical Advisory</a>
-                <a href="#" class="mobile-sublink">Track Coordinators</a>
-            </div>
-        </div>
-
-        <a href="keynote.html" class="nav__mobile-link">Keynote Speakers</a>
-
-        <div class="mobile-link-group">
-            <div class="nav__mobile-link mobile-dropdown-trigger">Submission <i class="fas fa-chevron-down mobile-dropdown-icon"></i></div>
-            <div class="mobile-submenu">
-                <a href="call-for-papers.html" class="mobile-sublink">Call for Papers</a>
-                <a href="#" class="mobile-sublink">Author Guidelines</a>
-                <a href="submission-guidelines.html" class="mobile-sublink">Submission Guidelines</a>
-            </div>
-        </div>
-
-        <div class="mobile-link-group">
-            <div class="nav__mobile-link mobile-dropdown-trigger">Registration <i class="fas fa-chevron-down mobile-dropdown-icon"></i></div>
-            <div class="mobile-submenu">
-                <a href="#" class="mobile-sublink">Conference Registration</a>
-                <a href="#" class="mobile-sublink">Payment Methods</a>
-                <a href="#" class="mobile-sublink">Registration FAQ</a>
-            </div>
-        </div>
-
-        <a href="#contact" class="nav__mobile-link">Contact</a>
-    </div>
-
+    <!-- Hero Section -->
     <section class="hero">
-        <div class="container hero__content">
-            <div class="hero__text">
-                <span class="hero__badge"><i class="fas fa-calendar-alt"></i> June 25 - June 26, 2026</span>
-                <h1 class="hero__title">
-                    International Conference on <span class="text-accent">Next-Gen Integrated</span> & Intelligent Systems
-                </h1>
-                <p class="hero__subtitle">
-                    Bringing together researchers, academicians, and industry professionals to share innovative ideas in Electronics, VLSI, AI/ML, IoT, and Cyber-Physical Systems.
-                </p>
-                
-                <div class="hero__actions">
-                    <a href="#about" class="btn btn-primary">Learn More</a>
-                    <a href="call-for-papers.html" class="btn btn-text" style="color: white; border: 1px solid rgba(255,255,255,0.3); padding: 0.75rem 1.5rem; border-radius: 0.5rem;">Call for Papers</a>
-                </div>
-
-            </div>
-
-            <div class="hero__cards">
-                <div class="glass-card glass-card--highlight">
-                    <h3>Register Now</h3>
-                    <p>Secure your spot at the conference.</p>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScIS-OWFl7sxGzPBiX6uL7eBXKv3qpskfjvZ-V7E92JDcmP5Q/viewform?usp=send_form" class="btn btn-primary" style="width: 100%; font-size: 0.9rem;">Register</a>
-                </div>
-                <div class="glass-card">
-                    <i class="fas fa-file-alt text-accent" style="font-size: 1.25rem; margin-bottom: 0.5rem;"></i>
-                    <h3>Call for Papers</h3>
-                    <a href="call-for-papers.html"><p style="color: lightblue;">Submit your works →</p></a>
-                </div>
-                <div class="glass-card">
-                    <i class="fas fa-microphone-alt text-accent" style="font-size: 1.25rem; margin-bottom: 0.5rem;"></i>
-                    <h3>Speakers</h3>
-                    <a href="keynote.html"><p style="color: lightblue;">Know Speakers →</p></a>
-                </div>
-                
-                <div class="hero-info-row">
-                    <div class="hero-info-col">
-                        <div class="info-label" style="margin-bottom: 0;"><i class="fas fa-clock"></i> Paper Submission Deadline</div>
-                        <div class="info-label">(31/1/2026)</div>
-                        <div id="countdown">
-                            <div><span id="days">00</span><div class="timer-unit">Days</div></div>
-                            <div><span id="hours">00</span><div class="timer-unit">Hours</div></div>
-                            <div><span id="minutes">00</span><div class="timer-unit">Mins</div></div>
-                            <div><span id="seconds">00</span><div class="timer-unit">Secs</div></div>
-                        </div>
-                    </div>
-                    
-                    <div class="hero-info-col">
-                        <div class="info-label"><i class="fas fa-map-marker-alt"></i> Conference Venue</div>
-                        <div class="venue-main">G H Patel College of Engineering & Technology</div>
-                        <div class="venue-sub">Vallabh Vidyanagar, Gujarat</div>
-                    </div>
-                </div>
-                </div>
-        </div>
-    </section>
-
-    <section class="glimpse">
         <div class="container">
-            <div class="glimpse__grid">
-                <div class="slideshow-container">
-                    <img src="SDSTDImgs/sdstd1.JPG" class="slide active">
-                    <img src="SDSTDImgs/sdstd2.JPG" class="slide">
-                    <img src="SDSTDImgs/sdstd3.JPG" class="slide">
-                    <img src="SDSTDImgs/sdstd4.JPG" class="slide">
-                </div>
+            <div class="hero-content">
                 <div>
-                    <h4 class="text-accent font-bold" style="text-transform: uppercase; margin-bottom: 1rem;">Legacy of Excellence</h4>
-                    <h2 class="section-title" style="margin-bottom: 1.5rem; text-align: left;">Previous Conference <span>SDSTD2025</span></h2>
-                    <p style="color: var(--text-muted); margin-bottom: 2rem; text-align: justify;">
-                        NIIS has consistently brought together the brightest minds in engineering and technology. Our previous editions have set benchmarks in collaborative research and innovation, creating a vibrant ecosystem for knowledge exchange.
+                    <span class="hero-badge">
+                        <i class="fas fa-calendar-alt"></i> December 15-17, 2026
+                    </span>
+                    <h1 class="hero-title">Next-Gen Integrated and Intelligent Systems</h1>
+                    <p class="hero-subtitle">
+                        Join us for NIIS 2026, a premier international conference bringing together researchers, industry professionals, and technology leaders to discuss cutting-edge innovations in integrated and intelligent systems.
                     </p>
-                    <div style="display: flex; gap: 1rem;">
-                        <a href="https://cvmuconference.org/" class="btn btn-primary">Go to Site</a>
+                    <div class="hero-actions">
+                        <a href="/call-for-papers.html" class="btn btn-secondary">
+                            <i class="fas fa-file-alt"></i> Call for Papers
+                        </a>
+                        <a href="/tracks.html" class="btn btn-outline">
+                            <i class="fas fa-layer-group"></i> Conference Tracks
+                        </a>
                     </div>
                 </div>
-            </div>
 
-            <div class="stats-row">
-              <div class="stat-item">
-                    <div class="stat-value">11</div>
-                    <div class="stat-label">Speakers</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">100+</div>
-                    <div class="stat-label">Attendes</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">200+</div>
-                    <div class="stat-label">Presenters</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">180+</div>
-                    <div class="stat-label">Papers Presented</div>
+                <div class="hero-cards">
+                    <div class="glass-card">
+                        <h3><i class="fas fa-map-marker-alt"></i> Venue</h3>
+                        <p>GCET, Hyderabad, India</p>
+                    </div>
+                    <div class="glass-card">
+                        <h3><i class="fas fa-users"></i> Expected Attendees</h3>
+                        <p>1000+ Researchers & Industry Leaders</p>
+                    </div>
+                    <div class="glass-card glass-card--highlight">
+                        <h3 style="margin-bottom: 1rem;">
+                            <i class="fas fa-hourglass-end"></i> Conference Begins In
+                        </h3>
+                        <div id="countdown"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="section about" style="background: var(--bg-light);">
+    <!-- About Section -->
+    <section class="section bg-light">
         <div class="container">
-             
-            
-            <div class="about-news-grid">
-              
-                <div style="text-align: justify; color: var(--text-muted);">
-                  <div class="section-header">
-                <h2 class="section-title">About <span>NIIS 2026</span></h2>
-                <p class="section-desc">Converging innovative ideas for a smarter future.</p>
+            <div class="grid-2">
+                <div>
+                    <h2 class="section-title">About <strong>NIIS 2026</strong></h2>
+                    <p class="section-subtitle">
+                        NIIS (International Conference on Next-Gen Integrated and Intelligent Systems) is a premier platform for disseminating research advancements in emerging technologies, systems integration, and intelligent solutions.
+                    </p>
+                    <div style="margin-top: 2rem;">
+                        <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; color: var(--primary);">Key Features</h3>
+                        <ul style="list-style: none;">
+                            <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.75rem;">
+                                <i class="fas fa-check" style="color: var(--success); margin-top: 0.25rem;"></i>
+                                <span>Cutting-edge research presentations from global experts</span>
+                            </li>
+                            <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.75rem;">
+                                <i class="fas fa-check" style="color: var(--success); margin-top: 0.25rem;"></i>
+                                <span>Interactive workshops and tutorials on emerging technologies</span>
+                            </li>
+                            <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.75rem;">
+                                <i class="fas fa-check" style="color: var(--success); margin-top: 0.25rem;"></i>
+                                <span>Networking opportunities with industry leaders</span>
+                            </li>
+                            <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.75rem;">
+                                <i class="fas fa-check" style="color: var(--success); margin-top: 0.25rem;"></i>
+                                <span>Published papers in high-impact journals and proceedings</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="/niis2026.html" class="btn btn-primary" style="margin-top: 1.5rem;">
+                        <i class="fas fa-arrow-right"></i> Learn More
+                    </a>
                 </div>
 
-                    <p style="margin-bottom: 1.5rem;">
-                        The International Conference on Next-Gen Integrated and Intelligent Systems (NIIS 2026) aims to bring together researchers, academicians, industry professionals, and policymakers to share their innovative ideas and research in the domains of Electronics, VLSI, Embedded Systems, AI/ML, IoT, Cyber-Physical Systems, and Smart Networks.
-                    </p>
-                    <p>
-                        Aligned with national missions like Semicon India, Digital India, and Atmanirbhar Bharat, this conference promotes indigenous innovation and future-ready technology development in intelligent systems and integrated electronic solutions.
-                    </p>
-                </div>
-                
-                <div class="news-box">
-                    <div class="news-header"><i class="fas fa-bullhorn text-accent"></i> Latest News</div>
-                    
-                    <div class="news-content-wrapper">
-                        <div class="news-track">
-                            <div class="news-item">
-                                <div class="news-date">Nov 30, 2025</div>
-                                <div class="news-title">New Conference Dates!! <br>25th - 26th June 2026</div>
-                            </div>
-                            <div class="news-item">
-                                <div class="news-date">Nov 30, 2025</div>
-                                <div class="news-title">Paper Submission Deadline Extended <br> 31st Jan 2026</div>
-                            </div>
-                             </div>
-                    </div>
+                <div>
+                    <img src="https://via.placeholder.com/500x400?text=Conference+Venue" alt="Conference Venue" style="border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); width: 100%; height: auto;" />
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Statistics Section -->
     <section class="section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Conference <span>Tracks</span></h2>
+                <h2 class="section-title">By The Numbers</h2>
             </div>
-            
-            <div class="topics__grid">
-                <div class="topic-card" data-topic="energy">
-                    <div class="topic-icon"><i class="fas fa-bolt"></i></div>
-                    <h3>Energy & Sensing</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-muted);">Integrated Systems in Energy, Communication and Sensing.</p>
+
+            <div class="grid-3" style="gap: 1.5rem;">
+                <div class="card text-center">
+                    <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 0.5rem;">500+</div>
+                    <p class="text-muted">Research Papers Submitted</p>
                 </div>
-                <div class="topic-card" data-topic="embedded">
-                    <div class="topic-icon"><i class="fas fa-microchip"></i></div>
-                    <h3>Embedded & IoT</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-muted);">Embedded Systems, IoT and Robotics.</p>
+                <div class="card text-center">
+                    <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 0.5rem;">150+</div>
+                    <p class="text-muted">Researchers & Speakers</p>
                 </div>
-                <div class="topic-card" data-topic="ai">
-                    <div class="topic-icon"><i class="fas fa-brain"></i></div>
-                    <h3>AI & Computing</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-muted);">Artificial Intelligence and Computing.</p>
-                </div>
-                <div class="topic-card" data-topic="secure">
-                    <div class="topic-icon"><i class="fas fa-shield-alt"></i></div>
-                    <h3>Security & Emerging</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-muted);">Secure and Emerging Technologies.</p>
+                <div class="card text-center">
+                    <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 0.5rem;">30+</div>
+                    <p class="text-muted">Countries Represented</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section dual-timers-section" style="background: var(--bg-light);">
-        <div class="container">
-            <div class="section-header"><h2 class="section-title">Count<span>down</span></h2></div>
-            <div class="dual-timers">
-                 <div class="timer-card">
-                    <div class="timer-title">Paper Submission (31/1/2026)</div>
-                    <div class="timer-display" id="paper-timer">
-                        <div><span class="d">00</span><div class="timer-unit">Days</div></div>
-                        <div><span class="h">00</span><div class="timer-unit">Hours</div></div>
-                        <div><span class="m">00</span><div class="timer-unit">Minutes</div></div>
-                        <div><span class="s">00</span><div class="timer-unit">Seconds</div></div>
-                    </div>
-                </div>
-                <div class="timer-card" style="background: var(--indigo);">
-                    <div class="timer-title" style="color: #93c5fd;">Conference Starts (25/6/2026)</div>
-                    <div class="timer-display" id="conf-timer">
-                        <div><span class="d">00</span><div class="timer-unit">Days</div></div>
-                         <div><span class="h">00</span><div class="timer-unit">Hours</div></div>
-                        <div><span class="m">00</span><div class="timer-unit">Minutes</div></div>
-                        <div><span class="s">00</span><div class="timer-unit">Seconds</div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section" style="background: var(--bg-light);">
+    <!-- Tracks Section -->
+    <section class="section bg-light">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Conference <span>Conveners</span></h2>
+                <h2 class="section-title">Conference <strong>Tracks</strong></h2>
+                <p class="section-subtitle">Explore our diverse research areas and specialized tracks</p>
             </div>
-            
-            <div class="conveners-grid">
-                 <div class="topic-card">
-                    <div style="width: 100px; height: 100px; border-radius: 50%; overflow: hidden; margin: 0 auto 1.5rem; border: 4px solid var(--accent-hover);">
-                        <img src="OrganizingImgs/Bhaskar Thakkar.jpg" alt="Dr. Bhaskar Thakker" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <h4>Dr. Bhaskar Thakker</h4>
-                    <p style="font-size: 0.9rem; color: var(--accent);">Professor & Convener</p>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);">Electronics & Communication Department</p>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);">GCET, Vallabh Vidyanagar</p>
-                 </div>
 
-                 <div class="topic-card">
-                    <div style="width: 100px; height: 100px; border-radius: 50%; overflow: hidden; margin: 0 auto 1.5rem; border: 4px solid var(--accent-hover);">
-                        <img src="OrganizingImgs/Priyang-Bhatt.png" alt="Dr. Priyang Bhatt" style="width: 100%; height: 100%; object-fit: cover;">
+            <div class="grid-auto">
+                <div class="topic-card" onclick="openModal('modal-energy')">
+                    <div class="topic-icon">
+                        <i class="fas fa-bolt"></i>
                     </div>
-                    <h4>Dr. Priyang Bhatt</h4>
-                    <p style="font-size: 0.9rem; color: var(--accent);">Associate Professor & Co-Convener</p>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);">Computer Engineering <br> Department</p>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);">GCET, Vallabh Vidyanagar</p>
-                 </div>
+                    <h3>Integrated Systems in Energy & Communication</h3>
+                    <p>Power electronics, renewable energy, wireless communication systems, and advanced sensing technologies.</p>
+                </div>
+
+                <div class="topic-card" onclick="openModal('modal-embedded')">
+                    <div class="topic-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3>Embedded Systems & IoT</h3>
+                    <p>Real-time systems, sensor networks, edge computing, robotics, and autonomous systems integration.</p>
+                </div>
+
+                <div class="topic-card" onclick="openModal('modal-ai')">
+                    <div class="topic-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Artificial Intelligence & Computing</h3>
+                    <p>Machine learning, deep learning, AI applications, computer vision, and intelligent data processing.</p>
+                </div>
+
+                <div class="topic-card" onclick="openModal('modal-security')">
+                    <div class="topic-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Security & Emerging Technologies</h3>
+                    <p>Cybersecurity, blockchain, 5G/6G networks, quantum computing, and next-generation technologies.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="/tracks.html" class="btn btn-primary">
+                    <i class="fas fa-arrow-right"></i> View All Tracks & Topics
+                </a>
             </div>
         </div>
     </section>
 
-    <footer id="contact" class="footer">
+    <!-- Important Dates Section -->
+    <section class="section">
         <div class="container">
-            <div class="footer__grid">
-                <div>
-                    <h4><i class="fas fa-map-marker-alt text-accent"></i> Venue</h4>
-                    <p>G H Patel College of Engineering & Technology</p>
-                    <p>Vallabh Vidyanagar, Gujarat, India</p>
+            <div class="section-header">
+                <h2 class="section-title">Important <strong>Dates</strong></h2>
+                <p class="section-subtitle">Mark your calendar with these key deadlines</p>
+            </div>
+
+            <div class="grid-auto">
+                <div class="card" style="border-left: 4px solid var(--accent);">
+                    <div style="font-weight: 700; color: var(--accent); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
+                        <i class="fas fa-calendar"></i> April 30, 2026
+                    </div>
+                    <h3 class="card-title">Abstract Submission Deadline</h3>
+                    <p class="text-muted">Submit your paper abstracts for review</p>
                 </div>
-                <div>
-                    <h4><i class="fas fa-envelope text-accent"></i> Contact</h4>
-                    <p>Dr. Bhaskar Thakker: +91 9574383265</p>
-                    <p>Dr. Priyang Bhatt: +91 9879849707</p>
-                    <br>
-                    <a href="mailto:niis2026@gcet.ac.in">niis2026@gcet.ac.in</a>
+
+                <div class="card" style="border-left: 4px solid var(--warning);">
+                    <div style="font-weight: 700; color: var(--warning); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
+                        <i class="fas fa-calendar"></i> June 15, 2026
+                    </div>
+                    <h3 class="card-title">Full Paper Submission Deadline</h3>
+                    <p class="text-muted">Final submission of complete research papers</p>
                 </div>
-                 <div>
-                    <h4><i class="fas fa-link text-accent"></i> Quick Links</h4>
-                    <ul style="display: flex; flex-direction: column; gap: 0.5rem;">
-                        <li><a href="submission-guidelines.html">Submission Guidelines</a></li>
-                        <li><a href="call-for-papers.html">Call for Papers</a></li>
-                        <li><a href="#">Registration</a></li>
+
+                <div class="card" style="border-left: 4px solid var(--success);">
+                    <div style="font-weight: 700; color: var(--success); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
+                        <i class="fas fa-calendar"></i> August 30, 2026
+                    </div>
+                    <h3 class="card-title">Acceptance Notification</h3>
+                    <p class="text-muted">Authors will be notified of their submission status</p>
+                </div>
+
+                <div class="card" style="border-left: 4px solid var(--danger);">
+                    <div style="font-weight: 700; color: var(--danger); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
+                        <i class="fas fa-calendar"></i> October 31, 2026
+                    </div>
+                    <h3 class="card-title">Early Bird Registration Closes</h3>
+                    <p class="text-muted">Last day to register at discounted rates</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="section" style="background: var(--gradient-primary); color: white;">
+        <div class="container text-center">
+            <h2 class="section-title" style="color: white; margin-bottom: 1rem;">Ready to Share Your Research?</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">
+                Submit your paper to NIIS 2026 and be part of this premier international conference
+            </p>
+            <a href="/call-for-papers.html" class="btn btn-secondary">
+                <i class="fas fa-file-alt"></i> View Call for Papers
+            </a>
+        </div>
+    </section>
+
+    <!-- Modals for Track Details -->
+    <div class="modal" id="modal-energy">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-energy')">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="modal-title">Integrated Systems in Energy, Communication and Sensing</h2>
+            <p style="margin-bottom: 1rem; color: var(--text-muted);">Topics covered in this track:</p>
+            <ul class="modal-list">
+                <li>Optical and Microwave Communication Systems</li>
+                <li>Satellite Communication and Networks</li>
+                <li>Antenna Design and RF Propagation</li>
+                <li>Wireless Power Transfer Technologies</li>
+                <li>Terahertz Communication</li>
+                <li>VLSI and Nanoelectronics</li>
+                <li>System-on-Chip (SoC) Design</li>
+                <li>MEMS and NEMS Sensors</li>
+                <li>Biomedical Instrumentation</li>
+                <li>IoT Sensor Networks</li>
+                <li>Electric Vehicles and Battery Management</li>
+                <li>Solar and Photovoltaic Systems</li>
+                <li>Smart Grid and Microgrid Technologies</li>
+                <li>Power Electronics and Conversion</li>
+                <li>Renewable Energy Integration</li>
+                <li>Radar and Remote Sensing</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-embedded">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-embedded')">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="modal-title">Embedded Systems, IoT and Robotics</h2>
+            <p style="margin-bottom: 1rem; color: var(--text-muted);">Topics covered in this track:</p>
+            <ul class="modal-list">
+                <li>Embedded Systems Design and Development</li>
+                <li>Real-Time Operating Systems</li>
+                <li>Wireless Sensor Networks</li>
+                <li>IoT Architectures and Protocols</li>
+                <li>IoT Security and Privacy</li>
+                <li>Fog and Edge Computing</li>
+                <li>Autonomous Robots and Systems</li>
+                <li>Industry 5.0 Technologies</li>
+                <li>Industrial Automation</li>
+                <li>Wearable Health Monitoring Devices</li>
+                <li>Cyber-Physical Systems</li>
+                <li>Smart Cities and Applications</li>
+                <li>Drone Networks and UAVs</li>
+                <li>Underwater Robotics</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-ai">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-ai')">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="modal-title">Artificial Intelligence and Computing</h2>
+            <p style="margin-bottom: 1rem; color: var(--text-muted);">Topics covered in this track:</p>
+            <ul class="modal-list">
+                <li>Artificial Intelligence and Machine Learning</li>
+                <li>Deep Learning and Neural Networks</li>
+                <li>Explainable AI (XAI)</li>
+                <li>Natural Language Processing and LLMs</li>
+                <li>Generative AI and Foundation Models</li>
+                <li>Reinforcement Learning</li>
+                <li>Big Data and Predictive Analytics</li>
+                <li>Computer Vision and Image Processing</li>
+                <li>Fuzzy Logic and Swarm Intelligence</li>
+                <li>Audio and Speech Processing</li>
+                <li>Brain-Computer Interfaces</li>
+                <li>Biomedical Signal Processing</li>
+                <li>AI Applications in Healthcare</li>
+                <li>AI-based Cybersecurity</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-security">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-security')">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="modal-title">Secure and Emerging Technologies</h2>
+            <p style="margin-bottom: 1rem; color: var(--text-muted);">Topics covered in this track:</p>
+            <ul class="modal-list">
+                <li>Cybersecurity and Threat Intelligence</li>
+                <li>Network Security and Intrusion Detection</li>
+                <li>Privacy-Preserving Machine Learning</li>
+                <li>Software-Defined Networking (SDN)</li>
+                <li>Network Function Virtualization (NFV)</li>
+                <li>Blockchain and Distributed Applications</li>
+                <li>Cloud and Edge Computing Security</li>
+                <li>Quantum Cryptography and Computing</li>
+                <li>Digital Twins and Simulation</li>
+                <li>Augmented, Virtual and Extended Reality</li>
+                <li>Nano-Communication Systems</li>
+                <li>5G and 6G Networks</li>
+                <li>Green and Sustainable Computing</li>
+                <li>Decentralized Identity Management</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>About NIIS 2026</h4>
+                    <ul>
+                        <li><a href="/niis2026.html">About Conference</a></li>
+                        <li><a href="#">Conference Highlights</a></li>
+                        <li><a href="/gcet.html">About GCET</a></li>
+                        <li><a href="#">Previous Editions</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>For Authors</h4>
+                    <ul>
+                        <li><a href="/call-for-papers.html">Call for Papers</a></li>
+                        <li><a href="/submission-guidelines.html">Submission Guidelines</a></li>
+                        <li><a href="/tracks.html">Research Tracks</a></li>
+                        <li><a href="#">Paper Template</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Important Links</h4>
+                    <ul>
+                        <li><a href="/keynote.html">Keynote Speakers</a></li>
+                        <li><a href="/Technical-Committee.html">Technical Committee</a></li>
+                        <li><a href="/Organizing-committee.html">Organizing Committee</a></li>
+                        <li><a href="#">Conference Program</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="/contact.html">Contact Us</a></li>
+                        <li>Email: <a href="mailto:info@niis2026.com">info@niis2026.com</a></li>
+                        <li>Phone: +91-XXXX-XXXX</li>
+                        <li><a href="#">FAQs</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="footer__bottom">
-                <p>&copy; 2026 NIIS Conference. All Rights Reserved.</p>
+
+            <div class="footer-socials">
+                <a href="#" class="footer-social-link" title="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="footer-social-link" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="#" class="footer-social-link" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="footer-social-link" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025-2026 NIIS - International Conference on Next-Gen Integrated and Intelligent Systems. All rights reserved.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                    <a href="#" style="color: rgba(255,255,255,0.6);">Privacy Policy</a> • 
+                    <a href="#" style="color: rgba(255,255,255,0.6);">Terms & Conditions</a>
+                </p>
             </div>
         </div>
     </footer>
 
-    <div id="topic-modal" class="modal">
-        <div class="modal__content">
-            <button class="modal__close">&times;</button>
-            <h3 id="modal-title" style="font-size: 1.5rem; color: var(--primary); margin-bottom: 1rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem;">Topic Title</h3>
-            <ul id="modal-list" class="modal__list"></ul>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="flyerModal">
-        <div class="modal-content">
-            <button class="modal-close" id="modalClose" aria-label="Close">
-                <i class="fas fa-times"></i>
-            </button>
-            <img src="Flyer/ICNIIS2026_Flyer.jpg" class="modal-image" alt="Conference Flyer">
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Mobile Menu
-            const menuToggle = document.getElementById('mobile-menu-toggle');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileClose = document.getElementById('mobile-menu-close');
-            
-            const toggleMenu = () => {
-                if(mobileMenu) mobileMenu.classList.toggle('active');
-            }
-
-            if(menuToggle) menuToggle.addEventListener('click', toggleMenu);
-            if(mobileClose) mobileClose.addEventListener('click', toggleMenu);
-            
-            // Mobile Dropdowns
-            const mobileDropdowns = document.querySelectorAll('.mobile-dropdown-trigger');
-            mobileDropdowns.forEach(trigger => {
-                trigger.addEventListener('click', () => {
-                   trigger.classList.toggle('active');
-                   const submenu = trigger.nextElementSibling;
-                   if(submenu) submenu.classList.toggle('active');
-                });
-            });
-
-            // Countdown
-            const deadline = new Date("January 31, 2026 23:59:59").getTime();
-            function updateTimer() {
-                const now = new Date().getTime();
-                const t = deadline - now;
-                if (t < 0) return;
-                document.getElementById('days').innerText = Math.floor(t / (1000 * 60 * 60 * 24));
-                document.getElementById('hours').innerText = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                document.getElementById('minutes').innerText = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
-                document.getElementById('seconds').innerText = Math.floor((t % (1000 * 60)) / 1000);
-            }
-            setInterval(updateTimer, 1000);
-            updateTimer();
-
-            // Topic Modal Logic
-            const modal = document.getElementById('topic-modal');
-            const closeBtn = document.querySelector('.modal__close');
-            const topicDetails = {
-                energy: { title: "Integrated Systems in Energy, Communication & Sensing", 
-                          topics: [
-                          "Optical & Microwave Communication",
-                          "Satellite Communication Systems",
-                          "Antenna Design & RF Propagation",
-                          "Wireless Power Transfer and Energy Harvesting",
-                          "Terahertz and Millimeter-Wave Communication",
-                          "VLSI Design and Semiconductor Technologies",
-                          "Nanoelectronics and Organic Electronics",
-                          "System-on-Chip (SoC) and Lab-on-Chip Designs",
-                          "MEMS/NEMS and Sensor Design",
-                          "Biomedical Instrumentation & Biosensors",
-                          "IoT-Enabled Sensor Networks",
-                          "Electric Vehicles and Battery Management Systems (BMS)",
-                          "Solar Energy Systems and Photovoltaics",
-                          "Smart Grid Technologies and Microgrids",
-                          "Power Electronics and Energy Conversion Systems",
-                          "Electric Drives and Motor Control Systems",
-                          "Renewable Energy Integration and Control",
-                          "HVDC and FACTS in Power Systems",
-                          "Wireless Charging Technologies",
-                          "EMI/EMC in Power and Communication Systems",
-                          "Control Systems for Energy and Industrial Applications",
-                          "Sustainable and Green Electronics",
-                          "Electromagnetic Interference & Compatibility (EMI/EMC)",
-                          "High-Frequency Circuit Design",
-                          "Radar and Remote Sensing Technologies"
-                        ]
-                        },
-                embedded: { title: "Embedded Systems, IoT and Robotics", 
-                          topics: [
-                          "Embedded Systems Design and Optimization",
-                          "Real-Time and Safety-Critical Embedded Systems",
-                          "Wireless Sensor Networks (WSN) and Protocols",
-                          "Low-Power and Energy-Harvesting Sensor Networks",
-                          "Mobile Ad-hoc Networks (MANETs) and Routing Protocols",
-                          "Vehicular Ad-hoc Networks (VANETs) and Intelligent Transportation Systems",
-                          "Underwater and Under-Ice Communication Networks",
-                          "Internet of Things (IoT) Architectures, Protocols, and Standards",
-                          "IoT Security and Privacy Issues",
-                          "Fog, Edge, and Cloud Integration for IoT Systems",
-                          "Robotics: Autonomous Robots and Human-Robot Interaction",
-                          "Industrial Robotics and Industry 5.0 Applications",
-                          "Automation in Manufacturing and Process Control",
-                          "Control Systems: Adaptive, Robust, and Predictive Control",
-                          "Intelligent Networking: Software Defined Networks (SDN) for IoT",
-                          "Communication Systems for Low-Latency and High Reliability",
-                          "Wearable Health Monitoring Devices and Remote Patient Monitoring",
-                          "Cyber-Physical Systems (CPS) and Digital Twins",
-                          "Sensor Fusion and Multimodal Data Processing",
-                          "AI and Machine Learning in Embedded and Networked Systems",
-                          "Smart Cities: IoT and Networked Automation",
-                          "Network Security for Embedded and IoT Systems",
-                          "Cooperative and Swarm Robotics",
-                          "Autonomous Vehicles and Drone Networks",
-                          "Wireless Power Transfer in Sensor and Embedded Networks",
-                          "Resource Management and QoS in Wireless Networks",
-                          "Localization and Tracking in Ad-hoc and Sensor Networks",
-                          "Protocol Design for Real-Time and Critical Systems",
-                          "Underwater Robotics and Communication Technologies"
-                        ]
-                        },
-                ai: { title: "Artificial Intelligence and Computing", 
-                      topics: [
-                        "Artificial Intelligence (AI), Machine Learning (ML), and Deep Learning (DL)",
-                        "Explainable AI (XAI) and Responsible AI",
-                        "Natural Language Processing (NLP) and Language Models",
-                        "Generative AI and Foundation Models",
-                        "Reinforcement Learning and Adaptive Systems",
-                        "Transfer Learning and Few-shot Learning",
-                        "Data Analytics and Predictive Modeling",
-                        "Big Data Processing and Scalable AI Architectures",
-                        "Time Series Analysis and Forecasting",
-                        "Computer Vision and Pattern Recognition",
-                        "Image & Video Processing and Compression Techniques",
-                        "3D Image Reconstruction and Object Detection",
-                        "Fuzzy Logic and Hybrid Intelligent Systems",
-                        "Evolutionary Algorithms and Swarm Intelligence",
-                        "Neuro-Fuzzy and Genetic Algorithms",
-                        "Signal Processing for AI and Communications",
-                        "Audio and Speech Processing",
-                        "Cognitive Radio Networks and Dynamic Spectrum Access",
-                        "Brain-Computer Interface (BCI) Systems",
-                        "Human-Centered AI and Affective Computing",
-                        "Cognitive Modeling and Neural Computation",
-                        "Computational Neuroscience and Neural Signal Analysis",
-                        "Bio-Informatics and Genomic Signal Processing",
-                        "Biomedical Signal and Image Processing",
-                        "Bio-Mechanics and Computational Physiology",
-                        "AI in Drug Discovery and Healthcare Systems",
-                        "Computational Intelligence for Smart Healthcare",
-                        "Optimization Techniques in Engineering and AI",
-                        "Metaheuristics and Nature-Inspired Computing",
-                        "Multi-objective Optimization and Decision Making",
-                        "AI for Environmental and Social Impact Analytics",
-                        "Robotics Perception and AI-based Control Systems",
-                        "AI for Cybersecurity and Anomaly Detection",
-                        "Federated and Distributed AI Architectures"
-                      ]
-                      },
-                secure: { title: "Secure and Emerging Technologies", 
-                        topics: [
-                        "Cyber Security and Threat Intelligence",
-                        "Network Security and Intrusion Detection Systems",
-                        "Privacy-Preserving Machine Learning and Federated Learning",
-                        "Software Defined Networking (SDN) and Network Function Virtualization (NFV)",
-                        "Virtualization and Containerization Technologies (e.g., Docker, Kubernetes)",
-                        "Blockchain, Smart Contracts, and Decentralized Applications (dApps)",
-                        "Distributed Ledger Technologies for Industry 5.0",
-                        "Cloud Computing Models and Virtualized Infrastructure",
-                        "Edge, Fog, and Mist Computing Architectures",
-                        "Serverless and Microservices-based Computing",
-                        "Quantum Cryptography and Post-Quantum Security",
-                        "Digital Twin Technology in Smart Systems",
-                        "Augmented Reality (AR), Virtual Reality (VR), and Mixed Reality (MR)",
-                        "Extended Reality (XR) and Human-Centered Computing",
-                        "Nanoelectronics in Smart Devices",
-                        "Nano Sensors and Nano-Communication Networks",
-                        "5G/6G Networks and Next-Gen Wireless Standards",
-                        "Future Internet Architectures (e.g., Named Data Networking)",
-                        "Internet of Everything (IoE) and Smart Environments",
-                        "Cyber-Physical Systems (CPS) Security and Resilience",
-                        "Autonomous Systems and Secure Control Architectures",
-                        "Trustworthy AI and Secure Intelligent Systems",
-                        "Green Computing and Sustainable Data Centers",
-                        "Energy-Efficient Cloud and Edge Infrastructures",
-                        "Digital Sovereignty and Decentralized Identity Systems",
-                        "AI-Driven Network Management and Optimization",
-                        "Intelligent Load Balancing and Resource Allocation in Cloud/Edge"
-                      ]
-                      }
-            };
-
-            document.querySelectorAll('.topic-card[data-topic]').forEach(card => {
-                card.addEventListener('click', () => {
-                    const data = topicDetails[card.dataset.topic];
-                    if(data) {
-                        document.getElementById('modal-title').innerText = data.title;
-                        document.getElementById('modal-list').innerHTML = data.topics.map(t => `<li>${t}</li>`).join('');
-                        modal.classList.add('active');
-                        document.body.style.overflow = 'hidden';
-                    }
-                });
-            });
-
-            const closeModal = () => { modal.classList.remove('active'); document.body.style.overflow = ''; };
-            closeBtn.addEventListener('click', closeModal);
-            window.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
-
-            // Fast Slideshow (1s)
-            const slides = document.querySelectorAll('.slide');
-            let currentSlide = 0;
-            if(slides.length > 0) {
-                setInterval(() => {
-                    slides[currentSlide].classList.remove('active');
-                    currentSlide = (currentSlide + 1) % slides.length;
-                    slides[currentSlide].classList.add('active');
-                }, 3000);
-            }
-
-            // Dual Timers
-            const paperDeadline = new Date("January 31, 2026 23:59:59").getTime();
-            const confDate = new Date("June 25, 2026 09:00:00").getTime();
-
-            function updateDualTimer(target, elementId) {
-                const now = new Date().getTime();
-                const t = target - now;
-                const el = document.getElementById(elementId);
-                if (!el) return;
-                
-                if (t < 0) {
-                    el.innerHTML = "<div>Ended</div>";
-                    return;
-                }
-                const d = Math.floor(t / (1000 * 60 * 60 * 24));
-                const h = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const m = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
-                const s = Math.floor((t % (1000 * 60)) / 1000);
-                el.querySelector('.d').innerText = d;
-                el.querySelector('.h').innerText = h < 10 ? '0' + h : h;
-                el.querySelector('.m').innerText = m < 10 ? '0' + m : m;
-                el.querySelector('.s').innerText = s < 10 ? '0' + s : s;
-            }
-
-            setInterval(() => {
-                updateDualTimer(paperDeadline, 'paper-timer');
-                updateDualTimer(confDate, 'conf-timer');
-            }, 1000);
-        });
-        
-        // --- FLYER MODAL LOGIC (UPDATED) ---
-        const flyerModal = document.getElementById('flyerModal');
-        const flyerModalClose = document.getElementById('modalClose');
-
-        function showFlyer() {
-            if (flyerModal) {
-                setTimeout(() => {
-                    flyerModal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                }, 500);
-            }
-        }
-
-        function closeFlyerModal() {
-            if (flyerModal) {
-                flyerModal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        }
-
-        // Logic to Determine whether to show:
-        // 1. If User RELOADS the page -> Show.
-        // 2. If User comes from DIRECT Link or EXTERNAL site -> Show.
-        // 3. If User comes from INTERNAL link (e.g. Keynote -> Home) -> HIDE.
-
-        try {
-            // Check for Reload
-            const navigationEntries = performance.getEntriesByType("navigation");
-            const isReload = navigationEntries.length > 0 && navigationEntries[0].type === 'reload';
-            
-            // Get Referrer
-            const referrer = document.referrer;
-            const currentHost = window.location.hostname;
-
-            if (isReload) {
-                // User Refreshed: Show Flyer
-                showFlyer();
-            } else if (!referrer) {
-                // Direct Entry (No referrer) -> Show Flyer
-                showFlyer();
-            } else if (currentHost && !referrer.includes(currentHost)) {
-                 // External Referrer (Google, WhatsApp, etc) -> Show Flyer
-                 showFlyer();
-            } else {
-                // Internal Navigation (e.g. clicked "Home" from "Keynote" page): Do NOTHING (Hide)
-                console.log("Internal navigation detected: Flyer suppressed.");
-            }
-        } catch (e) {
-            // Fallback for older browsers: just show it
-            showFlyer();
-        }
-
-        if (flyerModalClose) flyerModalClose.addEventListener('click', closeFlyerModal);
-
-        if (flyerModal) {
-            flyerModal.addEventListener('click', (e) => {
-                if (e.target === flyerModal) closeFlyerModal();
-            });
-        }
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && flyerModal && flyerModal.classList.contains('active')) {
-                closeFlyerModal();
-            }
-        });
-    </script>
+    <!-- Scripts -->
+    <script src="/shared.js"></script>
 </body>
 </html>
