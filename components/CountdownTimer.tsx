@@ -27,7 +27,7 @@ export function CountdownTimer() {
 
   useEffect(() => {
     const calculateTime = () => {
-      const submissionDeadline = new Date(2026, 2, 1, 23, 59, 59).getTime(); // 1 March 2026
+      const submissionDeadline = new Date(2026, 6, 30, 0, 0, 0).getTime();; // 1 March 2026
       const conferenceStart = new Date(2026, 10, 5, 0, 0, 0).getTime();      // 5 Novem
       const now = new Date().getTime();
 
